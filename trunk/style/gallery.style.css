@@ -1,0 +1,528 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+html {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #FFFFFF;
+	overflow-y: scroll;
+	background: #171717 url(images/design/bg.png);
+}
+
+/* #############################
+#            GENERAL           #
+############################# */
+
+a {
+	color: #ffffff;
+}
+a:hover {
+	text-decoration: none;	
+}
+a img {
+	border: none;
+}
+acronym {
+	border-bottom: 1px dotted #fff;
+	cursor: help;
+}
+.cursorPointer {
+	cursor: pointer; 
+}
+.noFloat {
+	clear: both;
+	height: 0px;
+	border: 0px solid #000000;
+	width: 0px;
+	visibility: hidden;
+	outside: none; 
+}
+#noscript {
+	position: absolute;
+	left: 300px;
+	top: 40px;
+	text-align: center;
+	font-weight: bold;
+	color: #000000;
+	background: #FFCC66;
+	border: 1px solid #FF6600;
+	padding: 5px;
+	-moz-border-radius: 10px; 
+	-webkit-border-radius: 10px;
+	border-radius: 10px; 
+}
+#noscript a {
+	color: #000000;
+	text-decoration: underline;
+	font-variant: normal;
+}
+.notificationBadge {
+	position: absolute;
+	font-size: 11px;
+	line-height: 12px;
+	font-family:"Courier New", Courier, monospace;
+	padding: 0px 2px;
+	margin: 0px;
+	background: #000;
+	background: -moz-linear-gradient(top, #494949 0%, #000000 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#494949), color-stop(100%,#000000)); 
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#494949', endColorstr='#000000',GradientType=0 );
+	border:#999 1px solid;
+	border-radius:40px;
+	-moz-border-radius:40px;
+	-khtml-border-radius:40px;
+	-webkit-border-radius:40px;
+	border:#999 1px solid;
+	opacity: 0.9; 
+	filter: alpha(opacity=90); 
+}
+
+/* #############################
+#            HEADER            #
+############################# */
+
+#header {
+	position: absolute;
+	width: 100%;
+	min-width: 750px;
+	top: 0px;
+}
+#headerContent {
+	height: 85px;
+}
+#title {
+	float: left;
+	width: 300px;
+	background: url(images/design/headerBg.png) left top no-repeat;
+	height: 100%;
+}
+#title img {
+	margin-top: 10px;
+	margin-left: 10px;
+}
+#menu {
+	background: url(images/design/headerBg.png) left bottom;
+	font-size: 18px;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	margin-left: 300px;
+	height: 100%;	
+}
+#menu li {
+	position: relative;
+	display: inline;
+	height: 30px;
+	line-height: 28px;
+}
+#menu a {
+	color: #ffffff;
+	text-decoration: none;
+	outline: none;
+	text-shadow: 0px 0px 3px #222;
+}
+#menu a:hover {
+	border-bottom: 3px solid #3f3f3f;
+}
+#menu a:active, #menu a:focus,  #menu .linkFocused {
+	border-bottom: 3px solid #646464;
+}
+
+/* #############################
+#          FORMULAIRES		   #
+############################# */
+
+textarea {
+	background: #000;
+	color: #fff;
+	font-size: 15px;
+	font-family: "Courier New", Courier, monospace;
+	padding: 5px;
+	margin: 2px;
+	background: -moz-linear-gradient(top, #000000 0%, #191919 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(100%,#191919)); 
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#191919',GradientType=0 );
+	border:#999 1px solid;
+	-moz-border-radius:10px;
+	-khtml-border-radius:10px;
+	-webkit-border-radius:10px;
+	outline: none;
+}
+input, .button {
+	background: #000;
+	color: #fff;
+	font-size: 15px;
+	font-family: "Courier New", Courier, monospace;
+	font-weight: none;
+	padding: 3px 5px;
+	margin: 2px;
+	background: -moz-linear-gradient(top, #000000 0%, #191919 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(100%,#191919)); 
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#191919',GradientType=0 );
+	border:#999 1px solid;
+	border-radius:40px;
+	-moz-border-radius:40px;
+	-khtml-border-radius:40px;
+	-webkit-border-radius:40px;
+	outline: none;
+	/*height: 18px;*/
+}
+input:hover {
+	border:#ddd 1px solid;
+}
+input[type='submit'], .button {
+	background: -moz-linear-gradient(top, #191919 0%, #000000 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#191919), color-stop(100%,#000000)); 
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#191919', endColorstr='#000000',GradientType=0 );
+	cursor: pointer;
+	/*height: 30px;*/
+}
+.button.disabled {
+	color: #000;
+	cursor: not-allowed;
+}
+input[type='submit']:hover, .button:hover {
+	background: -moz-linear-gradient(top, #292929 0%, #000000 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#292929), color-stop(100%,#000000)); 
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#292929', endColorstr='#000000',GradientType=0 );
+	border:#999 1px solid;
+}
+input[type='checkbox'], input[type='radio'] {
+	background: none; 
+	filter: none;
+	border: none;
+}
+select, option {
+	background: #000;
+	color: #fff;
+	font-size: 15px;
+	font-family: "Courier New", Courier, monospace;
+	padding: 3px 5px;
+	margin: 2px;
+	border:#999 1px solid;
+	border-radius:40px;
+	-moz-border-radius:40px;
+	-khtml-border-radius:40px;
+	-webkit-border-radius:40px;
+	outline: none;
+}
+
+/* #############################
+#             NAV              #
+############################# */
+#nav {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	z-index: 20;
+}
+#navPanelGroup {
+	position: fixed;
+	right: 0px;
+	bottom: 75px;
+	width: 450px;
+	overflow: auto;
+	max-height: 60%;
+}
+.navPanel {
+	display: none;
+	padding: 10px;
+	background: url(images/design/navBg.png);
+	-webkit-border-top-left-radius: 15px;
+	-webkit-border-bottom-left-radius: 15px;
+	-moz-border-radius-topleft: 15px;
+	-moz-border-radius-bottomleft: 15px;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+	border: 1px solid #595959;
+	border-right: none;
+	z-index: 25;
+}
+.navPanel hr {
+	height: 1px;
+	border: none;
+	background: #595959;
+	margin: 10px auto;
+}
+.navPanel li {
+	list-style: outside;
+	margin-left: 25px;
+}
+.navPanelSectionTitle {
+	font-weight: bold;
+	text-decoration: underline;
+	cursor: pointer;
+}
+.navPanelSectionTitle:hover {
+	text-decoration: none;
+}
+.navPanelSectionContent {
+	display: none;
+}
+#navPanelDescription, #navPanelDescription .navPanelSectionContent {
+	display: block;
+}
+#testGalMinSize {
+	width: 200px;
+	height: 200px;
+	background-color: #333;
+	margin: 10px auto;
+	cursor: ew-resize;
+	-moz-border-radius: 10px; 
+	-webkit-border-radius: 10px;
+	border-radius: 10px; 
+	
+	background-image: linear-gradient(right bottom, #212121 0%, #616161 100%);
+	background-image: -o-linear-gradient(right bottom, #212121 0%, #616161 100%);
+	background-image: -moz-linear-gradient(right bottom, #212121 0%, #616161 100%);
+	background-image: -webkit-linear-gradient(right bottom, #212121 0%, #616161 100%);
+	background-image: -ms-linear-gradient(right bottom, #212121 0%, #616161 100%);
+	
+	background-image: -webkit-gradient(
+		linear,
+		right bottom,
+		left top,
+		color-stop(0, #212121),
+		color-stop(1, #616161)
+	);
+}
+#navBar {
+	min-width: 750px;
+	height: 45px;
+	padding: 0px 10px;
+	background: url(images/design/navBg.png);
+	border-top: 1px solid #595959;
+	font-family: "Courier New", Courier, monospace;
+	font-weight: bold;
+	font-size: 20px;
+	overflow: visible;
+	z-index: 50;
+}
+#navRight {
+	float: right;
+}
+#navButtons {
+	margin: 0px;
+	padding: 0px;
+	margin-top: 5px;
+	margin-bottom: -1px;
+	overflow: visible;
+	cursor: pointer;
+}
+.navButton {
+	position: relative;
+}
+.navButtonBubble {
+	display: none;
+	height: 30px;
+	width: 30px;
+	background: url('images/navButtonBubble.png') no-repeat bottom right;
+	position: absolute;
+	top: -54px;
+	left: -15px;
+	z-index: 30;
+}
+#navButtonDescription .navButtonBubble {
+	display: block;
+}
+#navParentLink {
+	height: 15px;
+	line-height: 15px;
+}
+#navAlbTitle {
+	height: 30px;
+	line-height: 30px;
+	font-size: 22px;
+	display: inline;
+	font-family: "Century Gothic", sans-serif;
+	font-weight: normal;
+}
+#navLeft {
+	font-size: 14px;
+}
+#navLeft a {
+	text-decoration: none;
+}
+#navLeft a:hover {
+	text-shadow: 0px 0px 3px #aaa;
+}
+#cartContentSectionRefresh {
+	position: fixed;
+	right: 25px;
+	bottom: 80px;	
+}
+
+/* #############################
+#           CUERPO             #
+############################# */
+
+/* Organisation générale de la page */
+
+#cuerpo {
+	min-width: 750px;
+}
+#cuerpo h2 {
+	margin: 15px;
+	font-size: 72px;
+	text-align: right;
+	white-space: nowrap;
+	color: #0d0d0d;
+	font-family: "Century Gothic", sans-serif;
+	font-weight: normal;
+	text-shadow: 0px 0px 5px #2e2e2e;
+}
+
+/* Fin du content */
+
+#gallery {
+	text-align: center;
+}
+
+.titleIcons {
+	margin: 2px; 
+}
+
+#galCurAlbIcons {
+	display: inline;
+}
+#galCurAlbIcons .pictIcons {
+	margin: 0px; 
+}
+#galDescription {
+	width: 90%;
+	margin: 15px auto;
+	clear: both;
+	text-align: justify;
+}
+#galNav {
+	float: right;
+	padding: 10px 15px;
+	background: #171717;
+	text-align: center;
+	-webkit-border-bottom-right-radius: 15px;
+	-webkit-border-bottom-left-radius: 15px;
+	-moz-border-radius-bottomright: 15px;
+	-moz-border-radius-bottomleft: 15px;
+	border-bottom-right-radius: 15px;
+	border-bottom-left-radius: 15px;
+}
+.loadingInformation {
+	height: 32px;
+	width: 300px;
+	margin-left: -150px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	text-align: center;
+	line-height: 32px;
+	background: #000;
+	border: 1px solid grey;
+	z-index: 100;
+	opacity: 0.8; 
+	filter: alpha(opacity=80); 
+}
+.loadingInformation img {
+	float: left;
+}
+
+/* #############################
+#            FOOTER            #
+############################# */
+
+#footer {
+	color: #444;
+	padding: 5px;
+	margin: 50px;
+}
+#footerContent {
+	margin: auto;
+}
+#footer p {
+	font-size: 80%;
+	font-style: italic;
+	text-align: center;
+	text-shadow: 1px 1px 1px #000;
+}
+h1 {
+	font-size: 85%;
+	text-align: center;
+	text-shadow: 2px 2px 2px #000;
+}
+
+
+/* #############################
+#         INLINE BLOCK         #
+############################# */
+/* permet d'afficher des blocs en les mettants "en ligne" */
+
+.inlineBlock {
+    /* Indispensable */
+    display: -moz-inline-stack; /* Pour Firefox 1-2 */
+    display: inline-block; /* Écrase la valeur précédente si le navigateur comprend inline-block */
+
+    /* Positionnement vertical du bloc */
+    /*vertical-align: middle;*/
+}
+
+/* #############################
+#         VIGNETTES            #
+############################# */
+
+.galMin {
+	position: relative;
+	width: 200px;
+	margin: 20px;
+	z-index: 0;
+}
+.galMinDivImage {
+	display: table;
+}
+.galMinPImage {
+	width: 200px;
+	height: 200px;
+	display: table-cell; 
+	vertical-align: bottom;
+}
+.galMinImage {
+	min-width: 30%;
+	min-height: 30%;
+	background: #000;
+}
+.galMinTitle {
+	max-width: 100%;
+	margin: 10px auto 0px;
+	padding: 3px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-align: center;
+	font-size: 80%;
+	background: #171717;
+	border: 1px solid #3f3f3f;	
+	-moz-border-radius: 15px; 
+	-webkit-border-radius: 15px;
+	border-radius: 15px; 	
+}
+.galAlbImage {
+	-moz-border-radius: 10px; 
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background: none;
+}
+.galMin .galMinMenu {
+	float: left;
+	display: none;
+	position: absolute;
+	left: 5px;
+	bottom: 25px;
+/*	padding: 2px 5px;
+	line-height: 10px;
+	background: url(images/design/navBg.png);
+	-moz-border-radius: 10px; 
+	-webkit-border-radius: 10px;
+	border-radius: 10px;*/
+}
+.galMin:hover .galMinMenu {
+	display: block;
+}
+	
+	

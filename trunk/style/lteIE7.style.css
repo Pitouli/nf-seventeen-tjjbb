@@ -1,0 +1,10 @@
+.inlineBlock {
+    /* Indispensable */
+    display: inline;
+}
+.navPanel {
+	border: 1px solid #595959;
+}
+.navButtonBubble {
+	top: -36px;
+}

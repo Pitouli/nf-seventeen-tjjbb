@@ -1,0 +1,22 @@
+SetEnv MAGIC_QUOTES 0 
+SetEnv SESSION_USE_TRANS_SID 0
+
+ErrorDocument 401 /index.php?controller=index&section=error&ssection=401
+ErrorDocument 403 /index.php?controller=index&section=error&ssection=403
+ErrorDocument 404 /index.php?controller=index&section=error&ssection=404
+ErrorDocument 500 /index.php?controller=index&section=error&ssection=500
+
+Options +FollowSymlinks
+RewriteEngine on
+
+# Toutes les pages en html
+RewriteRule ^([A-Za-z0-9]+)(?:/([A-Za-z0-9.]+))?(?:/([A-Za-z0-9.]+))?(?:/([A-Za-z0-9.]+))?(?:/([A-Za-z0-9._]+))?(?:,([A-Za-z0-9.,=]*))?(?:-(.*))?.htm(?:l)?$ index.php?controller=$1&section=$2&ssection=$3&sssection=$4&ssssection=$5&param=$6&other=$7 [L]
+
+# Les css
+#RewriteRule ^style/(([A-Za-z0-9.]+))?(?:-([A-Za-z0-9.]+))?(?:-([A-Za-z0-9.]+))?(?:_([A-Za-z0-9.,=]*))?.css$ index.php?controller=style&section=$1&ssection=$2&sssection=$3&param=$4 [L]
+
+# Tout ce qui n'est pas dans les dossiers style, blog, photos et js
+#RewriteRule ^([^(blog|js|photos|style)]/*)$ /www/pompanon/index.php?controller=index&section=error&ssection=401 [L]
+
+Options -Indexes
+
