@@ -7,13 +7,13 @@ require 'global/init.php';
 ob_start();
 
 // On récupère les valeurs des arguments passé par la méthode GET
-$getController = isset($_GET['controller']) ? $_GET['controller'] : NULL;
-$getSection = isset($_GET['section']) ? $_GET['section'] : NULL;
-$getSSection = isset($_GET['ssection']) ? $_GET['ssection'] : NULL;
-$getSSSection = isset($_GET['sssection']) ? $_GET['sssection'] : NULL;
-$getSSSSection = isset($_GET['ssssection']) ? $_GET['ssssection'] : NULL;
-$getParam = isset($_GET['param']) ? $_GET['param'] : NULL;
-$getOther = isset($_GET['other']) ? $_GET['other'] : NULL;
+$getController = isset($_GET['c']) ? $_GET['c'] : NULL;
+$getSection = isset($_GET['s1']) ? $_GET['s1'] : NULL;
+$getSSection = isset($_GET['s2']) ? $_GET['s2'] : NULL;
+$getSSSection = isset($_GET['s3']) ? $_GET['s3'] : NULL;
+$getSSSSection = isset($_GET['s4']) ? $_GET['s4'] : NULL;
+$getParam = isset($_GET['p']) ? $_GET['p'] : NULL;
+$getOther = isset($_GET['o']) ? $_GET['o'] : NULL;
 
 // On crée un nouvel objet
 $param = new GetParam($getParam);
