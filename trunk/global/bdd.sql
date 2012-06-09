@@ -57,7 +57,7 @@ CREATE TABLE reservation (
 
 CREATE TABLE billet (
 	id_reservation INTEGER REFERENCES reservation(id) NOT NULL,
-	id_particulier INTEGER REFERENCES particulier(id) NOT NULL
+	id_particulier INTEGER REFERENCES particulier(id_client) NOT NULL
 );
 
 CREATE TABLE titre (
