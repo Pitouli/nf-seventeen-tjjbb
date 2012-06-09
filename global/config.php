@@ -2,6 +2,9 @@
 
 require 'config_bdd.php';
 
+// Variables pour la sécurité
+define('PASSWORD', 'admin');
+
 // Chemins à utiliser
 define('DIR_MODEL', 'model/');
 define('DIR_CLASS', 'class/');
