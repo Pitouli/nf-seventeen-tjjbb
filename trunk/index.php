@@ -3,9 +3,6 @@
 // Initialisation
 require 'global/init.php';
 
-// Début de la tamporisation de sortie
-ob_start();
-
 // On récupère les valeurs des arguments passé par la méthode GET
 $getController = isset($_GET['c']) ? $_GET['c'] : NULL;
 $getSection = isset($_GET['s1']) ? $_GET['s1'] : NULL;
@@ -18,7 +15,12 @@ $getOther = isset($_GET['o']) ? $_GET['o'] : NULL;
 // On crée un nouvel objet
 $param = new GetParam($getParam);
 
-if (empty($getController) OR $getController == 'index') // Si on a pas précisé de controllern ou que c'est l'index
+require DIR_CONTROLLER.'security.controller.php';
+/*
+// Début de la tamporisation de sortie
+ob_start();
+
+if (empty($getController) OR $getController == 'index') // Si on a pas précisé de controller ou que c'est l'index
 {
 	require DIR_CONTROLLER.'default.controller.php';
 }
