@@ -46,7 +46,7 @@ CREATE TABLE particulier (
 );
 
 CREATE TABLE entreprise (
-	id_client INTEGER REFERENCES client(id)PRIMARY KEY,
+	id_client INTEGER REFERENCES client(id) PRIMARY KEY,
 	nom VARCHAR
 );
 
@@ -69,4 +69,9 @@ CREATE TABLE titre (
 CREATE TABLE supporte (
 	id_modele INTEGER REFERENCES modele(id) NOT NULL,
 	id_terminal INTEGER REFERENCES terminal(id) NOT NULL
+);
+
+CREATE TABLE utilise (
+	id_vol INTEGER REFERENCES vol(id) NOT NULL,
+	id_reservation INTEGER REFERENCES reservation(id) NOT NULL
 );
