@@ -68,4 +68,5 @@ CREATE TABLE titre (
 
 CREATE TABLE supporte (
 	id_modele INTEGER REFERENCES modele(id) NOT NULL,
-	id_terminal INTEGER REFERENCES terminal(id) NOT NULL,
+	id_terminal INTEGER REFERENCES terminal(id) NOT NULL
+);
