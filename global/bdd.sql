@@ -32,7 +32,7 @@ CREATE TABLE vol (
 	depart DATE,
 	arrive DATE,
 	id_terminal_dep INTEGER REFERENCES terminal(id) NOT NULL,
-	id_terminal_ar INTEGER REFERENCES terminal(id) NOT NULL,	
+	id_terminal_ar INTEGER REFERENCES terminal(id) NOT NULL	
 );
 
 CREATE TABLE client (
