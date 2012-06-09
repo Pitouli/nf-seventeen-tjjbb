@@ -65,3 +65,7 @@ CREATE TABLE titre (
 	id_client INTEGER REFERENCES client(id) NOT NULL,
 	masse_fret REAL
 );
+
+CREATE TABLE supporte (
+	id_modele INTEGER REFERENCES modele(id) NOT NULL,
+	id_terminal INTEGER REFERENCES terminal(id) NOT NULL,
