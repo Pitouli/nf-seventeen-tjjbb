@@ -43,6 +43,10 @@
 		</table>
 	</form>
 	
+	<?php 
+		if(isset($resultSearch))
+		{
+	?>
 	<form method="post" action="<?php echo ROOT; ?>?c=customers&s1=newCustomer">
 		<table class="largeTable tableListPrices">
 			<tr class="trListPrices">
@@ -52,23 +56,30 @@
 				<td>Prix si achat de l'album complet</td>
 				<td colspan="2" title="On peut fusionner deux catégories de prix. Les photos de la 1ere hériteront des prix de la 2eme"><input type="submit" class="inputSubmit fusionSubmit" value="Fusion" id="price_fusion" /></td>
 			</tr>
+			<em>
 		<?php
-			foreach($listPrices as $price)
+			foreach($resultSearch as $client)
 			{
+				print_r($client);
 		?>
-			<tr class="trListPrices">
+			
+			<!-- <tr class="trListPrices">
 				<td><input type="hidden" name="priceId" class="priceId" value="<?php echo $price['id']; ?>" /><input name="title" title="Nom de la catégorie de prix" type="text" class="inputText priceTitle updateAjax" value="<?php echo $price['title']; ?>" id="price_title_<?php echo $price['id']; ?>" /></td>
 				<td><input name="HD" title="Prix en cas d'achat version HD à l'unité" type="text" class="inputText priceHD updateAjax" value="<?php echo number_format($price['HD']/100,2,'.','') ?>" id="price_HD_<?php echo $price['id']; ?>" /></td>
 				<td><input name="FD" title="Prix en cas d'achat version FD à l'unité" type="text" class="inputText priceFD updateAjax" value="<?php echo number_format($price['FD']/100,2,'.','') ?>" id="price_FD_<?php echo $price['id']; ?>" /></td>
 				<td><input name="inAlbum" title="Prix en cas d'achat de l'album complet" type="text" class="inputText priceInFolder updateAjax" value="<?php echo number_format($price['inAlbum']/100,2,'.','') ?>" id="price_inAlbum_<?php echo $price['id']; ?>" /></td>
 				<td><input name="fusionSuppr" title="Catégorie supprimée dans la fusion" type="radio" value="<?php echo $price['id']; ?>" /></td>
 				<td><input name="fusionRecup" title="Catégorie réceptrice dans la fusion" type="radio" value="<?php echo $price['id']; ?>" /></td>
-			</tr>
+			</tr> -->
 		<?php
 			}
 		?>
+		</em>
 		</table>
 	</form>
+	<?php
+		}
+	?>
 
 </div>
 
