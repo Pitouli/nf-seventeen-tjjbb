@@ -4,6 +4,7 @@ require 'config_bdd.php';
 
 // Variables pour la sécurité
 define('PASSWORD', 'admin');
+define('CONNECTION_TRY', 5); // Nb d'essai autorisés pour se connecter
 
 // Chemins à utiliser
 define('DIR_MODEL', 'model/');

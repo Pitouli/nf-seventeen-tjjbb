@@ -16,7 +16,7 @@ $getOther = isset($_GET['o']) ? $_GET['o'] : NULL;
 $param = new GetParam($getParam);
 
 require DIR_CONTROLLER.'security.controller.php';
-/*
+
 // Début de la tamporisation de sortie
 ob_start();
 
@@ -35,10 +35,10 @@ else
 	} 
 	else // Sinon, on declare une erreur 404
 	{
-		$getSection = 'error';
-		$getSSection = 404;
+		$getController = 'error';
+		$getSection = 404;
 		
-		require DIR_CONTROLLER.'default.controller.php';
+		require DIR_CONTROLLER.'error.controller.php';
 	}
 }
 

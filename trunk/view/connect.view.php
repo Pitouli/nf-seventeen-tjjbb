@@ -3,15 +3,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php echo BROWSER_SITE_TITLE ?> | Connexion</title>
+<?php require DIR_STYLE.'style.php' ?>
 </head>
-
 <body>
-<form method="post" action="">
-<p>
-	<label for="password">Mot de passe :</label>
-	<input type="text" name="password" id="password" />
-	<input type="submit" value="Se connecter" />
-</p>
-</form>
+<div id="minPage">
+<?php require DIR_INC.'report.inc.php' ?>
+
+<div>
+    <h1>Identification</h1>
+    <form method="post" action="">
+    <table class="minTable">
+      <tr>
+        <td><label for="password">Mot de passe&nbsp;:</label></td>
+        <td><input type="password" name="password" /></td>
+      </tr>
+      <tr>
+        <td colspan="2"><input type="checkbox" name="rememberme" id="rememberme" /><label for="rememberme">&nbsp;se souvenir de moi</label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2"><input type="submit" value="Se connecter" /></td>
+      </tr>
+    </table>
+    </form>    
+</div>
+
+</div>
+<?php require 'js/js.php' ?>
 </body>
 </html>
