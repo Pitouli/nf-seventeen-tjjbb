@@ -9,13 +9,13 @@ if(isset($_POST))
 	$resultParticulier = array();
 	$resultEntreprise = array();
 
-	if(isset($_POST['searchParticulier']) && $_POST['searchParticulier'])
+	if(isset($_POST['searchParticulier']) && $_POST['searchParticulier'] == "checked")
 	{			
 		$selectParticulier = $bdd->prepare("SELECT id_client, nom, prenom, 'PARTICULIER' as cat FROM particulier WHERE UPPER(nom) LIKE UPPER(:nom) AND UPPER(prenom) LIKE UPPER(:prenom) LIMIT 100");
 		$selectParticulier->execute(array(":nom" => $nom, ":prenom" => $prenom));
 		$resultParticulier = $selectParticulier->fetchAll();
 	}
-	if(isset($_POST['searchEntreprise']) && $_POST['searchEntreprise'])
+	if(isset($_POST['searchEntreprise']) && $_POST['searchEntreprise'] == "checked")
 	{
 		$selectEntreprise = $bdd->prepare("SELECT id_client, nom, '-' as prenom, 'ENTREPRISE' as cat FROM entreprise WHERE UPPER(nom) LIKE UPPER(:nom) LIMIT 100");
 		$selectEntreprise->execute(array(":nom" => $nom));

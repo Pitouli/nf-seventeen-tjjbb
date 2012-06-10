@@ -245,10 +245,13 @@ table {
 	border-radius: 5px;
 	border-collapse: collapse;
 }
-table td {
+table td, table th {
 	vertical-align: middle;
 }
-table.col50pc td {
+table th {
+	font-weight: bold;
+}
+table.col50pc td, table.col50pc th {
 	width: 50%;
 }
 table.col50pc {
@@ -258,13 +261,9 @@ table.col50pc {
 	width: auto;
 	margin: 10px auto;
 }
-.minTable td {
+.minTable td, .minTable th {
 	width: auto;
-}
-.minTable td {
 	vertical-align: middle;
-}
-.minTable td {
 	padding: 5px;
 }
 .largeTable {
@@ -272,13 +271,11 @@ table.col50pc {
 	text-align: center;
 	margin-bottom: 10px;
 }
-.largeTable td {
+.largeTable td, .largeTable th {
 	vertical-align: middle;
-}
-.largeTable td {
 	padding: 5px;
 }
-.largeTable .inputText, .largeTable .inputSubmit, .largeTable select, .largeTable textarea {
+.largeTable input[type="text"], .largeTable .inputText, .largeTable select, .largeTable select, .largeTable textarea {
 	width: 100%;
 	/* height: 100%; */
 }
