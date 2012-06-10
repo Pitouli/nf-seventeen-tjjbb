@@ -1,8 +1,8 @@
 CREATE TABLE modele (
 	id SERIAL PRIMARY KEY,
-	nom VARCHAR,
-	capacite_fret INTEGER,
-	capacite_voyageur SMALLINT
+	nom VARCHAR NOT NULL,
+	capacite_fret INTEGER NOT NULL,
+	capacite_voyageur SMALLINT NOT NULL
 );
 
 CREATE TABLE avion (
@@ -12,19 +12,21 @@ CREATE TABLE avion (
 
 CREATE TABLE ville (
 	id SERIAL PRIMARY KEY,
-	nom VARCHAR
+	nom VARCHAR UNIQUE NOT NULL
 );
 
 CREATE TABLE aeroport (
 	id SERIAL PRIMARY KEY,
-	nom VARCHAR,
-	id_ville INTEGER REFERENCES ville(id) NOT NULL
+	nom VARCHAR NOT NULL,
+	id_ville INTEGER REFERENCES ville(id) NOT NULL,
+	UNIQUE (nom, id_ville)
 );
 
 CREATE TABLE terminal (
 	id SERIAL PRIMARY KEY,
-	nom VARCHAR,
-	id_aeroport INTEGER REFERENCES aeroport(id) NOT NULL
+	nom VARCHAR NOT NULL,
+	id_aeroport INTEGER REFERENCES aeroport(id) NOT NULL,
+	UNIQUE (nom, id_aeroport)
 );
 
 CREATE TABLE vol (
@@ -32,7 +34,8 @@ CREATE TABLE vol (
 	depart DATE,
 	arrive DATE,
 	id_terminal_dep INTEGER REFERENCES terminal(id) NOT NULL,
-	id_terminal_ar INTEGER REFERENCES terminal(id) NOT NULL	
+	id_terminal_ar INTEGER REFERENCES terminal(id) NOT NULL,
+	CHECK (arrive > depart)
 );
 
 CREATE TABLE client (
@@ -41,18 +44,19 @@ CREATE TABLE client (
 
 CREATE TABLE particulier (
 	id_client INTEGER REFERENCES client(id) PRIMARY KEY,
-	nom VARCHAR,
-	prenom VARCHAR
+	nom VARCHAR NOT NULL,
+	prenom VARCHAR NOT NULL,
+	UNIQUE (nom, prenom)
 );
 
 CREATE TABLE entreprise (
 	id_client INTEGER REFERENCES client(id)PRIMARY KEY,
-	nom VARCHAR
+	nom VARCHAR UNIQUE NOT NULL
 );
 
 CREATE TABLE reservation (
 	id SERIAL PRIMARY KEY,
-	prix REAL
+	prix REAL NOT NULL
 );
 
 CREATE TABLE billet (
