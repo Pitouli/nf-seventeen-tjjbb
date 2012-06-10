@@ -251,6 +251,9 @@ table td, table th {
 table th {
 	font-weight: bold;
 }
+table form {
+	display: inline;
+}
 table.col50pc td, table.col50pc th {
 	width: 50%;
 }
@@ -275,7 +278,7 @@ table.col50pc {
 	vertical-align: middle;
 	padding: 5px;
 }
-.largeTable input[type="text"], .largeTable .inputText, .largeTable select, .largeTable select, .largeTable textarea {
+.largeTable .extended {
 	width: 100%;
 	/* height: 100%; */
 }

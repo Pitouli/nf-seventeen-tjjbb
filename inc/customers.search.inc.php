@@ -6,40 +6,40 @@
 		<th>Actions</th>
 	</tr>
 <?php
-	if(empty($resultSearch))
+	foreach($resultSearch as $client)
 	{
-?>
-	<p>La rechercher n'a renvoyé aucun résultat</p>
-<?php
-	}
-	else
-	{
-		foreach($resultSearch as $client)
-		{
 ?>
 	<tr>
 		<td><?php echo $client['nom'] ?></td>
 		<td><?php echo $client['prenom'] ?></td>
 		<td><?php echo $client['cat'] ?></td>
 		<td>
-			<form method="post" action="<?php echo ROOT; ?>?c=customers&s1=del&s2=<?php echo $client['id_client'] ?>">
-				<input type="hidden" name="searchNom" value="<?php echo $_POST['searchNom'] ?>" />
-				<input type="hidden" name="searchPrenom" value="<?php echo $_POST['searchPrenom'] ?>" />						
-				<input type="hidden" name="searchEntreprise" value="<?php echo $_POST['searchEntreprise'] ?>" />						
-				<input type="hidden" name="searchParticulier" value="<?php echo $_POST['searchParticulier'] ?>" />
-				<input type="submit" class="inputSubmit" value="Supprimer" onclick="return confirm('Confirmez vous la suppression de cet utilisateur ? Cette action est irreversible et supprimera aussi tous les historiques le concernant.')">
-			</form>
 			<form method="post" action="<?php echo ROOT; ?>?c=customers&s1=show&s2=<?php echo $client['id_client'] ?>">
 				<input type="hidden" name="searchNom" value="<?php echo $_POST['searchNom'] ?>" />
 				<input type="hidden" name="searchPrenom" value="<?php echo $_POST['searchPrenom'] ?>" />						
 				<input type="hidden" name="searchEntreprise" value="<?php echo $_POST['searchEntreprise'] ?>" />						
 				<input type="hidden" name="searchParticulier" value="<?php echo $_POST['searchParticulier'] ?>" />
-				<input type="submit" class="inputSubmit" value="Supprimer" onclick="return confirm('Confirmez vous la suppression de cet utilisateur ? Cette action est irreversible et supprimera aussi tous les historiques le concernant.')">
+				<input type="submit" class="inputSubmit" value="Voir les détails" />
+			</form>
+			<form method="post" action="<?php echo ROOT; ?>?c=customers&s1=del&s2=<?php echo $client['id_client'] ?>">
+				<input type="hidden" name="searchNom" value="<?php echo $_POST['searchNom'] ?>" />
+				<input type="hidden" name="searchPrenom" value="<?php echo $_POST['searchPrenom'] ?>" />						
+				<input type="hidden" name="searchEntreprise" value="<?php echo $_POST['searchEntreprise'] ?>" />						
+				<input type="hidden" name="searchParticulier" value="<?php echo $_POST['searchParticulier'] ?>" />
+				<input type="submit" class="inputSubmit" value="Supprimer" onclick="return confirm('Confirmez vous la suppression de cet utilisateur ? Cette action est irreversible et supprimera aussi tous les historiques le concernant.')" />
 			</form>
 		</td>
 	</tr>
 <?php
-		}
 	}
 ?>
 </table>
+
+<?php
+	if(empty($resultSearch))
+	{
+?>
+	<p>La rechercher n'a renvoyé aucun résultat</p>
+<?php
+	}
+?>
