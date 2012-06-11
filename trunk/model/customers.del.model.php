@@ -8,9 +8,11 @@ if(is_numeric($getSSection))
 		
 		$id_client = $getSSection;
 		
+		// On commence par supprimer les réservations faites par le client (le système de CASCADE aurait seulement supprimé les billets, et pas les réservations)
 		$deleteReservation = $bdd->prepare("DELETE FROM reservation r WHERE r.id IN (SELECT b.id_particulier FROM billet b WHERE b.id_reservation = r.id AND b.id_particulier = :id_client)");
 		$r1 = $deleteReservation->execute(array(":id_client" => $id_client));
 		
+		// Puis on supprime le client lui même (déclenchant des cascades dans toutes les autres tables)
 		$deleteClient = $bdd->prepare("DELETE FROM client WHERE id = :id_client");
 		$r2 = $deleteClient->execute(array(":id_client" => $id_client));
 		$c = $deleteClient->rowCount();
