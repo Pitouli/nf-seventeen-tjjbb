@@ -26,7 +26,7 @@ if(isset($_POST))
 		
 	//Valider les requête et arrêter la transaction
 	if(!isset($resultSearch))
-		$infos[] = "La recherche n'a renvoyée aucun résultat.";
+		$infos[] = "Aucun résultat.";
 }
 else
 	$infos[] = "Aucune information reçue. La recherche n'a pas été effectuée";
