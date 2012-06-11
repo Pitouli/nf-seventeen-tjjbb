@@ -76,7 +76,11 @@ CREATE TABLE titre (
 );
 */
 
-CREATE SEQUENCE id_reservation_seq;
+CREATE TABLE reservation (
+	id SERIAL PRIMARY KEY,
+	prix REAL NOT NULL,
+	CHECK (prix >= 0)
+);
 
 CREATE TABLE titre (
 	id_reservation INTEGER REFERENCES reservation(id) ON UPDATE CASCADE ON DELETE CASCADE PRIMARY KEY,
@@ -90,11 +94,7 @@ CREATE TABLE billet (
 	id_particulier INTEGER REFERENCES particulier(id_client) ON UPDATE CASCADE ON DELETE CASCADE NOT NULL
 );
 
-CREATE TABLE reservation (
-	id SERIAL PRIMARY KEY,
-	prix REAL NOT NULL,
-	CHECK (prix >= 0)
-);
+
 
 CREATE TABLE supporte (
 	id_modele INTEGER REFERENCES modele(id) ON UPDATE CASCADE ON DELETE CASCADE NOT NULL,
