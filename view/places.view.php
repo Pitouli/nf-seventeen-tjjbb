@@ -1,6 +1,6 @@
 <?php require DIR_INC.'header.inc.php' ?>
 
-<h1>Gestion du des villes, aeroports, et terminaux</h1>
+<h1>Gestion des villes, aeroports, et terminaux</h1>
 
 <?php require DIR_INC.'report.inc.php' ?>
 
