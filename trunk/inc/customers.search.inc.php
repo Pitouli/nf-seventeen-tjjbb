@@ -39,7 +39,7 @@
 	if(empty($resultSearch))
 	{
 ?>
-	<p>La rechercher n'a renvoyé aucun résultat</p>
+	<p>La recherche n'a renvoyé aucun résultat</p>
 <?php
 	}
 ?>
