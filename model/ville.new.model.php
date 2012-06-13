@@ -13,7 +13,7 @@ if(isset($_POST, $_POST['newVille']))
 			//Commencer une transaction
 			$bdd->beginTransaction();
 			
-			$n = $bdd->exec("INSERT INTO ville(id, nom) VALUES (nextval('ville_id_seq'), :nom);");
+			$n = $bdd->exec("INSERT INTO ville(id, nom) VALUES (nextval('ville_id_seq'),"&nom");");
 			
 			if($n == 1) // 1 ligne a été ajoutée
 			{				
