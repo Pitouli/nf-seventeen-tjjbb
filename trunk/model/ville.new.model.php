@@ -24,7 +24,7 @@ if(isset($_POST, $_POST['newVille']))
 			if($commit) // 1 ligne a été ajoutée
 			{				
 				$bdd->commit();
-				$success[] = "Nouvelle ville ("$nom") ajoutée avec succès.";
+				$success[] = "Nouvelle ville ("+$nom+") ajoutée avec succès.";
 				}
 			else
 			{
