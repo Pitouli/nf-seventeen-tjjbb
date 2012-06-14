@@ -11,48 +11,53 @@
 
 <div class="corps">
 
-	<h2>Créer un vol - étape 1</h2>
+	<h2>Créer un vol - étape 1 - Chercher un avion</h2>
 
 	<form method="post" action="<?php echo ROOT; ?>?c=flights&s1=new">
 		<table class="largeTable">
 			<tr>
-				<td><label for="depart">Départ</label></td>
+				<td><label for="depart"><strong>Départ :</strong></label></td>
 				<td>
 				   <select name="depart" id="depart">
-					   <option value="qqchose">Ville Bidon 1</option> <?php /* COMMENT FAIRE AVEC LE SQL... ? */?>
-					   <option value="qqchose">Ville Bidon 2</option>
+						<?php foreach($listeVilles as $ville)
+						{
+						?>
+						  <option value="<?php echo $ville['id'] ?>"><?php echo $ville['nom'] ?></option>
+						<?php
+						}
+						?>
 				   </select>
 				</td>
-				<td><label for="pays">Arrivée</label></td>
+				<td><label for="pays"><strong>Arrivée :</strong></label></td>
 				<td>
 				   <select name="depart" id="depart">
-					   <option value="qqchose">Ville Bidon 1</option> <?php /* COMMENT FAIRE AVEC LE SQL... ? */?>
-					   <option value="qqchose">Ville Bidon 2</option>
+					   <?php foreach($listeVilles as $ville)
+						{
+						?>
+						  <option value="<?php echo $ville['id'] ?>"><?php echo $ville['nom'] ?></option>
+						<?php
+						}
+						?>
 				   </select>
 				</td>
-				<td><label for="Hdepart">H Départ</label></td>
-				<td><input type="datetime" name="Hdepart" /></td>
-				<td><label for="Harrivee">H Départ</label></td>
-				<td><input type="datetime" name="Harrivee" /></td>
+				<td><label for="Hdepart">Heure de départ</label><br /><input type="datetime" name="Hdepart" /></td>
+				<td><label for="Harrivee">Heure d'arrivée</label><br /><input type="datetime" name="Harrivee" /></td>
 			</tr>
 			
 			<tr>
-				<td><label for="capaciteMin"><strong>Capacité passager</strong></label></td>
-				<td><label for="capaciteMin">Minimum :</label></td>
-				<td><input type="number" name="capaciteMin" /></td>
-				<td><label for="capaciteMax">Maximum :</label></td>
-				<td><input type="number" name="capaciteMax" /></td>
-				<td><label for="fretMin"><strong>Fret</strong></label></td>
-				<td><label for="fretMin">Minimum :</label></td>
-				<td><input type="number" name="fretMin" /></td>
-				<td><label for="fretMax">Maximum :</label></td>
-				<td><input type="number" name="fretMax" /></td>
+				<td><label for="capaciteMin"><strong>Capacité passager :</strong></label></td>
+				<td><label for="capaciteMin">Minimum</label><br /><input type="number" name="capaciteMin" /></td>
+				<td><label for="capaciteMax">Maximum</label><br /><input type="number" name="capaciteMax" /></td>
+				<td><label for="fretMin"><strong>Fret :</strong></label></td>
+				<td><label for="fretMin">Minimum</label><br /><input type="number" name="fretMin" /></td>
+				<td><label for="fretMax">Maximum</label><br /><input type="number" name="fretMax" /></td>
 				<td><input type="submit" class="inputSubmit" value="Valider" /></td>
 			</tr>
 			
 		</table>
 	</form>
 		
+	<?php if(isset($resultSearch)) require DIR_INC.'flights.create.inc.php'; ?>
 		
 	<h2>Chercher un vol</h2>
 		
@@ -62,26 +67,40 @@
 				<td><label for="depart">Départ</label></td>
 				<td>
 				   <select name="depart" id="depart">
-					   <option value="qqchose">Ville Bidon 1</option> <?php /* COMMENT FAIRE AVEC LE SQL... ? */?>
-					   <option value="qqchose">Ville Bidon 2</option>
+					   <?php foreach($listeVilles as $ville)
+						{
+						?>
+						  <option value="<?php echo $ville['id'] ?>"><?php echo $ville['nom'] ?></option>
+						<?php
+						}
+						?>
 				   </select>
 				</td>
 				<td><label for="pays">Arrivée</label></td>
 				<td>
 				   <select name="depart" id="depart">
-					   <option value="qqchose">Ville Bidon 1</option> <?php /* COMMENT FAIRE AVEC LE SQL... ? */?>
-					   <option value="qqchose">Ville Bidon 2</option>
+					   <?php foreach($listeVilles as $ville)
+						{
+						?>
+						  <option value="<?php echo $ville['id'] ?>"><?php echo $ville['nom'] ?></option>
+						<?php
+						}
+						?>
 				   </select>
 				</td>
 			</tr>
 			<tr>
-				<td><label for="Hdepart">H Départ</label></td>
+				<td><label for="Hdepart">Heure de départ</label></td>
 				<td><input type="datetime" name="Hdepart" /></td>
-				<td><label for="Harrivee">H Départ</label></td>
+				<td><label for="Harrivee">Heure d'arrivée</label></td>
 				<td><input type="datetime" name="Harrivee" /></td>
 			</tr>
 		</table>
 	</form>
+	
+	
+	<?php if(isset($resultShow)) require DIR_INC.'flights.show.inc.php'; ?>
+	
 		<!-- 
 	<h2>Chercher un vol</h2>
 	
