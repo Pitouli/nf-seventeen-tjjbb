@@ -22,8 +22,13 @@
 		<form method="post" action="<?php echo ROOT; ?>?c=places&s1=delville">
 			<td>
 				<select name="ville" id="ville">
-						<option values="villes1">ville1</option>
-						<option values="villes2">ville2</option>
+						<?php foreach($listeVilles as $ville)
+						{
+						?>
+						  <option value="<?php echo $ville['id'] ?>"><?php echo $ville['nom'] ?></option>
+						<?php
+						}
+						?>
 				</select>
 			</td>	
 			<td><input type="submit" class="inputSubmit" onclick="return confirm('Confirmez vous la suppression de la ville ? Cela supprimera les aeroports et terminaux associés');"value="Supprimer Ville" /></td>
