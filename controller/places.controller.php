@@ -13,7 +13,7 @@ elseif($getSection == 'searchville')
 else if($getSection == 'delville')
 {
 	require DIR_MODEL.'ville.del.model.php';
-	require DIR_MODEL.'ville.search.model.php';
+	//require DIR_MODEL.'ville.search.model.php';
 }
 if($getSection == 'newaeroport')
 {
