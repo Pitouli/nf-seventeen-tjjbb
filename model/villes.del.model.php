@@ -6,12 +6,12 @@ if(is_numeric($getSSection))
 	{		
 		$bdd->beginTransaction();
 		
-		$id_client = $getSSection;
+		$id_ville = $getSSection;
 		
 		// Puis on supprime le client lui même (déclenchant des cascades dans toutes les autres tables)
-		$deleteClient = $bdd->prepare("DELETE FROM ville WHERE id = :id_ville");
-		$r2 = $deleteClient->execute(array(":id_ville" => $id_ville));
-		$c = $deleteClient->rowCount();
+		$deleteVille = $bdd->prepare("DELETE FROM ville WHERE id = :id_ville");
+		$r2 = $deleteVille->execute(array(":id_ville" => $id_ville));
+		$c = $deleteVille->rowCount();
 		
 		if($r1 && $r2)
 		{
