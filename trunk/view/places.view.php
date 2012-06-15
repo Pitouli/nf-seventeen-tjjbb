@@ -60,12 +60,13 @@
 		
 	<h2>Recherche d'un aeroport</h2>
 	
-	<table class="largeTable">
-		<tr>
-		<form method="post" action="<?php echo ROOT; ?>?c=places&s1=searchaeroport">
+	<form method="post" action="<?php echo ROOT; ?>?c=places&s1=searchaeroport">
+		<table class="largeTable">
+			<tr>
 				<td><label for="searchAeroport">Aeroport&nbsp;: </label></td>
-				<td><input name="searchAeroport" title="Nom de l'aeroport" type="text" id="searchAeroport" class="inputText extended" value="" /></td>
+				<td><input name="searchAeroport" title="Nom de l'aeroport" type="text" id="searchNom" class="inputText extended" value="<?php if(isset($_POST['searchAeroport'])) echo $_POST['searchAeroport'] ?>" /></td>
 				<td><select name="ville" id="ville">
+						<option>selectionner une ville
 						<?php foreach($listeVilles as $ville)
 						{
 						?>
@@ -74,12 +75,12 @@
 						}
 						?>
 				</select></td>
-				<td><input type="submit" class="inputSubmit" value="Rechercher l'aeroport" /></td>
-		</form>
-		</tr>
-	</table>
+				<td><input type="submit" class="inputSubmit" value="Recherche Aeroports" /></td>
+			</tr>
+		</table>
+	</form>
 
-	<?php if(isset($resultSearch)) require DIR_INC.'places.search.inc.php'; ?>
+	<?php if(isset($resultSearch)) require DIR_INC.'aeroport.search.inc.php'; ?>
 	
 	<?php if(isset($resultShow)) require DIR_INC.'places.show.inc.php'; ?>
  
