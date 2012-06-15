@@ -43,9 +43,9 @@
 		</table>
 	</form>
 	
-	<?php if(isset($resultSearch)) require DIR_INC.'customers.search.inc.php'; ?>
+	<?php if(isset($resultSearch)) require DIR_INC.'aeroport.search.inc.php'; ?>
 	
-	<?php if(isset($resultShow)) require DIR_INC.'customers.show.inc.php'; ?>
+	<?php if(isset($resultShow)) require DIR_INC.'aeroport.show.inc.php'; ?>
 
 </div>
 

@@ -43,7 +43,7 @@
 		<tr>
 		<form method="post" action="<?php echo ROOT; ?>?c=places&s1=newaeroport">
 				<td><label for="newAeroport">Aeroport&nbsp;: </label></td>
-				<td><input name="newAeroport" title="Nom du nouvel aeroport" type="text" id="newAeroport" class="inputText extended" value="" /></td>
+				<td><input name="newAeroport" title="Nom de l'aeroport" type="text" id="newAeroport" class="inputText extended" value="" /></td>
 				<td><select name="ville" id="ville">
 						<?php foreach($listeVilles as $ville)
 						{

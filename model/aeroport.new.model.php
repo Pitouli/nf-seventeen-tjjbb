@@ -1,20 +1,23 @@
 <?php
 
-if(isset($_POST, $_POST['newVille']))
+if(isset($_POST, $_POST['newAeroport']))
 {
 	// On convertit nom en majuscule
-	$nom = mb_strtoupper(trim($_POST['newVille']), 'UTF-8');
+	$nom = mb_strtoupper(trim($_POST['newAeroport']), 'UTF-8');
 	$nom = $nom != '' ? $nom : NULL; // On met à NULL si la chaîne est vide
 
-	if(isset($nom))
+	//on recupere la ville
+	$id_ville=
+
+	if(isset($nom) && isset(&id_ville))
 	{
 		try 
 		{
 			//Commencer une transaction
 			$bdd->beginTransaction();
 			
-			$newVille = $bdd->prepare("INSERT INTO ville(id, nom) VALUES (nextval('ville_id_seq'),:nom);");
-			$r = $newVille->execute(array(":nom" => $nom));
+			$newVille = $bdd->prepare("INSERT INTO aeroport(id, nom, id_ville) VALUES (nextval('ville_id_seq'), :nom, :id_ville);");
+			$r = $newVille->execute(array(":nom" => $nom, ":id_ville"=> $id_ville));
 			
 			if($r)
 				$commit = true;
@@ -24,7 +27,7 @@ if(isset($_POST, $_POST['newVille']))
 			if($commit) // 1 ligne a été ajoutée
 			{				
 				$bdd->commit();
-				$success[] = "Nouvelle ville (".$nom.") ajoutée avec succès.";
+				$success[] = "Nouvel aeroport (".$nom.") ajoutée avec succès.";
 				}
 			else
 			{
