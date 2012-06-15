@@ -1,12 +1,12 @@
 <?php
 
-if(is_numeric($getSSection))
+if(isset($_POST['delId']) && is_numeric($_POST['delId']))
 {
 	try 
 	{		
 		$bdd->beginTransaction();
 		
-		$id_client = $getSSection;
+		$id_client = $_POST['delId'];
 		
 		// On commence par supprimer les réservations faites par le client (le système de CASCADE aurait seulement supprimé les billets, et pas les réservations)
 		$deleteReservation = $bdd->prepare("DELETE FROM reservation r WHERE r.id IN (SELECT b.id_particulier FROM billet b WHERE b.id_reservation = r.id AND b.id_particulier = :id_client)");
