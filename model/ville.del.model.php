@@ -1,6 +1,6 @@
 <?php
 
-if(is_numeric($_POST['ville']))
+if(isset($_POST['ville']))
 {
 	try 
 	{		
