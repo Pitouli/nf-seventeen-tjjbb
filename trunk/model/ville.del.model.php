@@ -1,6 +1,6 @@
 <?php
 
-if(is_numeric($getSSection))
+if(is_numeric($getSection))
 {
 	try 
 	{		
@@ -38,4 +38,4 @@ if(is_numeric($getSSection))
 	}
 }
 else
-	$infos[] = "Ville inconnue.";
+	$infos[] = "Ville inconnue.".$getSection;
