@@ -55,6 +55,25 @@
 				</select></td>
 				<td><input type="submit" class="inputSubmit" onclick="return confirm('Confirmez vous l\'ajout d\'un nouvel aeroport ?');"value="Ajouter Aeroport" /></td>
 		</form>
+		
+	<h2>Recherche d'un aeroport</h2>
+	
+		<table class="largeTable">
+		<tr>
+		<form method="post" action="<?php echo ROOT; ?>?c=places&s1=searchaeroport">
+				<td><label for="searchAeroport">Aeroport&nbsp;: </label></td>
+				<td><input name="searchAeroport" title="Nom de l'aeroport" type="text" id="searchAeroport" class="inputText extended" value="" /></td>
+				<td><select name="ville" id="ville">
+						<?php foreach($listeVilles as $ville)
+						{
+						?>
+						  <option value="<?php echo $ville['id'] ?>"><?php echo $ville['nom'] ?></option>
+						<?php
+						}
+						?>
+				</select></td>
+				<td><input type="submit" class="inputSubmit" value="Ajouter Aeroport" /></td>
+		</form>
 
 	<?php if(isset($resultSearch)) require DIR_INC.'places.search.inc.php'; ?>
 	
