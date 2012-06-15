@@ -38,6 +38,23 @@
 
 	
  	<h2>Ajout d'un aeroport</h2>
+	
+		<table class="largeTable">
+		<tr>
+		<form method="post" action="<?php echo ROOT; ?>?c=places&s1=newaeroport">
+				<td><label for="newAeroport">Aeroport&nbsp;: </label></td>
+				<td><input name="newAeroport" title="Nom du nouvel aeroport" type="text" id="newAeroport" class="inputText extended" value="" /></td>
+				<select name="ville" id="ville">
+						<?php foreach($listeVilles as $ville)
+						{
+						?>
+						  <option value="<?php echo $ville['id'] ?>"><?php echo $ville['nom'] ?></option>
+						<?php
+						}
+						?>
+				</select>
+				<td><input type="submit" class="inputSubmit" onclick="return confirm('Confirmez vous l\'ajout d\'un nouvel aeroport ?');"value="Ajouter Aeroport" /></td>
+		</form>
 
 	<?php if(isset($resultSearch)) require DIR_INC.'places.search.inc.php'; ?>
 	
