@@ -39,7 +39,7 @@
 	
  	<h2>Ajout d'un aeroport</h2>
 	
-		<table class="largeTable">
+	<table class="largeTable">
 		<tr>
 		<form method="post" action="<?php echo ROOT; ?>?c=places&s1=newaeroport">
 				<td><label for="newAeroport">Aeroport&nbsp;: </label></td>
@@ -55,10 +55,12 @@
 				</select></td>
 				<td><input type="submit" class="inputSubmit" onclick="return confirm('Confirmez vous l\'ajout d\'un nouvel aeroport ?');"value="Ajouter Aeroport" /></td>
 		</form>
+		</tr>
+	</table>
 		
 	<h2>Recherche d'un aeroport</h2>
 	
-		<table class="largeTable">
+	<table class="largeTable">
 		<tr>
 		<form method="post" action="<?php echo ROOT; ?>?c=places&s1=searchaeroport">
 				<td><label for="searchAeroport">Aeroport&nbsp;: </label></td>
@@ -72,8 +74,10 @@
 						}
 						?>
 				</select></td>
-				<td><input type="submit" class="inputSubmit" value="Ajouter Aeroport" /></td>
+				<td><input type="submit" class="inputSubmit" value="Rechercher l'aeroport" /></td>
 		</form>
+		</tr>
+	</table>
 
 	<?php if(isset($resultSearch)) require DIR_INC.'places.search.inc.php'; ?>
 	
