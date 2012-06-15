@@ -1,6 +1,6 @@
 <?php
 
-if(is_numeric($getSection))
+if(is_numeric($_POST['ville']))
 {
 	try 
 	{		
@@ -10,15 +10,15 @@ if(is_numeric($getSection))
 		
 		// Puis on supprime le client lui même (déclenchant des cascades dans toutes les autres tables)
 		$deleteVille = $bdd->prepare("DELETE FROM ville WHERE id = :id_ville");
-		$r2 = $deleteVille->execute(array(":id_ville" => $id_ville['id']));
+		$r2 = $deleteVille->execute(array(":id_ville" => $id_ville));
 		$c = $deleteVille->rowCount();
 		
-		if($r1 && $r2)
+		if($r2)
 		{
 			$bdd->commit();
 			
 			if($c > 0)
-				$success[] = "La suppression a réussi.";			
+				$success[] = "La suppression a reussi.";			
 			else
 				$infos[] = "La ville a déjà été supprimée.";
 		}
@@ -38,4 +38,4 @@ if(is_numeric($getSection))
 	}
 }
 else
-	$infos[] = "Ville inconnue.".$getSection;
+	$infos[] = "Ville inconnue.";
