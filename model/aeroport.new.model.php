@@ -7,9 +7,9 @@ if(isset($_POST, $_POST['newAeroport']))
 	$nom = $nom != '' ? $nom : NULL; // On met à NULL si la chaîne est vide
 
 	//on recupere la ville
-	$id_ville=
+	$id_ville= $_POST['ville'];
 
-	if(isset($nom) && isset(&id_ville))
+	if(isset($nom) && isset($id_ville))
 	{
 		try 
 		{
@@ -32,7 +32,7 @@ if(isset($_POST, $_POST['newAeroport']))
 			else
 			{
 				$bdd->rollback();
-				$errors[] = "Echec lors de l'ajout de la ville.";
+				$errors[] = "Echec lors de l'ajout de l'aeroport";
 			}
 		} 
 		catch (PDOException $e)  //Gestion des erreurs causées par les requêtes PDO
@@ -46,4 +46,4 @@ if(isset($_POST, $_POST['newAeroport']))
 	}
 }
 else
-	$infos[] = "Aucune information reçue. Aucune nouvelle ville n'a été ajoutée.";
+	$infos[] = "Aucune information reçue. Aucun aeroport ajouté.";
