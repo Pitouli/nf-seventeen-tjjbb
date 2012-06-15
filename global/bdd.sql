@@ -53,6 +53,13 @@ CREATE TABLE entreprise (
 	id_client INTEGER REFERENCES client(id) ON UPDATE CASCADE ON DELETE CASCADE PRIMARY KEY,
 	nom VARCHAR UNIQUE NOT NULL
 );
+
+CREATE VIEW v_client AS
+    SELECT id_client, nom, prenom, 'PARTICULIER' as cat FROM particulier
+	UNION
+    SELECT id_client, nom, '-' as prenom, 'ENTREPRISE' as cat FROM entreprise
+;
+
 /*
 CREATE VIEW reservation AS
     SELECT id, id_client, prix, 'billet' as cat FROM billet
@@ -94,7 +101,11 @@ CREATE TABLE billet (
 	id_particulier INTEGER REFERENCES particulier(id_client) ON UPDATE CASCADE ON DELETE CASCADE NOT NULL
 );
 
-
+CREATE VIEW v_reservation AS
+    SELECT b.id_reservation, b.id_particulier as id_client, r.prix, 0 as masse_fret, 'BILLET' as cat FROM billet b, reservation r WHERE b.id_reservation = r.id
+	UNION
+    SELECT t.id_reservation, t.id_client, r.prix, t.masse_fret, 'TITRE' as cat FROM titre t, reservation r WHERE t.id_reservation = r.id
+;
 
 CREATE TABLE supporte (
 	id_modele INTEGER REFERENCES modele(id) ON UPDATE CASCADE ON DELETE CASCADE NOT NULL,
