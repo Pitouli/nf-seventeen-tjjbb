@@ -11,7 +11,7 @@ if(isset($_POST))
 	$selectAeroport->execute(array(":nom" => $nom, ":ville" => $ville));
 	$resultAeroport = $selectAeroport->fetchAll();
 	
-	$resultSearch = array(&resultAeroport);
+	$resultSearch = &resultAeroport;
 		
 	//Valider les requête et arrêter la transaction
 	if(!isset($resultSearch))
