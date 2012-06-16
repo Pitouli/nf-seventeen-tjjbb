@@ -13,7 +13,7 @@ if(isset($_POST, $_POST['modele']))
 			$bdd->beginTransaction();
 			
 			$newAvion = $bdd->prepare("INSERT INTO avion(id, id_modele) VALUES (nextval('avion_id_seq'), :idModele);");
-			$r = $newVille->execute(array(":idModele" ==> $idModele));
+			$r = $newVille->execute(array(":idModele" => $idModele));
 			
 			if($r)
 				$commit = true;
