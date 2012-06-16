@@ -1,4 +1,4 @@
-<h2>Terminaux de l'aeroport : <?php echo $nomAeroport?> (<?php echo $nomVille ?> </h2>
+<h2>Terminaux de l'aeroport : </h2> <?php echo $nomAeroport?> <h2> (</h2><?php echo $nomVille ?><h2>)</h2>
 
 
 <table class="largeTable">
