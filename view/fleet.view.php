@@ -27,6 +27,26 @@
 		</table>
 	</form>
 	
+	<h2>Recherche des modèles existants</h2>
+	
+	<form method="post" action="<?php echo ROOT; ?>?c=fleet&s1=searchModele">
+		<table class="largeTable">
+			<tr>
+				<td><label for="searchNomModele">Nom&nbsp;: </label></td>
+				<td><input name="searchNomModele" title="Partie du nom du modèle" type="text" id="searchNomModele" class="inputText extended" value="<?php if(isset($_POST['searchNomModele'])) echo $_POST['searchNomModele'] ?>" /></td>
+				<td><label for="searchCapaciteMin">Capacité minimale en passagers</label></td>
+				<td><input name="searchCapaciteMin" title="Capacité minimale en passagers" type="number" id="searchCapaciteMin" /></td>
+				<td><label for="searchCapaciteMax">Capacité maximale en passagers</label></td>
+				<td><input name="searchCapaciteMax" title="Capacité maximale en passagers" type="number" id="searchCapaciteMax" /></td>
+				<td><label for="searchFretMin">Capacité minimale en fret</label></td>
+				<td><input name="searchFretMin" title="Capacité minimale en fret" type="number" id="searchFretMin" /></td>
+				<td><label for="searchFretMax">Capacité maximale en fret</label></td>
+				<td><input name="searchFretMax" title="Capacité maximale en fret" type="number" id="searchFretMax" /></td>
+				<td><input type="submit" class="inputSubmit" value="Rechercher modèle" /></td>
+			</tr>
+		</table>
+	</form>
+	
 	<h2>Ajout d'un nouvel avion</h2>
 	
 	<form method="post" action="<?php echo ROOT; ?>?c=fleet&s1=newAvion"> 
