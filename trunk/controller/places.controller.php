@@ -29,5 +29,15 @@ else if($getSection == 'delaeroport')
 	require DIR_MODEL.'aeroport.del.model.php';
 	require DIR_MODEL.'aeroport.search.model.php';
 }
+else if($getSection == 'historique')
+{
+	require DIR_MODEL.'aeroport.del.model.php';
+	require DIR_MODEL.'aeroport.search.model.php';
+}
+else if($getSection == 'terminaux')
+{
+	require DIR_MODEL.'terminaux.model.php';
+	require DIR_MODEL.'aeroport.search.model.php';
+}
 
 require DIR_VIEW.'places.view.php';
