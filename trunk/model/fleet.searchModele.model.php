@@ -7,18 +7,17 @@ if(isset($_POST))
 	$capaciteMin = isset($_POST['searchCapaciteMin']) ? $_POST['searchCapaciteMin'] : 0;	// Au cas où l'utilisateur n'entre rien, afin de prendre tous les résultats.
 	$capaciteMax = isset($_POST['searchCapaciteMax']) ? $_POST['searchCapaciteMax'] : 1000000;
 	$fretMin = isset($_POST['searchFretMin']) ? $_POST['searchFretMin'] : 0;
-	$fretMax = isset($_POST['searchFretMin']) ? $_POST['searchFretMin'] : 1000000;
+	$fretMax = isset($_POST['searchFretMax']) ? $_POST['searchFretMax'] : 1000000;
 	
-	$resultats = array();
+	$selectResultats= array();
 
-	
-		$selectResultats = $bdd->prepare("SELECT id, nom, capacite_fret, capacite_voyageur
-										FROM modele WHERE UPPER(nom) LIKE UPPER(:nom)
-										AND capacite_fret BETWEEN :fretMin AND :fretMax
-										AND capacite_voyageur BETWEEN :capaciteMin AND :capaciteMax
-										AND  LIMIT 100");
-		$selectResultats->execute(array(":nom" => $nom, ":fretMin" => $fretMin, ":fretMax" => $fretMax, ":capaciteMin" => $capaciteMin, ":capaciteMax" => $capaciteMax));
-		$resultats = $selectResultats->fetchAll();
+	$selectResultats = $bdd->prepare("SELECT id, nom, capacite_fret, capacite_voyageur
+									FROM modele WHERE UPPER(nom) LIKE UPPER(:nom)
+									AND capacite_fret BETWEEN :fretMin AND :fretMax
+									AND capacite_voyageur BETWEEN :capaciteMin AND :capaciteMax
+									AND  LIMIT 100");
+	$selectResultats->execute(array(":nom" => $nom, ":fretMin" => $fretMin, ":fretMax" => $fretMax, ":capaciteMin" => $capaciteMin, ":capaciteMax" => $capaciteMax));
+	$resultats = $selectResultats->fetchAll();
 		
 	//Valider les requête et arrêter la transaction
 	if(!isset($resultats))

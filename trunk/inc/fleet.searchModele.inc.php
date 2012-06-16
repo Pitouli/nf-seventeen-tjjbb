@@ -20,7 +20,7 @@
 </table>
 
 <?php
-	if(empty($resultSearch))
+	if(empty($resultats))
 	{
 ?>
 	<p>La recherche n'a renvoyé aucun résultat</p>
