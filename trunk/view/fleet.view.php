@@ -35,17 +35,21 @@
 				<td><label for="searchNomModele">Nom&nbsp;: </label></td>
 				<td><input name="searchNomModele" title="Partie du nom du modèle" type="text" id="searchNomModele" class="inputText extended" value="<?php if(isset($_POST['searchNomModele'])) echo $_POST['searchNomModele'] ?>" /></td>
 				<td><label for="searchCapaciteMin">Capacité minimale en passagers</label></td>
-				<td><input name="searchCapaciteMin" title="Capacité minimale en passagers" type="number" id="searchCapaciteMin" /></td>
+				<td><input name="searchCapaciteMin" title="Capacité minimale en passagers" type="number" id="searchCapaciteMin" value="<?php if(isset($_POST['searchCapaciteMin'])) echo $_POST['searchCapaciteMin'] ?>"/></td>
 				<td><label for="searchCapaciteMax">Capacité maximale en passagers</label></td>
-				<td><input name="searchCapaciteMax" title="Capacité maximale en passagers" type="number" id="searchCapaciteMax" /></td>
+				<td><input name="searchCapaciteMax" title="Capacité maximale en passagers" type="number" id="searchCapaciteMax" value="<?php if(isset($_POST['searchCapaciteMax'])) echo $_POST['searchCapaciteMax'] ?>"/></td>
 				<td><label for="searchFretMin">Capacité minimale en fret</label></td>
-				<td><input name="searchFretMin" title="Capacité minimale en fret" type="number" id="searchFretMin" /></td>
+				<td><input name="searchFretMin" title="Capacité minimale en fret" type="number" id="searchFretMin" value="<?php if(isset($_POST['searchFretMin'])) echo $_POST['searchFretMin'] ?>"/></td>
 				<td><label for="searchFretMax">Capacité maximale en fret</label></td>
-				<td><input name="searchFretMax" title="Capacité maximale en fret" type="number" id="searchFretMax" /></td>
+				<td><input name="searchFretMax" title="Capacité maximale en fret" type="number" id="searchFretMax" value="<?php if(isset($_POST['searchFretMax'])) echo $_POST['searchFretMax'] ?>"/></td>
 				<td><input type="submit" class="inputSubmit" value="Rechercher modèle" /></td>
 			</tr>
 		</table>
 	</form>
+	
+	<?php if(isset($resultats)) require DIR_INC.'fleet.searchModele.inc.php'; ?>
+	
+	<?php // if(isset($resultShow)) require DIR_INC.'fleet.showModele.inc.php'; ?>
 	
 	<h2>Ajout d'un nouvel avion</h2>
 	
