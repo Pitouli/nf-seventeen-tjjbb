@@ -19,9 +19,9 @@
 				<td><label for="newNomModele">Nom&nbsp;: </label></td>
 				<td><input name="newNomModele" title="Nom du nouveau modèle" type="text" id="newNomModele" class="inputText extended" value="" /></td>
 				<td><label for="newCapacite">Capacité en passagers&nbsp;: </label></td>
-				<td<input name="newCapacite" title = "Capacité du modèle en passagers" type="number" id="newCapacite"/></td>
+				<td><input name="newCapacite" title = "Capacité du modèle en passagers" type="number" id="newCapacite"/></td>
 				<td><label for="newFret">Capacité en fret&nbsp;: </label></td>
-				<td<input name="newFret" title = "Capacité du modèle en fret" type="number" id="newFret"/></td>
+				<td><input name="newFret" title = "Capacité du modèle en fret" type="number" id="newFret"/></td>
 				<td><input type="submit" class="inputSubmit" onclick="return confirm('Confirmez vous l\'ajout d\'un nouveau modèle ?');"value="Ajouter modèle" /></td>
 			</tr>
 		</table>
