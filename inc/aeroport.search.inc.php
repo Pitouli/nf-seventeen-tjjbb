@@ -13,7 +13,7 @@
 		<td><?php echo $aeroport['aeroport'] ?></td>
 		<td><?php echo $aeroport['ville'] ?></td>
 		<td>
-			<form method="post" action="<?php echo ROOT; ?>?c=places&s1=show&s2=<?php if(isset($aeroport['id'])) echo $aeroport['id'] ?>">
+			<form method="post" action="<?php echo ROOT; ?>?c=places&s1=terminaux&s2=<?php if(isset($aeroport['id'])) echo $aeroport['id'] ?>">
 				<input type="hidden" name="searchAeroport" value="<?php if(isset($_POST['searchNom'])) echo $_POST['searchNom'] ?>" />
 				<input type="hidden" name="searchVille" value="<?php if(isset($_POST['searchPrenom'])) echo $_POST['searchPrenom'] ?>" />
 				<input type="submit" class="inputSubmit" value="Historique" />
