@@ -4,10 +4,10 @@ if(isset($_POST))
 {
 	// On rajoute les % pour indiquer que le motif n'est ni nécessairement en début, ni nécessairement en fin de chaîne
 	$nom = isset($_POST['searchNomModele']) ? '%'.trim($_POST['searchNomModele']).'%' : NULL;
-	$capaciteMin = isset($_POST['searchCapaciteMin']) ? $_POST['searchCapaciteMin'] : 0;	// Au cas où l'utilisateur n'entre rien, afin de prendre tous les résultats.
-	$capaciteMax = isset($_POST['searchCapaciteMax']) ? $_POST['searchCapaciteMax'] : 1000000;
-	$fretMin = isset($_POST['searchFretMin']) ? $_POST['searchFretMin'] : 0;
-	$fretMax = isset($_POST['searchFretMax']) ? $_POST['searchFretMax'] : 1000000;
+	$capaciteMin = !isempty($_POST['searchCapaciteMin']) ? $_POST['searchCapaciteMin'] : 0;	// Au cas où l'utilisateur n'entre rien, afin de prendre tous les résultats.
+	$capaciteMax = !isempty($_POST['searchCapaciteMax']) ? $_POST['searchCapaciteMax'] : 1000000;
+	$fretMin = !isempty($_POST['searchFretMin']) ? $_POST['searchFretMin'] : 0;
+	$fretMax = !isempty($_POST['searchFretMax']) ? $_POST['searchFretMax'] : 1000000;
 	
 	echo $nom,$capaciteMin,$capaciteMax,$fretMin,$fretMax;
 	
