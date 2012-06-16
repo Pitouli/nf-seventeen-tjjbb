@@ -13,6 +13,7 @@
 			<th>Aérport (terminal) d'arrivée</th>
 			<th>Prochaine<br />escale</th>
 		</tr>
+		<!-- TODO : mettre les hidden pour faire réapparaitre les critères de recherches précédents!!! -->
 		<tr>
 			<td><input type="radio" name="avion" value="<?php echo ''; ?>" /></td>
 			<td></td>

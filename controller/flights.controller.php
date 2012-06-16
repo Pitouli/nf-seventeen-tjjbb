@@ -9,6 +9,7 @@ if($getSection == 'new')
 }
 elseif($getSection == 'create')
 {
+	require DIR_MODEL.'flights.new.model.php';
 	require DIR_MODEL.'flights.create.model.php';
 }
 elseif($getSection == 'search')
