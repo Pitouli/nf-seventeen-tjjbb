@@ -86,7 +86,7 @@
 	
 	<?php if(isset($resultShow)) require DIR_INC.'aeroport.historique.inc.php'; ?>
  
-	<?php if($showTerminal) require DIR_INC.'terminaux.inc.php'; ?>
+	<?php if(isset($showTerminal)) require DIR_INC.'terminaux.inc.php'; ?>
 	
 </div>
 
