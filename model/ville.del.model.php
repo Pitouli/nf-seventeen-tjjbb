@@ -39,3 +39,5 @@ if(isset($_POST['ville']))
 }
 else
 	$infos[] = "Ville inconnue.";
+	
+require DIR_MODEL.'places.model.php';
