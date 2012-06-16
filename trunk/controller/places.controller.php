@@ -36,7 +36,7 @@ else if($getSection == 'historique')
 }
 else if($getSection == 'showterminal')
 {
-	require DIR_MODEL.'fleet.model.php'
+	require DIR_MODEL.'fleet.model.php';
 	require DIR_MODEL.'terminal.show.model.php';
 }
 
