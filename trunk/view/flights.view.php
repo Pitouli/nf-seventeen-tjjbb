@@ -30,7 +30,7 @@
 				</td>
 				<td><label for="pays"><strong>Arrivée :</strong></label></td>
 				<td>
-				   <select name="depart" id="depart">
+				   <select name="arrivee" id="arrivee">
 					   <?php foreach($listeVilles as $ville)
 						{
 						?>
