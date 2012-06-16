@@ -7,10 +7,11 @@
 <?php
 	foreach($resultSearch as $aeroport)
 	{
+
 ?>
 	<tr>
-		<td><?php echo $aeroport['nom'] ?></td>
-		<td><?php echo $aeroport['ville'] ?></td>
+		<td><?php echo $aeroport['a.nom'] ?></td>
+		<td><?php echo $aeroport['v.nom'] ?></td>
 		<td>
 			<form method="post" action="<?php echo ROOT; ?>?c=places&s1=show&s2=<?php if(isset($aeroport['id_ville'])) echo $aeroport['id_ville'] ?>">
 				<input type="hidden" name="searchNom" value="<?php if(isset($_POST['searchNom'])) echo $_POST['searchNom'] ?>" />
