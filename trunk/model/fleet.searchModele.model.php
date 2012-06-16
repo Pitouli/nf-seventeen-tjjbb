@@ -9,6 +9,8 @@ if(isset($_POST))
 	$fretMin = isset($_POST['searchFretMin']) ? $_POST['searchFretMin'] : 0;
 	$fretMax = isset($_POST['searchFretMax']) ? $_POST['searchFretMax'] : 1000000;
 	
+	echo $nom,$capaciteMin,$capaciteMax,$fretMin,$fretMax;
+	
 	$resultats= array();
 
 	$selectResultats = $bdd->prepare("SELECT id, nom, capacite_fret, capacite_voyageur
