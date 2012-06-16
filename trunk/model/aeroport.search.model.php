@@ -9,7 +9,7 @@ if(isset($_POST))
 	$selectAeroport=array();
 	
 	if(is_int($ville)){
-		$selectAeroport = $bdd->prepare("SELECT a.id, a.nom as aeroport, v.nom as ville FROM aeroport a, ville v WHERE a.id_ville=v.id AND v.id = :ville AND UPPER(a.nom) LIKE UPPER(:nom) LIMIT 100");
+		$selectAeroport = $bdd->prepare("SELECT a.id as id, a.nom as aeroport, v.nom as ville FROM aeroport a, ville v WHERE a.id_ville=v.id AND v.id = :ville AND UPPER(a.nom) LIKE UPPER(:nom) LIMIT 100");
 		$selectAeroport->execute(array(":nom" => $nom, ":ville" => $ville));
 		$resultAeroport = $selectAeroport->fetchAll();
 	}else{
