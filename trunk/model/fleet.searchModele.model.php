@@ -19,7 +19,7 @@ if(isset($_POST))
 									AND capacite_voyageur BETWEEN :capaciteMin AND :capaciteMax
 									AND  LIMIT 100");
 									*/
-	$selectResultats->execute(array(":nom" => $nom, ":fretMin" => $fretMin, ":fretMax" => $fretMax, ":capaciteMin" => $capaciteMin, ":capaciteMax" => $capaciteMax));
+	$selectResultats->execute(/*array(":nom" => $nom, ":fretMin" => $fretMin, ":fretMax" => $fretMax, ":capaciteMin" => $capaciteMin, ":capaciteMax" => $capaciteMax)*/);
 	$resultats = $selectResultats->fetchAll();
 		
 	//Valider les requête et arrêter la transaction
