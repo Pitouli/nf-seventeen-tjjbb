@@ -16,7 +16,7 @@ if(isset($_POST, $_POST['newNomModele'], $_POST['newCapacite'], $_POST['newFret'
 			$bdd->beginTransaction();
 			
 			$newVille = $bdd->prepare("INSERT INTO modele(id, nom, capacite_fret, capacite_voyageur) VALUES (nextval('modele_id_seq'), :nom, :fret, :capacite);");
-			$r = $newVille->execute(array(":nom" => $nom, "fret" ==> $fret, ":capacite" ==> $capacite));
+			$r = $newVille->execute(array(":nom" => $nom, "fret" => $fret, ":capacite" => $capacite));
 			
 			if($r)
 				$commit = true;
