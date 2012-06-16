@@ -17,7 +17,7 @@ if(isset($_POST))
 	if(!isset($resultSearch))
 		$infos[] = "Aucun résultat.";
 	*/
-	$infos[]=$resultSearch;
+	$infos[]=$resultSearch['a.nom'];
 }
 else
 	$infos[] = "Aucune information reçue. La recherche n'a pas été effectuée";
