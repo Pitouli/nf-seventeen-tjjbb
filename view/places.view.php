@@ -82,7 +82,7 @@
 		</table>
 	</form>
 
-	<?php if(isset($resultSearchaeroport)) require DIR_INC.'aeroport.search.inc.php'; ?>
+	<?php if(isset($resultSearch)) require DIR_INC.'aeroport.search.inc.php'; ?>
 	
 	<?php if(isset($resultShow)) require DIR_INC.'aeroport.historique.inc.php'; ?>
  
