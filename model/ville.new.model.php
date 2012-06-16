@@ -44,3 +44,5 @@ if(isset($_POST, $_POST['newVille']))
 }
 else
 	$infos[] = "Aucune information reçue. Aucune nouvelle ville n'a été ajoutée.";
+	
+require DIR_MODEL.'places.model.php';
