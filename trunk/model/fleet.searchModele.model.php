@@ -9,15 +9,16 @@ if(isset($_POST))
 	$fretMin = (!empty($_POST['searchFretMin'])) ? $_POST['searchFretMin'] : 0;
 	$fretMax = (!empty($_POST['searchFretMax'])) ? $_POST['searchFretMax'] : 1000000;
 	
-	echo $nom,$capaciteMin,$capaciteMax,$fretMin,$fretMax;
 	
 	$resultats= array();
 
-	$selectResultats = $bdd->prepare("SELECT id, nom, capacite_fret, capacite_voyageur
+	$selectResultats = $bdd->prepare("SELECT id, nom, capacite_fret, capacite_voyageur FROM modele AND LIMIT 100");
+	/*
 									FROM modele WHERE UPPER(nom) LIKE UPPER(:nom)
 									AND capacite_fret BETWEEN :fretMin AND :fretMax
 									AND capacite_voyageur BETWEEN :capaciteMin AND :capaciteMax
 									AND  LIMIT 100");
+									*/
 	$selectResultats->execute(array(":nom" => $nom, ":fretMin" => $fretMin, ":fretMax" => $fretMax, ":capaciteMin" => $capaciteMin, ":capaciteMax" => $capaciteMax));
 	$resultats = $selectResultats->fetchAll();
 		

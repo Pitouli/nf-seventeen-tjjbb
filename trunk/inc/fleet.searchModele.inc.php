@@ -6,13 +6,13 @@
 		<th>Actions</th>
 	</tr>
 <?php
-	foreach($resultats as $modele)
+	foreach($resultats as $ligneModele)
 	{
 ?>
 	<tr>
-		<td><?php echo $modele['nom'] ?></td>
-		<td><?php echo $modele['capacite_voyageur'] ?></td>
-		<td><?php echo $client['capacite_fret'] ?></td>
+		<td><?php echo $ligneModele['nom'] ?></td>
+		<td><?php echo $ligneModele['capacite_voyageur'] ?></td>
+		<td><?php echo $ligneModele['capacite_fret'] ?></td>
 	</tr>
 <?php
 	}
