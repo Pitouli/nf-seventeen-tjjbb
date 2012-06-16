@@ -15,7 +15,7 @@ if(isset($_POST))
 	
 	$resultSearch = $resultTerminaux;
 	
-	$Aeroport = $bdd->prepare("SELECT nom FROM aeroport WHERE id = :id_aeroport");
+	$Aeroport = $bdd->prepare("SELECT nom as aeroport FROM aeroport WHERE id = :id_aeroport");
 	$Aeroport->execute(array(":id_aeroport" => $id_aeroport));
 	$nomAeroport = $Aeroport->fetchAll();
 	
