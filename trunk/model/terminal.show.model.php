@@ -6,6 +6,8 @@ if(isset($_POST))
 	$id_aeroport = $getSSection;
 
 	$selectTerminaux=array();
+	$nomAeroport=array();
+	$nomVille=array();
 	
 	$selectTerminaux = $bdd->prepare("SELECT t.id as id, t.nom as nom, m.nom as modele model FROM terminal t, supporte s, modele m WHERE t.id_aeroport = :id_aeroport AND s.id_terminal=t.id AND s.id_model=m.id AND LIMIT 100");
 	$selectTerminaux->execute(array(":id_aeroport" => $id_aeroport));
