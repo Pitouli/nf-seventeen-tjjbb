@@ -12,10 +12,12 @@ if(isset($_POST))
 	$resultAeroport = $selectAeroport->fetchAll();
 	
 	$resultSearch = array($resultAeroport);
-		
+	/*	
 	//Valider les requête et arrêter la transaction
 	if(!isset($resultSearch))
 		$infos[] = "Aucun résultat.";
+	*/
+	$infos[]=$resultSearch;
 }
 else
 	$infos[] = "Aucune information reçue. La recherche n'a pas été effectuée";
