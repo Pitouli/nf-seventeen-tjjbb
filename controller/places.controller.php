@@ -5,6 +5,7 @@ require DIR_MODEL.'places.model.php';
 if($getSection == 'newville')
 {
 	require DIR_MODEL.'ville.new.model.php';
+	require DIR_MODEL.'places.model.php';
 }
 elseif($getSection == 'searchville')
 {
@@ -13,6 +14,7 @@ elseif($getSection == 'searchville')
 else if($getSection == 'delville')
 {
 	require DIR_MODEL.'ville.del.model.php';
+	require DIR_MODEL.'places.model.php';
 }
 if($getSection == 'newaeroport')
 {
