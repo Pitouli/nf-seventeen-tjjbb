@@ -29,10 +29,5 @@ else if($getSection == 'delaeroport')
 	require DIR_MODEL.'aeroport.del.model.php';
 	require DIR_MODEL.'aeroport.search.model.php';
 }
-else if($getSection == 'show')
-{
-	require DIR_MODEL.'aeroport.show.model.php';
-	require DIR_MODEL.'aeroport.search.model.php';
-}
 
 require DIR_VIEW.'places.view.php';
