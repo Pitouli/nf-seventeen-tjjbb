@@ -15,14 +15,17 @@ if(isset($_POST))
 	
 	$resultSearch = $resultTerminaux;
 	
-	$Aeroport = $bdd->prepare("SELECT nom as aeroport FROM aeroport WHERE id = :id_aeroport");
+	$Aeroport = $bdd->prepare("SELECT nom FROM aeroport WHERE id = :id_aeroport");
 	$Aeroport->execute(array(":id_aeroport" => $id_aeroport));
-	$nomAeroport = $Aeroport->fetchAll();
+	$tempA = $Aeroport->fetchAll();
+	$nomAeroport=$tempA[0]['nom'];
 	
 	$Ville = $bdd->prepare("SELECT v.nom as ville FROM aeroport a, ville v WHERE a.id= :id_aeroport AND a.id_ville=v.id");
 	$Ville->execute(array(":id_aeroport" => $id_aeroport));
-	$nomVille = $Ville->fetchAll();
+	$tempV = $Ville->fetchAll();
 
+	$nomVille=$tempV[0]['ville'];
+	
 	//Valider les requête et arrêter la transaction
 	if(!isset($resultTerminaux))
 		$infos[] = "Aucun résultat.";
