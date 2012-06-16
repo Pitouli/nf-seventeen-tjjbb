@@ -6,22 +6,15 @@ if(isset($_POST))
 	$id_aeroport = $getSSection;
 
 	$selectTerminaux=array();
-	/*
-	//
-	if(is_int($id_aeroport)){
-		$selectAeroport = $bdd->prepare("SELECT a.id as id, a.nom as aeroport, v.nom as ville FROM aeroport a, ville v WHERE a.id_ville=v.id AND v.id = :ville AND UPPER(a.nom) LIKE UPPER(:nom) LIMIT 100");
-		$selectAeroport->execute(array(":nom" => $nom, ":ville" => $ville));
-		$resultAeroport = $selectAeroport->fetchAll();
-	}else{
-		$selectAeroport = $bdd->prepare("SELECT a.id, a.nom as aeroport, v.nom as ville FROM aeroport a, ville v WHERE a.id_ville=v.id AND UPPER(a.nom) LIKE UPPER(:nom) LIMIT 100");
-		$selectAeroport->execute(array(":nom" => $nom));
-		$resultAeroport = $selectAeroport->fetchAll();
-	}	
 	
-	$resultSearch = $resultAeroport;
+	$selectTerminaux = $bdd->prepare("SELECT t.id as id, t.nom as nom, m.nom as modele model FROM terminal t, supporte s, modele m WHERE t.id_aeroport = :id_aeroport AND s.id_terminal=t.id AND s.id_model=m.id AND LIMIT 100");
+	$selectTerminaux->execute(array(":id_aeroport" => $id_aeroport));
+	$resultTerminaux = $selectTerminaux->fetchAll();
+	
+	$resultSearch = $resultTerminaux;
 		
 	//Valider les requête et arrêter la transaction
-	if(!isset($resultSearch))*/
+	if(!isset($resultTerminaux))*/
 		$infos[] = "Aucun résultat.";
 }
 else
