@@ -68,7 +68,7 @@
 				<td><label for="searchAeroport">Aeroport&nbsp;: </label></td>
 				<td><input name="searchAeroport" title="Nom de l'aeroport" type="text" id="searchAeroport" class="inputText extended" value="<?php if(isset($_POST['searchAeroport'])) echo $_POST['searchAeroport'] ?>" /></td>
 				<td><select name="ville" id="ville">
-						<option>Selectionner une ville
+						<option value="">Selectionner une ville
 						<?php foreach($listeVilles as $ville)
 						{
 						?>
