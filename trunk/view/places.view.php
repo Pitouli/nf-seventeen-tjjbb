@@ -22,7 +22,7 @@
 		<form method="post" action="<?php echo ROOT; ?>?c=places&s1=delville">
 			<td>
 				<select name="ville" id="ville">
-						<option>Selectionner une ville
+						<option value="">Selectionner une ville
 						<?php foreach($listeVilles as $ville)
 						{
 						?>
@@ -46,7 +46,7 @@
 				<td><label for="newAeroport">Aeroport&nbsp;: </label></td>
 				<td><input name="newAeroport" title="Nom de l'aeroport" type="text" id="newAeroport" class="inputText extended" value="" /></td>
 				<td><select name="ville" id="ville">
-						<option>Selectionner une ville
+						<option value="">Selectionner une ville>
 						<?php foreach($listeVilles as $ville)
 						{
 						?>
@@ -68,7 +68,7 @@
 				<td><label for="searchAeroport">Aeroport&nbsp;: </label></td>
 				<td><input name="searchAeroport" title="Nom de l'aeroport" type="text" id="searchAeroport" class="inputText extended" value="<?php if(isset($_POST['searchAeroport'])) echo $_POST['searchAeroport'] ?>" /></td>
 				<td><select name="ville" id="ville">
-						<option>Selectionner une ville
+						<option value="">Selectionner une ville
 						<?php foreach($listeVilles as $ville)
 						{
 						?>
