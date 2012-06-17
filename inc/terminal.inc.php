@@ -6,7 +6,7 @@
 	<form method="post" action="<?php echo ROOT; ?>?c=places&s1=newterminal">
 			<td><label for="nomterminal">Nom du terminal&nbsp;: </label></td>
 			<td><input name="nomterminal" title="Nom du terminal" type="text" id="nomterminal" class="inputText extended" value="" /></td>
-			<input type="hidden" name="aeroport" value="<?php if(isset($getSSection)) echo $getSSection ?>"/>
+			<td><input type="text" name="aeroport" value="<?php if(isset($getSSection)) echo $getSSection ?>"/>
 			<td>
 				<select name="modele" id="modele">
 						<option value="">Modele d'avion supporte
