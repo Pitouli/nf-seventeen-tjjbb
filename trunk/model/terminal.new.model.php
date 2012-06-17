@@ -5,9 +5,6 @@ if(isset($_POST, $_POST['nomterminal']))
 	// On convertit nom en majuscule
 	$nom = $_POST['nomterminal'];
 	$nom = $nom != '' ? $nom : NULL; // On met à NULL si la chaîne est vide
-	echo $_POST['modele'];
-	echo $nom;
-	echo $_POST['aeroport'];
 	
 	if(isset($nom))
 	{
@@ -23,7 +20,7 @@ if(isset($_POST, $_POST['nomterminal']))
 			if($r1){
 				if(isset($_POST['modele'])){
 					$newSupp = $bdd->prepare("INSERT INTO supporte(id_modele, id_terminal) VALUES (:id_modele, :id_terminal)");
-					$r2 = $newSupp ->execute(array(":id_modele" => $_POST['modele'], "id_terminal" => $newId));
+					$r2 = $newSupp ->execute(array(":id_modele" => $_POST['modele'], ":id_terminal" => $newId));
 				
 					if ($r2)
 						$commit = true;
