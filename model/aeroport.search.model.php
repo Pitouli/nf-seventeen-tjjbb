@@ -4,11 +4,13 @@ if(isset($_POST))
 {
 	// On rajoute les % pour indiquer que le motif n'est ni nécessairement en début, ni nécessairement en fin de chaîne
 	$nom = isset($_POST['searchAeroport']) ? '%'.trim($_POST['searchAeroport']).'%' : NULL;
-	$ville = isset($_POST['ville']) ? trim($_POST['ville']) : NULL;
+	echo $_POST['ville'];
+	$ville = isset($_POST['ville']) ? $_POST['ville'] : NULL;
+	echo $ville;
 
 	$selectAeroport=array();
 	
-	if(is_int($ville)){
+	if($ville!=NULL){
 		$selectAeroport = $bdd->prepare("SELECT a.id as id, a.nom as aeroport, v.nom as ville FROM aeroport a, ville v WHERE a.id_ville=v.id AND v.id = :ville AND UPPER(a.nom) LIKE UPPER(:nom) LIMIT 100");
 		$selectAeroport->execute(array(":nom" => $nom, ":ville" => $ville));
 		$resultAeroport = $selectAeroport->fetchAll();
