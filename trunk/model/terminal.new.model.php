@@ -5,6 +5,7 @@ if(isset($_POST, $_POST['nomterminal']))
 	// On convertit nom en majuscule
 	$nom = $_POST['nomterminal'];
 	$nom = $nom != '' ? $nom : NULL; // On met à NULL si la chaîne est vide
+	echo $nom;
 	
 	if(isset($nom))
 	{
@@ -14,41 +15,43 @@ if(isset($_POST, $_POST['nomterminal']))
 			$bdd->beginTransaction();
 			
 			$newTerminal = $bdd->prepare("INSERT INTO terminal(id, nom, id_aeroport) VALUES (nextval('ville_id_seq'),:nom, :id_aeroport)");
-			$r1 = $newTerminal->execute(array(":nom" => $nom, ":id_aeroport" => $_POST['aeroport']));
-			$newId = $bdd->lastInsertId('terminal_id_seq');
+			$r1 = $newTerminal->execute(array(":nom" => $nom, ":id_aeroport" => $_POST['aeroport']));			
 			
 			if($r1){
-				if(isset($_POST['modele'])){
-					$newSupp = $bdd->prepare("INSERT INTO supporte(id_modele, id_terminal) VALUES (:id_modele, :id_terminal)");
-					$r2 = $newSupp ->execute(array(":id_modele" => $_POST['modele'], ":id_terminal" => $newId));
-				
-					if ($r2)
-						$commit = true;
-					else
-						$commit = false;
-				}else
-					$commit = blop;
-					
-				if($commit=true) // 1 ligne a été ajoutée
-				{				
-					$bdd->commit();
-					$success[] = "Nouveau terminal (".$nom.") ajoutee avec succes.";
-				}
-				else if($commit=false)
-				{
-					$bdd->rollback();
-					$errors[] = "Echec lors de l'ajout du terminal.";
-				}
-				else if($commit=blop){
-					$bdd->rollback();
-					$errors[] = "Pas de model passer en argument";
-				}
+				$bdd->commit();
+				$success[] = "Nouveau terminal (".$nom.") ajoutee avec succes.";
+				$newId = $bdd->lastInsertId('terminal_id_seq');
 			}
 			else
 			{
 				$bdd->rollback();
 				$errors[] = "Echec lors de l'initialisation du terminal.";
 			}
+	
+			//Commencer une transaction
+			$bdd->beginTransaction();
+			
+			if(isset($_POST['modele'])){
+					$newSupp = $bdd->prepare("INSERT INTO supporte(id_modele, id_terminal) VALUES (:id_modele, :id_terminal)");
+					$r2 = $newSupp->execute(array(":id_modele" => $_POST['modele'], ":id_terminal" => $newId));
+					
+					if ($r2)
+						$commit = true;
+					else
+						$commit = false;
+				}else
+					$commit = false;
+					
+			if($commit==true)
+			{				
+				$bdd->commit();
+			}
+			else
+			{
+				$bdd->rollback();
+				$errors[] = "Echec de l'ajout dans la base Supporte.";
+			}
+			
 		} 
 		catch (PDOException $e)  //Gestion des erreurs causées par les requêtes PDO
 		{
