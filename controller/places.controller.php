@@ -42,7 +42,6 @@ else if($getSection == 'showterminal')
 else if($getSection == 'newterminal')
 {
 	require DIR_MODEL.'terminal.new.model.php';
-	require DIR_MODEL.'terminal.show.model.php';
 }
 
 require DIR_VIEW.'places.view.php';
