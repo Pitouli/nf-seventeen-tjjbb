@@ -4,7 +4,7 @@ if(isset($_POST))
 {
 	// On rajoute les % pour indiquer que le motif n'est ni nécessairement en début, ni nécessairement en fin de chaîne
 	$nom = isset($_POST['searchAeroport']) ? '%'.trim($_POST['searchAeroport']).'%' : NULL;
-	$ville = is_int($_POST['ville']) ? trim($_POST['ville']) : NULL;
+	$ville = isset($_POST['ville']) ? trim($_POST['ville']) : NULL;
 
 	$selectAeroport=array();
 	
