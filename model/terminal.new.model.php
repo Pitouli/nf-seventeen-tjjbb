@@ -16,8 +16,6 @@ if(isset($_POST, $_POST['nomterminal']))
 			$newTerminal = $bdd->prepare("INSERT INTO terminal(id, nom, id_aeroport) VALUES (nextval('ville_id_seq'),:nom, :id_aeroport)");
 			$r1 = $newTerminal->execute(array(":nom" => $nom, ":id_aeroport" => $_POST['aeroport']));
 			$newId = $bdd->lastInsertId('terminal_id_seq');
-			echo $newId;
-			echo $_POST['modele'];
 			
 			if($r1){
 				if(isset($_POST['modele'])){
@@ -29,17 +27,21 @@ if(isset($_POST, $_POST['nomterminal']))
 					else
 						$commit = false;
 				}else
-					$commit = false;
+					$commit = blop;
 					
-				if($commit) // 1 ligne a été ajoutée
+				if($commit=true) // 1 ligne a été ajoutée
 				{				
 					$bdd->commit();
 					$success[] = "Nouveau terminal (".$nom.") ajoutee avec succes.";
 				}
-				else
+				else if($commit=false)
 				{
 					$bdd->rollback();
 					$errors[] = "Echec lors de l'ajout du terminal.";
+				}
+				else if($commit=blop){
+					$bdd->rollback();
+					$errors[] = "Pas de model passer en argument";
 				}
 			}
 			else
