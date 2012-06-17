@@ -5,7 +5,10 @@ if(isset($_POST, $_POST['nomterminal']))
 	// On convertit nom en majuscule
 	$nom = $_POST['nomterminal'];
 	$nom = $nom != '' ? $nom : NULL; // On met à NULL si la chaîne est vide
-
+	echo $_POST['modele'];
+	echo $nom;
+	echo $_POST['aeroport'];
+	
 	if(isset($nom))
 	{
 		try 
