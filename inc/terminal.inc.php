@@ -9,7 +9,7 @@
 			<input type="hidden" name="aeroport" value="<?php if(isset($getSSection)) echo $getSSection ?>"/>
 			<td>
 				<select name="modele" id="modele">
-						<option>Modele d'avion supporte
+						<option value="">Modele d'avion supporte
 						<?php foreach($listeModeles as $modele)
 						{
 						?>
@@ -34,7 +34,6 @@
 <?php
 	foreach($resultSearch as $terminal)
 	{
-
 ?>
 	<tr>
 		<td><?php echo $terminal['nom'] ?></td>
