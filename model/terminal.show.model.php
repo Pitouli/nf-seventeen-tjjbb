@@ -2,7 +2,6 @@
 
 if(isset($_POST))
 {
-	// On rajoute les % pour indiquer que le motif n'est ni nécessairement en début, ni nécessairement en fin de chaîne
 	$id_aeroport = $getSSection;
 
 	$selectTerminaux=array();
