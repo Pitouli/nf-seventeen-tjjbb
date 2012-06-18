@@ -50,6 +50,9 @@
 		<td>
 			<form method="post" action="<?php echo ROOT; ?>?c=places&s1=delterminal">
 				<input type="hidden" name="delId" value="<?php echo $terminal['id'] ?>" />
+				<input type="hidden" name="aeroport" value="<?php if(isset($getSSection)) echo $getSSection ?>" />
+				<input type="hidden" name="searchAeroport" value="<?php if(isset($_POST['searchAeroport'])) echo $_POST['searchAeroport'] ?>" />
+				<input type="hidden" name="ville" value="<?php if(isset($_POST['ville'])) echo $_POST['ville'] ?>" />
 				<input type="submit" class="inputSubmit" value="Supprimer" onclick="return confirm('Confirmez vous la suppression de ce terminal ? Cette action est irreversible.')" />
 			</form>
 		</td>
