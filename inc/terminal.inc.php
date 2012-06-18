@@ -7,6 +7,8 @@
 			<td><label for="nomterminal">Nom du terminal&nbsp;: </label></td>
 			<td><input name="nomterminal" title="Nom du terminal" type="text" id="nomterminal" class="inputText extended" value="" /></td>
 			<input type="hidden" name="aeroport" value="<?php if(isset($getSSection)) echo $getSSection ?>" />
+			<input type="hidden" name="searchAeroport" value="<?php if(isset($_POST['searchAeroport'])) echo $_POST['searchAeroport'] ?>" />
+			<input type="hidden" name="ville" value="<?php if(isset($_POST['ville'])) echo $_POST['ville'] ?>" />
 			<td>
 				<select multiple="multiple" name="modele[]" id="modele">
 						<option value="">Modele d'avion supporte
