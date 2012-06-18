@@ -8,19 +8,19 @@
 </ul>
 
 <form method="post" action="<?php echo ROOT; ?>?c=customers&s1=show&s2=<?php echo $client['id_client'] ?>">
-				<input type="hidden" name="searchNom" value="<?php if(isset($_POST['searchNom'])) echo $_POST['searchNom'] ?>" />
-				<input type="hidden" name="searchPrenom" value="<?php if(isset($_POST['searchPrenom'])) echo $_POST['searchPrenom'] ?>" />						
-				<input type="hidden" name="searchEntreprise" value="<?php if(isset($_POST['searchEntreprise'])) echo $_POST['searchEntreprise'] ?>" />						
-				<input type="hidden" name="searchParticulier" value="<?php if(isset($_POST['searchParticulier'])) echo $_POST['searchParticulier'] ?>" />
+	<input type="hidden" name="searchNom" value="<?php if(isset($_POST['searchNom'])) echo $_POST['searchNom'] ?>" />
+	<input type="hidden" name="searchPrenom" value="<?php if(isset($_POST['searchPrenom'])) echo $_POST['searchPrenom'] ?>" />						
+	<input type="hidden" name="searchEntreprise" value="<?php if(isset($_POST['searchEntreprise'])) echo $_POST['searchEntreprise'] ?>" />						
+	<input type="hidden" name="searchParticulier" value="<?php if(isset($_POST['searchParticulier'])) echo $_POST['searchParticulier'] ?>" />
 <table class="largeTable">
-		<tr>
-			<td><label for="showStart">Depuis le&nbsp;: </label></td>
-			<td><input name="showStart" title="Au format JJ/MM/AAAA" type="text" id="showStart" class="inputText" value="<?php if(isset($_POST['showStart'])) echo $_POST['showStart']; else echo date('d/m/y'); ?>" /></td>
-			<td><label for="showEnd">Jusqu'à&nbsp;: </label></td>
-			<td><input name="showEnd" title="Au format JJ/MM/AAAA" type="text" id="showEnd" class="inputText" value="<?php if(isset($_POST['showEnd'])) echo $_POST['showEnd']; else echo date('d/m/y'); ?>" /></td>
-			<td><input type="submit" class="inputSubmit" value="Rechercher les réservations" /></td>
-		</tr>
-	</table>
+	<tr>
+		<td><label for="showStart">Depuis le&nbsp;: </label></td>
+		<td><input name="showStart" title="Au format JJ/MM/AAAA" type="text" id="showStart" class="inputText" value="<?php if(isset($showStartText)) echo $showStartText; ?>" /></td>
+		<td><label for="showEnd">Jusqu'à&nbsp;: </label></td>
+		<td><input name="showEnd" title="Au format JJ/MM/AAAA" type="text" id="showEnd" class="inputText" value="<?php if(isset($showEndText)) echo $showEndText; ?>" /></td>
+		<td><input type="submit" class="inputSubmit" value="Rechercher les réservations" /></td>
+	</tr>
+</table>
 </form>
 
 <table class="largeTable">
