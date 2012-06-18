@@ -26,26 +26,31 @@ if(isset($_POST))
 				//On crée la variable showDatesDefined : dans la view elle indiquera si des dates ont déjà été saisies et les remplira
 				$showDatesDefined = TRUE;
 				
+				
+				
 				//On vérifie les autres saisies :
 				if(isset($_POST['capaciteMin'],$_POST['capaciteMax'],$_POST['fretMin'],$_POST['fretMax']))
 				{
-					if(($_POST['capaciteMin']<$_POST['capaciteMax'])AND($_POST['fretMin']<$_POST['fretMax']))
+					//On gère les valeur de capacité et fret :
+					$capaciteMin = (!empty($_POST['capaciteMin'])) ? $_POST['capaciteMin'] : 0;	// Au cas où l'utilisateur n'entre rien, afin de prendre tous les résultats.
+					$capaciteMax = (!empty($_POST['capaciteMax'])) ? $_POST['capaciteMax'] : 1000000;
+					$fretMin = (!empty($_POST['fretMin'])) ? $_POST['fretMin'] : 0;
+					$fretMax = (!empty($_POST['fretMax'])) ? $_POST['fretMax'] : 1000000;
+					if(($capaciteMin<$capaciteMax)AND($fretMin<$fretMax))
 					{
 						//On exécute la requête :
 						$resultAvion = array();
 						
 						$selectAvion = $bdd->prepare("
-						SELECT m.nom_modele, m.capacite_fret, m.capacite_voyageurs, a.id_avion
-						FROM modele m INNER JOIN avion a
-						ON m.id_avion = a.id_avion
-						WHERE m.capacite_fret >= :fret_min AND m.capacite_fret <= :fret_max AND m.capacite_voyageurs >= :cap_min AND m.capacite_voyageurs <= :cap_max AND
+						SELECT m.nom, m.capacite_fret, m.capacite_voyageur, a.id
+						FROM avion a INNER JOIN modele m
+						ON a.id_modele = m.id
+						WHERE m.capacite_fret >= :fret_min AND m.capacite_fret <= :fret_max AND m.capacite_voyageur >= :cap_min AND m.capacite_voyageur <= :cap_max
 						");
-						$selectAvion->execute(array(":fret_min" => $_POST['fretMin'], ":fret_max" => $_POST['fretMax'], ":cap_min" => $_POST['capaciteMin'], ":cap_max" => $_POST['fretMax']));
+						$selectAvion->execute(array(":fret_min" => $fretMin, ":fret_max" => $fretMax, ":cap_min" => $capaciteMin, ":cap_max" => $capaciteMax));
 						$resultAvion = $selectAvion->fetchAll();
 						
-						//Valider les requête et arréter la transaction
-						if(!isset($resultAvion))
-							$infos[] = "Aucun résultat.";
+						
 					}
 					else $infos[] = "Les champs capacité et/ou fret n'ont pas été correctement saisie";
 				}

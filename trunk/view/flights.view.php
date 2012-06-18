@@ -104,20 +104,20 @@
 				<td><label for="capaciteMin"><strong>Capacité passager :</strong></label></td>
 				<td>
 					<label for="capaciteMin">Minimum</label><br />
-					<input type="number" name="capaciteMin" id="capaciteMin" <?php if(isset($_POST['capaciteMin'])) echo 'value="' . $_POST['capaciteMin'] . '"' ?>/>
+					<input type="number" name="capaciteMin" id="capaciteMin" <?php if(isset($capaciteMin)) echo 'value="' . $capaciteMin . '"' ?>/>
 				</td>
 				<td>
 					<label for="capaciteMax">Maximum</label><br />
-					<input type="number" name="capaciteMax" <?php if(isset($_POST['capaciteMax'])) echo 'value="' . $_POST['capaciteMax'] . '"' ?>/>
+					<input type="number" name="capaciteMax" <?php if(isset($capaciteMax)) echo 'value="' . $capaciteMax . '"' ?>/>
 				</td>
 				<td><label for="fretMin"><strong>Fret :</strong></label></td>
 				<td>
 					<label for="fretMin">Minimum</label><br />
-					<input type="number" name="fretMin" id="fretMin" <?php if(isset($_POST['fretMin'])) echo 'value="' . $_POST['fretMin'] . '"' ?>/>
+					<input type="number" name="fretMin" id="fretMin" <?php if(isset($fretMin)) echo 'value="' . $fretMin . '"' ?>/>
 				</td>
 				<td>
 					<label for="fretMax">Maximum</label><br />
-					<input type="number" name="fretMax" <?php if(isset($_POST['fretMax'])) echo 'value="' . $_POST['fretMax'] . '"' ?>/>
+					<input type="number" name="fretMax" <?php if(isset($fretMax)) echo 'value="' . $fretMax . '"' ?>/>
 				</td>
 				<td><input type="submit" class="inputSubmit" value="Valider" /></td>
 			</tr>
@@ -125,7 +125,7 @@
 		</table>
 	</form>
 		
-	<?php if(isset($resultAvion)) require DIR_INC.'flights.create.inc.php'; ?>
+	<?php if(isset($resultAvion)) if(!empty($resultAvion)) require DIR_INC.'flights.create.inc.php'; else echo "<p>La recherche n'a renvoyé aucun résultat</p>" ?>
 		
 	<h2>Chercher un vol</h2>
 		
