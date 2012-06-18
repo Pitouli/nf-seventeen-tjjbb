@@ -11,15 +11,14 @@ if(isset($_POST))
 	
 	$Term = $bdd->prepare("SELECT id, nom FROM terminal WHERE t.id_aeroport = :id_aeroport");
 	$Term->execute(array(":id_aeroport" => $id_aeroport));
-	$Terminaux = $Term->fetchAll();
+	$resultTerminaux = $Term->fetchAll();
 	
 	$Modele = $bdd->prepare("SELECT s.id_terminal, s.id_modele, m.nom FROM support s, modele m WHERE s.id_terminal=:id AND s.id_modele=m.id");
 	
-	foreach($Terminaux as $key => $Terminal){
+	foreach($resultTerminaux as $key => $Terminal){
 		$Modele->execute(array(":id" => $Terminal['id']));
-		$Terminal['modele']=$Modele->fetchAll();
+		$resultTerminaux[$key]['modele']=$Modele->fetchAll();
 	}
-	$resultTerminaux=$Terminaux;
 
 	$Aeroport = $bdd->prepare("SELECT nom FROM aeroport WHERE id = :id_aeroport");
 	$Aeroport->execute(array(":id_aeroport" => $id_aeroport));
