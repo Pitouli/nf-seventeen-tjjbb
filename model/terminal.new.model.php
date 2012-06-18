@@ -6,7 +6,12 @@ if(isset($_POST, $_POST['nomterminal']))
 	$nom = $_POST['nomterminal'];
 	$nom = $nom != '' ? $nom : NULL; // On met à NULL si la chaîne est vide
 	echo $nom;
+	foreach($_POST['modele'] as $modele){
+		echo $modele;
+	}
 	
+	
+	/*
 	if(isset($nom))
 	{
 		try 
@@ -61,7 +66,7 @@ if(isset($_POST, $_POST['nomterminal']))
 			//Afficher l'erreur
 			$errors[] = "Échec : " . $e->getMessage();
 		}
-	}
+	}*/
 }
 else
 	$infos[] = "Aucune information reçue. Aucune nouvelle ville n'a été ajoutée.";
