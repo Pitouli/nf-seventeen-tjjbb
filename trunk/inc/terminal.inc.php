@@ -11,7 +11,7 @@
 			<input type="hidden" name="ville" value="<?php if(isset($_POST['ville'])) echo $_POST['ville'] ?>" />
 			<td>
 				<select multiple="multiple" name="modele[]" id="modele">
-						<option value="">Modele d'avion supporte
+						<option value="">Modèles d'avion supportés
 						<?php foreach($listeModeles as $modele)
 						{
 						?>
@@ -29,7 +29,7 @@
 <table class="largeTable">
 	<tr>
 		<th>Nom</th>
-		<th>Modele supporte</th>
+		<th>Modèles supportés</th>
 		<th>Action</th>
 	</tr>
 <?php
@@ -39,11 +39,10 @@
 	<tr>
 		<td><?php echo $terminal['nom'] ?></td>
 		<td><select>
-				<option value="">Selectionner une ville
 				<?php foreach($terminal['modele'] as $modele)
 				{
 				?>
-				 <option value="<?php echo $modele['nom'] ?>"></option>
+				 <option><?php echo $modele['nom'] ?>
 				<?php
 				}
 				?>
