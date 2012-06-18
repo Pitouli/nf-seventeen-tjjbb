@@ -1,30 +1,35 @@
-<h2>Créer un vol - étape 2 - Sélectionner un avion</h2>
+ï»¿<h2>CrÃ©er un vol - Ã©tape 2 - SÃ©lectionner un avion</h2>
 
 <form method="post" action="<?php echo ROOT; ?>?c=flights&s1=create">
 	<table class="largeTable">
 		<tr>
 			<th> </th>
-			<th>Modèle</th>
-			<th>Capacité pers.</th>
-			<th>Capacité fret</th>
+			<th>ModÃ¨le</th>
+			<th>CapacitÃ© pers.</th>
+			<th>CapacitÃ© fret</th>
 			<th>Num avion</th>
-			<th>Précédent<br />aéroport</th>
+			<th>PrÃ©cÃ©dent<br />aÃ©roport</th>
 			<th>Terminal<br />compatible</th>
-			<th>Aérport (terminal) d'arrivée</th>
+			<th>AÃ©roport (terminal) d'arrivÃ©e</th>
 			<th>Prochaine<br />escale</th>
 		</tr>
-		<!-- TODO : mettre les hidden pour faire réapparaitre les critères de recherches précédents!!! -->
+		<!-- TODO : mettre les hidden pour faire rÃ©apparaitre les critÃ¨res de recherches précédents!!! -->
+		<?php foreach($resultAvion as $avion) 
+		{
+		?>
 		<tr>
 			<td><input type="radio" name="avion" value="<?php echo ''; ?>" /></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
+			<td><?php echo $avion['nom_modele'] ?></td>
+			<td><?php echo $avion['capacite_voyageurs'] ?></td>
+			<td><?php echo $avion['capacite_fret'] ?></td>
+			<td><?php echo $avion['id_avion'] ?></td>
+			<td><?php echo "Comming soon..." ?></td>
+			<td><?php echo "Comming soon..." ?></td>
+			<td><?php echo "Comming soon..." ?></td>
+			<td><?php echo "Comming soon..." ?></td>
+		</tr><?php
+		}
+		?>
 	</table>
 	<input type="submit" class="inputSubmit" onclick="return confirm('Confirmez vous l\'ajout d\'un nouveau vol ?');"value="Ajouter vol" />
 </form>

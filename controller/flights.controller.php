@@ -1,7 +1,5 @@
-<?php
+﻿<?php
 
-
-require DIR_MODEL.'flights.model.php';
 
 if($getSection == 'new')
 {
@@ -22,4 +20,7 @@ else if($getSection == 'del')
 	require DIR_MODEL.'flights.search.model.php';
 }
 
+require DIR_MODEL.'flights.model.php';
+
 require DIR_VIEW.'flights.view.php';
+

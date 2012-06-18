@@ -28,7 +28,7 @@
 						?>
 				   </select>
 				</td>
-				<td><label for="pays"><strong>Arrivée :</strong></label></td>
+				<td><label for="arrivee"><strong>Arrivée :</strong></label></td>
 				<td>
 				   <select name="arrivee" id="arrivee">
 					   <?php foreach($listeVilles as $ville)
@@ -40,16 +40,72 @@
 						?>
 				   </select>
 				</td>
-				<td><label for="Hdepart">Heure de départ</label><br /><input type="datetime" name="Hdepart" /></td>
-				<td><label for="Harrivee">Heure d'arrivée</label><br /><input type="datetime" name="Harrivee" /></td>
+				<td>
+					<label for="Ddepart">Date de départ</label><br />
+					<input type="text" name="Ddepart" id="Ddepart" value="<?php //On gère l'affichage de la date :
+					if (isset($showDatesDefined) AND $showDatesDefined)
+					{
+						echo $showStartText; //Cette variable a été définie dans le new.model
+					}
+					else echo "JJ/MM/AAAA";
+					?>"/>
+					<select name="Hdepart">
+						<?php
+						for ($i = 0; $i <= 23; $i++) {
+						?>
+							<option value="<?php echo $i ?>"><?php echo $i ?></option>
+						<?php
+						}
+						?>
+					</select>
+					:
+					<select name="Mdepart">
+						<?php
+						for ($i = 0; $i <= 60; $i++) {
+						?>
+							<option value="<?php echo $i ?>"><?php echo $i ?></option>
+						<?php
+						}
+						?>
+					</select>
+				</td>
+				<td>
+					<label for="Darrivee">Date d'arrivée</label><br />
+					<input type="text" name="Darrivee" id="Darrivee" value="<?php //On gère l'affichage de la date :
+					if (isset($showDatesDefined) AND $showDatesDefined)
+					{
+						echo $showEndText; //Cette variable a été définie dans le new.model
+					}
+					else echo "JJ/MM/AAAA";
+					?>"/>
+					<select name="Harrivee">
+						<?php
+						for ($i = 0; $i <= 23; $i++) {
+						?>
+							<option value="<?php echo $i ?>"><?php echo $i ?></option>
+						<?php
+						}
+						?>
+					</select>
+					:
+					<select name="Marrivee">
+						<?php
+						for ($i = 0; $i <= 60; $i++) {
+						?>
+							<option value="<?php echo $i ?>"><?php echo $i ?></option>
+						<?php
+						}
+						?>
+					</select>
+				</td>
 			</tr>
 			
 			<tr>
 				<td><label for="capaciteMin"><strong>Capacité passager :</strong></label></td>
-				<td><label for="capaciteMin">Minimum</label><br /><input type="number" name="capaciteMin" /></td>
+				<td><label for="capaciteMin">Minimum</label><br /><input type="number" name="capaciteMin" id="capaciteMin"/></td>
 				<td><label for="capaciteMax">Maximum</label><br /><input type="number" name="capaciteMax" /></td>
 				<td><label for="fretMin"><strong>Fret :</strong></label></td>
-				<td><label for="fretMin">Minimum</label><br /><input type="number" name="fretMin" /></td>
+				<td><label for="fretMin">Minimum</label><br /><input type="number" name="fretMin" id="fretMin"/></td>
 				<td><label for="fretMax">Maximum</label><br /><input type="number" name="fretMax" /></td>
 				<td><input type="submit" class="inputSubmit" value="Valider" /></td>
 			</tr>
@@ -57,7 +113,7 @@
 		</table>
 	</form>
 		
-	<?php if(isset($resultSearch)) require DIR_INC.'flights.create.inc.php'; ?>
+	<?php if(isset($resultAvion)) require DIR_INC.'flights.create.inc.php'; ?>
 		
 	<h2>Chercher un vol</h2>
 		
@@ -76,9 +132,9 @@
 						?>
 				   </select>
 				</td>
-				<td><label for="pays">Arrivée</label></td>
+				<td><label for="arrivee">Arrivée</label></td>
 				<td>
-				   <select name="depart" id="depart">
+				   <select name="arrivee" id="arrivee">
 					   <?php foreach($listeVilles as $ville)
 						{
 						?>
@@ -90,10 +146,54 @@
 				</td>
 			</tr>
 			<tr>
-				<td><label for="Hdepart">Heure de départ</label></td>
-				<td><input type="datetime" name="Hdepart" /></td>
-				<td><label for="Harrivee">Heure d'arrivée</label></td>
-				<td><input type="datetime" name="Harrivee" /></td>
+				<td>
+					<label for="Ddepart">Date de départ</label>
+				</td>
+				<td>
+					<input type="text" name="Ddepart" id="Ddepart"/>
+					<select name="Hdepart">
+						<?php
+						for ($i = 0; $i <= 23; $i++) {
+						?>
+							<option value="<?php echo $i ?>"><?php echo $i ?></option>
+						<?php
+						}
+						?>
+					</select>
+					:
+					<select name="Mdepart">
+						<?php
+						for ($i = 0; $i <= 60; $i++) {
+						?>
+							<option value="<?php echo $i ?>"><?php echo $i ?></option>
+						<?php
+						}
+						?>
+					</select>
+				</td>
+				<td><label for="Darrivee">Date d'arrivée</label></td>
+				<td>
+					<input type="text" name="Darrivee" id="Darrivee"/>
+					<select name="Harrivee">
+						<?php
+						for ($i = 0; $i <= 23; $i++) {
+						?>
+							<option value="<?php echo $i ?>"><?php echo $i ?></option>
+						<?php
+						}
+						?>
+					</select>
+					:
+					<select name="Marrivee">
+						<?php
+						for ($i = 0; $i <= 60; $i++) {
+						?>
+							<option value="<?php echo $i ?>"><?php echo $i ?></option>
+						<?php
+						}
+						?>
+					</select>
+				</td>
 			</tr>
 		</table>
 	</form>
