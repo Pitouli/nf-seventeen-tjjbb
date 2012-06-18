@@ -13,7 +13,6 @@
 			<th>Aéroport (terminal) d'arrivée</th>
 			<th>Prochaine<br />escale</th>
 		</tr>
-		<!-- TODO : mettre les hidden pour faire réapparaitre les critères de recherches pr�c�dents!!! -->
 		<?php foreach($resultAvion as $avion) 
 		{
 		?>
@@ -23,8 +22,22 @@
 			<td><?php echo $avion['capacite_voyageur'] ?></td>
 			<td><?php echo $avion['capacite_fret'] ?></td>
 			<td><?php echo $avion['id'] ?></td>
-			<td><?php echo "Comming soon..." ?></td>
-			<td><?php echo "Comming soon..." ?></td>
+			<td>
+				<?php
+					echo $
+				?>
+			</td>
+			<td>
+				<select name="arrivee" id="arrivee">
+				<?php foreach($avion['terminal'] as $terminal)
+				{
+				?>
+					<option value="<?php echo $terminal['id_terminal'] ?>"><?php echo $terminal['nom_terminal'] ?></option>
+				<?php
+				}
+				?>
+				</select>
+			</td>
 			<td><?php echo "Comming soon..." ?></td>
 			<td><?php echo "Comming soon..." ?></td>
 		</tr><?php

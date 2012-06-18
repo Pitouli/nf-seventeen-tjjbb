@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 //
 if(isset($_POST))
 {
@@ -23,6 +23,9 @@ if(isset($_POST))
 				$showStartText = $showStart['d'].'/'.$showStart['m'].'/'.$showStart['y'];
 				$showEndText = $showEnd['d'].'/'.$showEnd['m'].'/'.$showEnd['y'];
 				
+				$checkStartText = $showStartText . " " . $_POST['Hdepart'] . ":" . $_POST['Mdepart'];
+				$checkEndText = $showEndText . " " . $_POST['Harrivee'] . ":" . $_POST['Marrivee'];
+				
 				//On crée la variable showDatesDefined : dans la view elle indiquera si des dates ont déjà été saisies et les remplira
 				$showDatesDefined = TRUE;
 				
@@ -33,22 +36,53 @@ if(isset($_POST))
 				{
 					//On gère les valeur de capacité et fret :
 					$capaciteMin = (!empty($_POST['capaciteMin'])) ? $_POST['capaciteMin'] : 0;	// Au cas où l'utilisateur n'entre rien, afin de prendre tous les résultats.
-					$capaciteMax = (!empty($_POST['capaciteMax'])) ? $_POST['capaciteMax'] : 1000000;
+					$capaciteMax = (!empty($_POST['capaciteMax'])) ? $_POST['capaciteMax'] : 32000;
 					$fretMin = (!empty($_POST['fretMin'])) ? $_POST['fretMin'] : 0;
-					$fretMax = (!empty($_POST['fretMax'])) ? $_POST['fretMax'] : 1000000;
+					$fretMax = (!empty($_POST['fretMax'])) ? $_POST['fretMax'] : 100000;
 					if(($capaciteMin<$capaciteMax)AND($fretMin<$fretMax))
 					{
 						//On exécute la requête :
-						$resultAvion = array();
+						$selectAvion = array();
+						$selectTerminal = array();
+						$selectPreviousAirport = array();
 						
 						$selectAvion = $bdd->prepare("
-						SELECT m.nom, m.capacite_fret, m.capacite_voyageur, a.id
+						SELECT m.nom AS nom, m.capacite_fret AS capacite_fret, m.capacite_voyageur AS capacite_voyageur, m.id AS id_modele, a.id AS id
 						FROM avion a INNER JOIN modele m
 						ON a.id_modele = m.id
 						WHERE m.capacite_fret >= :fret_min AND m.capacite_fret <= :fret_max AND m.capacite_voyageur >= :cap_min AND m.capacite_voyageur <= :cap_max
 						");
-						$selectAvion->execute(array(":fret_min" => $fretMin, ":fret_max" => $fretMax, ":cap_min" => $capaciteMin, ":cap_max" => $capaciteMax));
+						
+						
+						
+						$selectAvion->execute(array(":fret_min" => $fretMin, "fret_max" => $fretMax, ":cap_max" => $capaciteMax, ":cap_min" => $capaciteMin));
 						$resultAvion = $selectAvion->fetchAll();
+						
+						$selectTerminal = $bdd->prepare("
+						SELECT t.id AS id_terminal, t.nom AS nom_terminal
+						FROM aeroport a, terminal t, supporte s
+						WHERE a.id_ville = :id_ville AND s.id_modele = :id_modele AND a.id = t.id_aeroport AND t.id = s.id_terminal
+						");
+						
+						$selectPreviousAirport = $bdd->prepare("
+						SELECT a.nom
+						FROM aeroport a, terminal t, vol v
+						WHERE a.id = t.id_aeroport AND t.id = v.id_terminal_ar AND :checkstart < depart
+						ORDER BY date DESC
+						LIMIT 1
+						");
+						
+						foreach($resultAvion as $key => $avion)
+						{
+							$selectTerminal->execute(array(":id_ville" => $_POST['depart'], ":id_modele" => $resultAvion[$key]['id_modele']));
+							$resultAvion[$key]['terminal'] = $selectTerminal->fetchAll();
+							$selectPreviousAirport->execute(array(":checkdate", to_date($checkStartText, 'DD/MM/YYYY HH:MM')));
+							$resultAvion[$key]['PreviousAirport'] = $selectPreviousAirport->fecth();
+							
+						}
+						
+						
+						
 						
 						
 					}

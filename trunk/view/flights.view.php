@@ -53,7 +53,7 @@
 						<?php
 						for ($i = 0; $i <= 23; $i++) {
 						?>
-							<option value="<?php echo $i ?>" <?php if(isset($_POST['Hdepart']) AND ($_POST['Hdepart'] == $i)) echo 'selected' ?>><?php echo $i ?></option>
+							<option value="<?php if($i<10) echo 0; echo $i ?>" <?php if(isset($_POST['Hdepart']) AND ($_POST['Hdepart'] == $i)) echo 'selected' ?>><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
 						}
 						?>
@@ -63,7 +63,7 @@
 						<?php
 						for ($i = 0; $i <= 60; $i++) {
 						?>
-							<option value="<?php echo $i ?>" <?php if(isset($_POST['Mdepart']) AND ($_POST['Mdepart'] == $i)) echo 'selected' ?>><?php echo $i ?></option>
+							<option value="<?php if($i<10) echo 0; echo $i ?>" <?php if(isset($_POST['Mdepart']) AND ($_POST['Mdepart'] == $i)) echo 'selected' ?>><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
 						}
 						?>
@@ -82,7 +82,7 @@
 						<?php
 						for ($i = 0; $i <= 23; $i++) {
 						?>
-							<option value="<?php echo $i ?>" <?php if(isset($_POST['Harrivee']) AND ($_POST['Harrivee'] == $i)) echo 'selected' ?>><?php echo $i ?></option>
+							<option value="<?php if($i<10) echo 0; echo $i ?>" <?php if(isset($_POST['Harrivee']) AND ($_POST['Harrivee'] == $i)) echo 'selected' ?>><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
 						}
 						?>
@@ -92,7 +92,7 @@
 						<?php
 						for ($i = 0; $i <= 60; $i++) {
 						?>
-							<option value="<?php echo $i ?>" <?php if(isset($_POST['Marrivee']) AND ($_POST['Marrivee'] == $i)) echo 'selected' ?>><?php echo $i ?></option>
+							<option value="<?php if($i<10) echo 0; echo $i ?>" <?php if(isset($_POST['Marrivee']) AND ($_POST['Marrivee'] == $i)) echo 'selected' ?>><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
 						}
 						?>
@@ -167,7 +167,7 @@
 						<?php
 						for ($i = 0; $i <= 23; $i++) {
 						?>
-							<option value="<?php echo $i ?>"><?php echo $i ?></option>
+							<option value="<?php if($i<10) echo 0; echo $i ?>"><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
 						}
 						?>
@@ -177,7 +177,7 @@
 						<?php
 						for ($i = 0; $i <= 60; $i++) {
 						?>
-							<option value="<?php echo $i ?>"><?php echo $i ?></option>
+							<option value="<?php if($i<10) echo 0; echo $i ?>"><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
 						}
 						?>
@@ -190,7 +190,7 @@
 						<?php
 						for ($i = 0; $i <= 23; $i++) {
 						?>
-							<option value="<?php echo $i ?>"><?php echo $i ?></option>
+							<option value="<?php if($i<10) echo 0; echo $i ?>"><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
 						}
 						?>
@@ -200,7 +200,7 @@
 						<?php
 						for ($i = 0; $i <= 60; $i++) {
 						?>
-							<option value="<?php echo $i ?>"><?php echo $i ?></option>
+							<option value="<?php if($i<10) echo 0; echo $i ?>"><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
 						}
 						?>
