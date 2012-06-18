@@ -19,10 +19,10 @@
 		?>
 		<tr>
 			<td><input type="radio" name="avion" value="<?php echo ''; ?>" /></td>
-			<td><?php echo $avion['nom_modele'] ?></td>
-			<td><?php echo $avion['capacite_voyageurs'] ?></td>
+			<td><?php echo $avion['nom'] ?></td>
+			<td><?php echo $avion['capacite_voyageur'] ?></td>
 			<td><?php echo $avion['capacite_fret'] ?></td>
-			<td><?php echo $avion['id_avion'] ?></td>
+			<td><?php echo $avion['id'] ?></td>
 			<td><?php echo "Comming soon..." ?></td>
 			<td><?php echo "Comming soon..." ?></td>
 			<td><?php echo "Comming soon..." ?></td>
