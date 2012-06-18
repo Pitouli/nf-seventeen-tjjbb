@@ -94,7 +94,7 @@
 
 	<h2>Un peu de statistiques</h2>
 	<ul>
-		<li>Nombre d'avions dans la flotte : xxxx</li>
+		<li>Nombre d'avions dans la flotte : <?php echo $nbAvions; ?></li>
 		<li>Nombre d'aéroports desservis : xxx</li>
 		<li>Nombre de vols au départ dans les 24 prochaines heures : xxxx</li>
 	</ul>
