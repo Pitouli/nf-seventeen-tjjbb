@@ -22,7 +22,7 @@
 						<?php foreach($listeVilles as $ville)
 						{
 						?>
-						  <option value="<?php echo $ville['id'] ?>"><?php echo $ville['nom'] ?></option>
+						  <option value="<?php echo $ville['id'] ?>" <?php if(isset($_POST['depart']) AND ($_POST['depart'] == $ville['id'])) echo 'selected' ?>><?php echo $ville['nom'] ?></option>
 						<?php
 						}
 						?>
@@ -34,7 +34,7 @@
 					   <?php foreach($listeVilles as $ville)
 						{
 						?>
-						  <option value="<?php echo $ville['id'] ?>"><?php echo $ville['nom'] ?></option>
+						  <option value="<?php echo $ville['id'] ?>" <?php if(isset($_POST['arrivee']) AND ($_POST['arrivee'] == $ville['id'])) echo 'selected' ?>><?php echo $ville['nom'] ?></option>
 						<?php
 						}
 						?>
@@ -53,7 +53,7 @@
 						<?php
 						for ($i = 0; $i <= 23; $i++) {
 						?>
-							<option value="<?php echo $i ?>"><?php echo $i ?></option>
+							<option value="<?php echo $i ?>" <?php if(isset($_POST['Hdepart']) AND ($_POST['Hdepart'] == $i)) echo 'selected' ?>><?php echo $i ?></option>
 						<?php
 						}
 						?>
@@ -63,7 +63,7 @@
 						<?php
 						for ($i = 0; $i <= 60; $i++) {
 						?>
-							<option value="<?php echo $i ?>"><?php echo $i ?></option>
+							<option value="<?php echo $i ?>" <?php if(isset($_POST['Mdepart']) AND ($_POST['Mdepart'] == $i)) echo 'selected' ?>><?php echo $i ?></option>
 						<?php
 						}
 						?>
@@ -82,7 +82,7 @@
 						<?php
 						for ($i = 0; $i <= 23; $i++) {
 						?>
-							<option value="<?php echo $i ?>"><?php echo $i ?></option>
+							<option value="<?php echo $i ?>" <?php if(isset($_POST['Harrivee']) AND ($_POST['Harrivee'] == $i)) echo 'selected' ?>><?php echo $i ?></option>
 						<?php
 						}
 						?>
@@ -92,7 +92,7 @@
 						<?php
 						for ($i = 0; $i <= 60; $i++) {
 						?>
-							<option value="<?php echo $i ?>"><?php echo $i ?></option>
+							<option value="<?php echo $i ?>" <?php if(isset($_POST['Marrivee']) AND ($_POST['Marrivee'] == $i)) echo 'selected' ?>><?php echo $i ?></option>
 						<?php
 						}
 						?>
@@ -102,11 +102,23 @@
 			
 			<tr>
 				<td><label for="capaciteMin"><strong>Capacité passager :</strong></label></td>
-				<td><label for="capaciteMin">Minimum</label><br /><input type="number" name="capaciteMin" id="capaciteMin"/></td>
-				<td><label for="capaciteMax">Maximum</label><br /><input type="number" name="capaciteMax" /></td>
+				<td>
+					<label for="capaciteMin">Minimum</label><br />
+					<input type="number" name="capaciteMin" id="capaciteMin" <?php if(isset($_POST['capaciteMin'])) echo 'value="' . $_POST['capaciteMin'] . '"' ?>/>
+				</td>
+				<td>
+					<label for="capaciteMax">Maximum</label><br />
+					<input type="number" name="capaciteMax" <?php if(isset($_POST['capaciteMax'])) echo 'value="' . $_POST['capaciteMax'] . '"' ?>/>
+				</td>
 				<td><label for="fretMin"><strong>Fret :</strong></label></td>
-				<td><label for="fretMin">Minimum</label><br /><input type="number" name="fretMin" id="fretMin"/></td>
-				<td><label for="fretMax">Maximum</label><br /><input type="number" name="fretMax" /></td>
+				<td>
+					<label for="fretMin">Minimum</label><br />
+					<input type="number" name="fretMin" id="fretMin" <?php if(isset($_POST['fretMin'])) echo 'value="' . $_POST['fretMin'] . '"' ?>/>
+				</td>
+				<td>
+					<label for="fretMax">Maximum</label><br />
+					<input type="number" name="fretMax" <?php if(isset($_POST['fretMax'])) echo 'value="' . $_POST['fretMax'] . '"' ?>/>
+				</td>
 				<td><input type="submit" class="inputSubmit" value="Valider" /></td>
 			</tr>
 			
