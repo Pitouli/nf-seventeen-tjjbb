@@ -13,14 +13,13 @@ if(isset($_POST, $_POST['nomterminal']))
 			//Commencer une transaction
 			$bdd->beginTransaction();
 			
-			$newTerminal = $bdd->prepare("INSERT INTO terminal(id, nom, id_aeroport) VALUES (nextval('ville_id_seq'),:nom, :id_aeroport)");
+			$newTerminal = $bdd->prepare("INSERT INTO terminal(id, nom, id_aeroport) VALUES (nextval('terminal_id_seq'),:nom, :id_aeroport)");
 			$r1 = $newTerminal->execute(array(":nom" => $nom, ":id_aeroport" => $_POST['aeroport']));			
 			
 			if($r1){
 				$bdd->commit();
 				$success[] = "Nouveau terminal (".$nom.") ajoutee avec succes.";
 				$newId = $bdd->lastInsertId('terminal_id_seq');
-				echo $newId;
 			}
 			else
 			{
@@ -31,9 +30,9 @@ if(isset($_POST, $_POST['nomterminal']))
 			$newSupp = $bdd->prepare("INSERT INTO supporte(id_modele, id_terminal) VALUES (:id_modele, :id_terminal)");
 			
 			foreach($_POST['modele'] as $modele){
-				echo $newId;
 				//Commencer une transaction
 				$bdd->beginTransaction();
+				echo $newId;
 				
 				if(isset($_POST['modele'])){
 					$r2 = $newSupp->execute(array(":id_modele" => $modele, ":id_terminal" => $newId));
