@@ -45,6 +45,7 @@ else if($getSection == 'newterminal')
 	require DIR_MODEL.'fleet.model.php';
 	require DIR_MODEL.'aeroport.search.model.php';
 	require DIR_MODEL.'terminal.new.model.php';
+	require DIR_MODEL.'terminal.show.model.php';
 }
 
 require DIR_VIEW.'places.view.php';
