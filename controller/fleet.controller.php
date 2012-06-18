@@ -16,6 +16,11 @@ elseif($getSection == 'listeAvion')
 {
 	require DIR_MODEL.'fleet.listeAvion.model.php';
 }
+else if($getSection == 'delAvion')
+{
+	require DIR_MODEL.'fleet.delAvion.model.php';
+	require DIR_MODEL.'fleet.listeAvion.model.php';
+}
 /*
 else if($getSection == 'showModele')
 {
