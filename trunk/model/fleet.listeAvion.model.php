@@ -4,7 +4,7 @@ if(isset($_POST))
 {
 	$idModele = $_POST['modele2'];
 
-	$selectAffichageAvions = $bdd->prepare("SELECT id FROM modele
+	$selectAffichageAvions = $bdd->prepare("SELECT id FROM avion
 											WHERE id_modele = :idModele
 											LIMIT 100");
 									
