@@ -7,7 +7,7 @@
 			<td><label for="nomterminal">Nom du terminal&nbsp;: </label></td>
 			<td><input name="nomterminal" title="Nom du terminal" type="text" id="nomterminal" class="inputText extended" value="" /></td>
 			<td>
-				<select multiple="modele" id="modele">
+				<select multiple="multiple" name="modele" id="modele">
 						<option value="">Modele d'avion supporte
 						<?php foreach($listeModeles as $modele)
 						{
