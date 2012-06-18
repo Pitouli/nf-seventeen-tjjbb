@@ -19,6 +19,8 @@
 				<input type="submit" class="inputSubmit" value="Historique" />
 			</form>
 			<form method="post" action="<?php echo ROOT; ?>?c=places&s1=showterminal&s2=<?php if(isset($aeroport['id'])) echo $aeroport['id'] ?>">
+				<input type="hidden" name="searchAeroport" value="<?php if(isset($_POST['searchAeroport'])) echo $_POST['searchAeroport'] ?> "/>
+				<input type="hidden" name="ville" value="<?php if(isset($_POST['ville'])) echo $_POST['ville'] ?> "/>
 				<input type="submit" class="inputSubmit" value="Terminaux" />
 			</form>
 			<form method="post" action="<?php echo ROOT; ?>?c=places&s1=delaeroport">

@@ -27,9 +27,8 @@
 <table class="largeTable">
 	<tr>
 		<th>Nom</th>
-		<th>Aeroport</th>
-		<th>Ville</th>
 		<th>Modele supporte</th>
+		<th>Action</th>
 	</tr>
 <?php
 	foreach($resultSearch as $terminal)
