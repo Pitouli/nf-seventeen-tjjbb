@@ -22,7 +22,6 @@
 <?php
 	if(empty($resultats))
 	{
-	// Pourquoi c'est toujours viiiiide :'(
 ?>
 	<p>La recherche n'a renvoyé aucun résultat</p>
 <?php
