@@ -31,7 +31,7 @@
 		<th>Action</th>
 	</tr>
 <?php
-	foreach($resultSearch as $terminal)
+	foreach($resultTerminaux as $terminal)
 	{
 ?>
 	<tr>
