@@ -1,25 +1,68 @@
-<?php
-
-if(isset($_POST['depart'],$_POST['arrivee'],$_POST['Hdepart'],$_POST['Harrivee'],$_POST['capaciteMin'],$_POST['capaciteMax'],$_POST['fretMin'],$_POST['fretMax'])
+﻿<?php
+//
+if(isset($_POST))
 {
-	$result = array();
-	
-	$selectParticulier = $bdd->prepare("SELECT id_client, nom, prenom, 'PARTICULIER' as cat FROM particulier WHERE UPPER(nom) LIKE UPPER(:nom) AND UPPER(prenom) LIKE UPPER(:prenom) LIMIT 100");
-	$selectParticulier->execute(array(":nom" => $nom, ":prenom" => $prenom));
-	$resultParticulier = $selectParticulier->fetchAll();
-	}
-	if(isset($_POST['searchEntreprise']) && $_POST['searchEntreprise'] == "checked")
+	// On gère la problématique de la date
+
+	if(isset($_POST['Ddepart'], $_POST['Darrivee']))
 	{
-		$selectEntreprise = $bdd->prepare("SELECT id_client, nom, '-' as prenom, 'ENTREPRISE' as cat FROM entreprise WHERE UPPER(nom) LIKE UPPER(:nom) LIMIT 100");
-		$selectEntreprise->execute(array(":nom" => $nom));
-		$resultEntreprise = $selectEntreprise->fetchAll();
+		if(preg_match("#^([0-9]{2})/([0-9]{2})/([0-9]{4})$#", trim($_POST['Ddepart']), $pregStart)
+			&& preg_match("#^([0-9]{2})/([0-9]{2})/([0-9]{4})$#", trim($_POST['Darrivee']), $pregEnd))
+		{
+			
+			
+			if(checkdate((int)$pregStart[2], (int)$pregStart[1], (int)$pregStart[0]) && checkdate((int)$pregEnd[2], (int)$pregEnd[1], (int)$pregEnd[0]))
+			{
+				$showStart['d']=$pregStart[1];
+				$showStart['m']=$pregStart[2];
+				$showStart['y']=$pregStart[3];
+				$showEnd['d']=$pregEnd[1];
+				$showEnd['m']=$pregEnd[2];
+				$showEnd['y']=$pregEnd[3];
+				
+				$showStartText = $showStart['d'].'/'.$showStart['m'].'/'.$showStart['y'];
+				$showEndText = $showEnd['d'].'/'.$showEnd['m'].'/'.$showEnd['y'];
+				
+				//On crée la variable showDatesDefined : dans la view elle indiquera si des dates ont déjà été saisies et les remplira
+				$showDatesDefined = TRUE;
+				
+				//On vérifie les autres saisies :
+				if(isset($_POST['capaciteMin'],$_POST['capaciteMax'],$_POST['fretMin'],$_POST['fretMax']))
+				{
+					if(($_POST['capaciteMin']<$_POST['capaciteMax'])AND($_POST['fretMin']<$_POST['fretMax']))
+					{
+						//On exécute la requête :
+						$resultAvion = array();
+						
+						$selectAvion = $bdd->prepare("
+						SELECT m.nom_modele, m.capacite_fret, m.capacite_voyageurs, a.id_avion
+						FROM modele m INNER JOIN avion a
+						ON m.id_avion = a.id_avion
+						WHERE m.capacite_fret >= :fret_min AND m.capacite_fret <= :fret_max AND m.capacite_voyageurs >= :cap_min AND m.capacite_voyageurs <= :cap_max AND
+						");
+						$selectAvion->execute(array(":fret_min" => $_POST['fretMin'], ":fret_max" => $_POST['fretMax'], ":cap_min" => $_POST['capaciteMin'], ":cap_max" => $_POST['fretMax']));
+						$resultAvion = $selectAvion->fetchAll();
+						
+						//Valider les requête et arréter la transaction
+						if(!isset($resultAvion))
+							$infos[] = "Aucun résultat.";
+					}
+					else $infos[] = "Les champs capacité et/ou fret n'ont pas été correctement saisie";
+				}
+				else $infos[] = "Les champs capacité et/ou fret n'ont pas été saisie";
+			}
+			else
+				$showDatesDefined = FALSE;
+		}
+		else
+		{
+			$showDatesDefined = FALSE;
+			$infos[] = "Le champs date n'a pas étéorrectement saisie";
+		}
 	}
+	else
+		$showDatesDefined = FALSE;
 	
-	$resultSearch = array_merge($resultParticulier, $resultEntreprise);
-		
-	//Valider les requ�te et arr�ter la transaction
-	if(!isset($resultSearch))
-		$infos[] = "Aucun r�sultat.";
 }
 else
-	$infos[] = "Aucune information re�ue. La recherche n'a pas �t� effectu�e";
+	$infos[] = "Toutes les informations requises n'ont pas été reçues. La recherche n'a pas été effectuée";
