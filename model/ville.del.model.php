@@ -8,7 +8,7 @@ if(isset($_POST['ville']))
 		
 		$id_ville = $_POST['ville'];
 		
-		// Puis on supprime le client lui même (déclenchant des cascades dans toutes les autres tables)
+		// Puis on supprime le client lui mÃªme (dÃ©clenchant des cascades dans toutes les autres tables)
 		$deleteVille = $bdd->prepare("DELETE FROM ville WHERE id = :id_ville");
 		$r2 = $deleteVille->execute(array(":id_ville" => $id_ville));
 		$c = $deleteVille->rowCount();
@@ -20,7 +20,7 @@ if(isset($_POST['ville']))
 			if($c > 0)
 				$success[] = "La suppression a reussi.";			
 			else
-				$infos[] = "La ville a déjà été supprimée.";
+				$infos[] = "La ville a dÃ©jÃ  Ã©tÃ© supprimÃ©e.";
 		}
 		else
 		{
@@ -28,13 +28,13 @@ if(isset($_POST['ville']))
 			$errors[] = "Echec lors de la suppression.";
 		}
 	} 
-	catch (PDOException $e)  //Gestion des erreurs causées par les requêtes PDO
+	catch (PDOException $e)  //Gestion des erreurs causÃ©es par les requÃªtes PDO
 	{		
-		//Annulation des requêtes
+		//Annulation des requÃªtes
 		if($bdd) $bdd->rollback();
 		
 		//Afficher l'erreur
-		$errors[] = "Échec : " . $e->getMessage();
+		$errors[] = "Ã‰chec : " . $e->getMessage();
 	}
 }
 else
