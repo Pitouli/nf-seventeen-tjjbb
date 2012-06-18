@@ -2,7 +2,6 @@
 
 if(isset($_POST['delAvionId']) && is_numeric($_POST['delAvionId']))
 {
-	echo 'bouUUUUUUUUh';
 	try 
 	{		
 		$bdd->beginTransaction();
@@ -11,12 +10,11 @@ if(isset($_POST['delAvionId']) && is_numeric($_POST['delAvionId']))
 		
 		
 		$deleteAvion = $bdd->prepare("DELETE FROM avion WHERE id = :idAvion");
-		$r = deleteAvion->execute(array(":idAvion" => $idAvion));
-		$c = deleteAvion->rowCount();
+		$r = $deleteAvion->execute(array(":idAvion" => $idAvion));
+		$c = $deleteAvion->rowCount();
 		
 		if($r)
 		{
-			echo 'BBBBBBBBBB';
 			$bdd->commit();
 			if($c > 0)
 				$success[] = "La suppression a réussi.";			
@@ -25,7 +23,6 @@ if(isset($_POST['delAvionId']) && is_numeric($_POST['delAvionId']))
 		}
 		else
 		{
-			echo 'CCCCCCCCCCCCCC';
 			$bdd->rollback();
 			$errors[] = "Echec lors de la suppression.";
 		}
