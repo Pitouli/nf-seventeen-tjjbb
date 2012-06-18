@@ -32,7 +32,7 @@
 		<th>Modele supporte</th>
 		<th>Action</th>
 	</tr>
-<?php
+<?php/*
 	$listeModele=array();
 	$temp=$resultatTerminaux[0]['nom'];
 	$i=0;
@@ -49,7 +49,7 @@
 			$listeModele[i][j]=$terminal['modele'];
 		}
 	}
-		
+		*/
 	foreach($resultTerminaux as $terminal)
 	{
 ?>
