@@ -4,13 +4,22 @@ if(isset($_POST))
 {
 	$id_aeroport = $getSSection;
 
-	$selectTerminaux=array();
+	$Term=array();
+	$Modele=array();
 	$Aeroport=array();
 	$Ville=array();
 	
-	$selectTerminaux = $bdd->prepare("SELECT t.id as id, t.nom as nom, m.nom as modele FROM terminal t, supporte s, modele m WHERE t.id_aeroport = :id_aeroport AND s.id_terminal=t.id AND s.id_modele=m.id");
-	$selectTerminaux->execute(array(":id_aeroport" => $id_aeroport));
-	$resultTerminaux = $selectTerminaux->fetchAll();
+	$Term = $bdd->prepare("SELECT id, nom FROM terminal WHERE t.id_aeroport = :id_aeroport");
+	$Term->execute(array(":id_aeroport" => $id_aeroport));
+	$Terminaux = $Term->fetchAll();
+	
+	$Modele = $bdd->prepare("SELECT s.id_terminal, s.id_modele, m.nom FROM support s, modele m WHERE s.id_terminal=:id AND s.id_modele=m.id");
+	
+	foreach($Terminaux as $key => $Terminal){
+		$Modele->execute(array(":id" => $key));
+		$Terminal['modele']=$Modele->fetchAll();
+	}
+	$resultTerminaux=$Terminaux;
 
 	$Aeroport = $bdd->prepare("SELECT nom FROM aeroport WHERE id = :id_aeroport");
 	$Aeroport->execute(array(":id_aeroport" => $id_aeroport));
