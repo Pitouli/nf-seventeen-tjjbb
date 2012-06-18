@@ -47,19 +47,34 @@ $showEndText = $showEnd['d'].'/'.$showEnd['m'].'/'.$showEnd['y'];
 $selectClient = $bdd->prepare("SELECT id_client, nom, prenom, cat FROM v_client WHERE id_client = :id_client LIMIT 1");
 $selectClient->execute(array(":id_client" => $getSSection));
 $resultClient = $selectClient->fetch();
+$clientShow['name'] = $resultClient['nom'].' '.$resultClient['prenom'];
+$clientShow['cat'] = $resultClient['cat'];
 
 // On récupère les réservations de l'utilisateur
 
-$selectReservations = $bdd->prepare("SELECT id_client, nom, prenom, cat FROM v_client WHERE id_client = :id_client LIMIT 1");
+$selectReservations = $bdd->prepare("SELECT id_reservation as id, prix, masse_fret, cat FROM v_reservation WHERE id_client = :id_client");
 $selectReservations->execute(array(":id_client" => $getSSection));
 $resultReservations = $selectReservations->fetchAll();
 
-$clientShow['name'] = $resultClient['nom'].' '.$resultClient['prenom'];
-$clientShow['nbFlights'] = 27;
-$clientShow['cat'] = $resultClient['cat'];
+
 $clientShow['cost'] = '12780€';
+$clientShow['nbFlights'] = 27;
 
 $start = time() + 10000;
+
+$selectVol = $bdd->prepare("SELECT v.id as id, v.depart as dateStart, v.arrive as dateEnd, v_d.nom||' ('||a_d.nom||')' as cityStart, v_a.nom||' ('||a_a.nom||')' as cityEnd, av.id||' ('||mod.nom||')' as plane
+							FROM vol v, utilise u, terminal t_d, aeroport a_d, ville v_d, terminal t_a, aeroport a_a, ville v_a, avion av, modele mod
+							WHERE v.id_terminal_dep = t_d.id AND t_d.id_aeroport = a_d.id AND a_d.id_ville = v_d.id
+								AND v.id_terminal_ar = t_a.id AND t_a.id_aeroport = a_a.id AND a_a.id_ville = v_a.id
+								AND v.id_avion = av.id AND av.id_modele = mod.id
+								AND u.id_vol = v.id 
+							ORDER BY v.depart ASC");
+
+foreach($resultReservations as $key => $reservation)
+{
+	$selectVol->execute(array(":id_reservation" => $reservation['id']));
+	$resultReservations[$key]['vols'] = $selectVol->fetchAll();
+}
 
 $resultShow[0]['id'] = 124;
 $resultShow[0]['cityStart'] = 'Paris';
