@@ -27,14 +27,15 @@ if(isset($_POST, $_POST['nomterminal']))
 				$bdd->rollback();
 				$errors[] = "Echec lors de l'initialisation du terminal.";
 			}
-	
+			
+			$newSupp = $bdd->prepare("INSERT INTO supporte(id_modele, id_terminal) VALUES (:id_modele, :id_terminal)");
+			
 			foreach($_POST['modele'] as $modele){
 				echo $newId;
 				//Commencer une transaction
 				$bdd->beginTransaction();
 				
 				if(isset($_POST['modele'])){
-					$newSupp = $bdd->prepare("INSERT INTO supporte(id_modele, id_terminal) VALUES (:id_modele, :id_terminal)");
 					$r2 = $newSupp->execute(array(":id_modele" => $modele, ":id_terminal" => $newId));
 					if ($r2)
 						$commit = true;
