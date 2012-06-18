@@ -5,13 +5,7 @@ if(isset($_POST, $_POST['nomterminal']))
 	// On convertit nom en majuscule
 	$nom = $_POST['nomterminal'];
 	$nom = $nom != '' ? $nom : NULL; // On met à NULL si la chaîne est vide
-	echo $nom;
-	foreach($_POST['modele'] as $modele){
-		echo $modele;
-	}
 	
-	
-	/*
 	if(isset($nom))
 	{
 		try 
@@ -26,6 +20,7 @@ if(isset($_POST, $_POST['nomterminal']))
 				$bdd->commit();
 				$success[] = "Nouveau terminal (".$nom.") ajoutee avec succes.";
 				$newId = $bdd->lastInsertId('terminal_id_seq');
+				echo $newId;
 			}
 			else
 			{
@@ -33,31 +28,33 @@ if(isset($_POST, $_POST['nomterminal']))
 				$errors[] = "Echec lors de l'initialisation du terminal.";
 			}
 	
-			//Commencer une transaction
-			$bdd->beginTransaction();
-			
-			if(isset($_POST['modele'])){
+			foreach($_POST['modele'] as $modele){
+				echo $newId;
+				//Commencer une transaction
+				$bdd->beginTransaction();
+				
+				if(isset($_POST['modele'])){
 					$newSupp = $bdd->prepare("INSERT INTO supporte(id_modele, id_terminal) VALUES (:id_modele, :id_terminal)");
-					$r2 = $newSupp->execute(array(":id_modele" => $_POST['modele'], ":id_terminal" => $newId));
-					
+					$r2 = $newSupp->execute(array(":id_modele" => $modele, ":id_terminal" => $newId));
 					if ($r2)
 						$commit = true;
 					else
 						$commit = false;
 				}else
 					$commit = false;
-					
-			if($commit==true)
-			{				
-				$bdd->commit();
-			}
-			else
-			{
-				$bdd->rollback();
-				$errors[] = "Echec de l'ajout dans la base Supporte.";
+				
+				if($commit==true)
+				{				
+					$bdd->commit();
+				}
+				else
+				{
+					$bdd->rollback();
+					$errors[] = "Echec de l'ajout dans la base Supporte.";
+				}
 			}
 			
-		} 
+		}
 		catch (PDOException $e)  //Gestion des erreurs causées par les requêtes PDO
 		{
 			//Annuler la transaction
@@ -66,9 +63,8 @@ if(isset($_POST, $_POST['nomterminal']))
 			//Afficher l'erreur
 			$errors[] = "Échec : " . $e->getMessage();
 		}
-	}*/
-}
-else
+	}
+}else
 	$infos[] = "Aucune information reçue. Aucune nouvelle ville n'a été ajoutée.";
 	
 require DIR_MODEL.'places.model.php';
