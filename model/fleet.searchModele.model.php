@@ -2,9 +2,9 @@
 
 if(isset($_POST))
 {
-	// On rajoute les % pour indiquer que le motif n'est ni nécessairement en début, ni nécessairement en fin de chaîne
+	// On rajoute les % pour indiquer que le motif n'est ni nÃ©cessairement en dÃ©but, ni nÃ©cessairement en fin de chaÃ®ne
 	$nom = isset($_POST['searchNomModele']) ? '%'.trim($_POST['searchNomModele']).'%' : NULL;
-	$capaciteMin = (!empty($_POST['searchCapaciteMin'])) ? $_POST['searchCapaciteMin'] : 0;	// Au cas où l'utilisateur n'entre rien, afin de prendre tous les résultats.
+	$capaciteMin = (!empty($_POST['searchCapaciteMin'])) ? $_POST['searchCapaciteMin'] : 0;	// Au cas oÃ¹ l'utilisateur n'entre rien, afin de prendre tous les rÃ©sultats.
 	$capaciteMax = (!empty($_POST['searchCapaciteMax'])) ? $_POST['searchCapaciteMax'] : 10000;
 	$fretMin = (!empty($_POST['searchFretMin'])) ? $_POST['searchFretMin'] : 0;
 	$fretMax = (!empty($_POST['searchFretMax'])) ? $_POST['searchFretMax'] : 10000;
@@ -19,9 +19,9 @@ if(isset($_POST))
 	$selectResultats->execute(array(":nom" => $nom, ":fretMin" => $fretMin, ":fretMax" => $fretMax, ":capaciteMin" => $capaciteMin, ":capaciteMax" => $capaciteMax));
 	$resultats = $selectResultats->fetchAll();
 		
-	//Valider les requête et arrêter la transaction
+	//Valider les requÃªte et arrÃªter la transaction
 	if(!isset($resultats))
-		$infos[] = "Aucun résultat.";
+		$infos[] = "Aucun rÃ©sultat.";
 }
 else
-	$infos[] = "Aucune information reçue. La recherche n'a pas été effectuée";
+	$infos[] = "Aucune information reÃ§ue. La recherche n'a pas Ã©tÃ© effectuÃ©e";

@@ -1,8 +1,8 @@
 <table class="largeTable">
 	<tr>
 		<th>Nom</th>
-		<th>Capacité en voyageurs</th>
-		<th>Capacité en fret</th>
+		<th>CapacitÃ© en voyageurs</th>
+		<th>CapacitÃ© en fret</th>
 		<th>Actions</th>
 	</tr>
 <?php
@@ -24,7 +24,7 @@
 	{
 	// Pourquoi c'est toujours viiiiide :'(
 ?>
-	<p>La recherche n'a renvoyé aucun résultat</p>
+	<p>La recherche n'a renvoyÃ© aucun rÃ©sultat</p>
 <?php
 	}
 ?>
