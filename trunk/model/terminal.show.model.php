@@ -16,7 +16,7 @@ if(isset($_POST))
 	$Modele = $bdd->prepare("SELECT s.id_terminal, s.id_modele, m.nom FROM support s, modele m WHERE s.id_terminal=:id AND s.id_modele=m.id");
 	
 	foreach($Terminaux as $key => $Terminal){
-		$Modele->execute(array(":id" => $key));
+		$Modele->execute(array(":id" => $Terminal['id']));
 		$Terminal['modele']=$Modele->fetchAll();
 	}
 	$resultTerminaux=$Terminaux;
