@@ -17,9 +17,9 @@ if(isset($_POST['delId']) && is_numeric($_POST['delId']))
 			$bdd->commit();
 			
 			if($c > 0)
-				$success[] = "La suppression a réussi.";			
+				$success[] = "La suppression a rÃ©ussi.";			
 			else
-				$infos[] = "L'aeroport était déjà supprimé.";
+				$infos[] = "L'aeroport Ã©tait dÃ©jÃ  supprimÃ©.";
 		}
 		else
 		{
@@ -27,14 +27,14 @@ if(isset($_POST['delId']) && is_numeric($_POST['delId']))
 			$errors[] = "Echec lors de la suppression.";
 		}
 	} 
-	catch (PDOException $e)  //Gestion des erreurs causées par les requêtes PDO
+	catch (PDOException $e)  //Gestion des erreurs causÃ©es par les requÃªtes PDO
 	{		
-		//Annulation des requêtes
+		//Annulation des requÃªtes
 		if($bdd) $bdd->rollback();
 		
 		//Afficher l'erreur
-		$errors[] = "Échec : " . $e->getMessage();
+		$errors[] = "Ã‰chec : " . $e->getMessage();
 	}
 }
 else
-	$infos[] = "L'identifiant de l'aeroport à supprimer n'est pas valable.";
+	$infos[] = "L'identifiant de l'aeroport Ã  supprimer n'est pas valable.";

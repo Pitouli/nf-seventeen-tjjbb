@@ -23,11 +23,11 @@ if(isset($_POST))
 
 	$nomVille=$tempV[0]['ville'];
 	
-	//Valider les requête et arrêter la transaction
+	//Valider les requÃªte et arrÃªter la transaction
 	if(!isset($resultTerminaux))
-		$infos[] = "Aucun résultat.";
+		$infos[] = "Aucun rÃ©sultat.";
 }
 else
-	$infos[] = "Aucune information reçue. La recherche n'a pas été effectuée";
+	$infos[] = "Aucune information reÃ§ue. La recherche n'a pas Ã©tÃ© effectuÃ©e";
 	
 $showTerminal=true;

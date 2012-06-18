@@ -2,7 +2,7 @@
 
 if(isset($_POST))
 {
-	// On rajoute les % pour indiquer que le motif n'est ni nécessairement en début, ni nécessairement en fin de chaîne
+	// On rajoute les % pour indiquer que le motif n'est ni nÃ©cessairement en dÃ©but, ni nÃ©cessairement en fin de chaÃ®ne
 	$nom = isset($_POST['searchAeroport']) ? '%'.trim($_POST['searchAeroport']).'%' : NULL;
 	$ville = isset($_POST['ville']) ? $_POST['ville'] : NULL;
 
@@ -20,9 +20,9 @@ if(isset($_POST))
 	
 	$resultSearch = $resultAeroport;
 		
-	//Valider les requête et arrêter la transaction
+	//Valider les requÃªte et arrÃªter la transaction
 	if(!isset($resultSearch))
-		$infos[] = "Aucun résultat.";
+		$infos[] = "Aucun rÃ©sultat.";
 }
 else
-	$infos[] = "Aucune information reçue. La recherche n'a pas été effectuée";
+	$infos[] = "Aucune information reÃ§ue. La recherche n'a pas Ã©tÃ© effectuÃ©e";

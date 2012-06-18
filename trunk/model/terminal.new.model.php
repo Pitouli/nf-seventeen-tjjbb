@@ -4,7 +4,7 @@ if(isset($_POST, $_POST['nomterminal']))
 {
 	// On convertit nom en majuscule
 	$nom = $_POST['nomterminal'];
-	$nom = $nom != '' ? $nom : NULL; // On met à NULL si la chaîne est vide
+	$nom = $nom != '' ? $nom : NULL; // On met Ã  NULL si la chaÃ®ne est vide
 	
 	if(isset($nom))
 	{
@@ -55,16 +55,16 @@ if(isset($_POST, $_POST['nomterminal']))
 			}
 			
 		}
-		catch (PDOException $e)  //Gestion des erreurs causées par les requêtes PDO
+		catch (PDOException $e)  //Gestion des erreurs causÃ©es par les requÃªtes PDO
 		{
 			//Annuler la transaction
 			if($bdd) $bdd->rollBack();
 			
 			//Afficher l'erreur
-			$errors[] = "Échec : " . $e->getMessage();
+			$errors[] = "Ã‰chec : " . $e->getMessage();
 		}
 	}
 }else
-	$infos[] = "Aucune information reçue. Aucune nouvelle ville n'a été ajoutée.";
+	$infos[] = "Aucune information reÃ§ue. Aucune nouvelle ville n'a Ã©tÃ© ajoutÃ©e.";
 	
 require DIR_MODEL.'places.model.php';
