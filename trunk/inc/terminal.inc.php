@@ -55,7 +55,7 @@
 ?>
 	<tr>
 		<td><?php echo $terminal['nom'] ?></td>
-		<td><select>
+		<!-- <td><select>
 						<option>Terminaux supportés
 						<?php foreach($listeModele as $Modele)
 						{
@@ -64,7 +64,8 @@
 						<?php
 						}
 						?>
-			</select>
+			</select> -->
+		<td><?php echo $terminal['modele'] ?></td>
 		<td>
 			<form method="post" action="<?php echo ROOT; ?>?c=places&s1=delterminal">
 				<input type="hidden" name="delId" value="<?php echo $terminal['id'] ?>" />
