@@ -70,6 +70,27 @@
 		</table>
 	</form>
 	
+	<h2>Lister les avions d'un modèle</h2>
+	
+	<form method="post" action="<?php echo ROOT; ?>?c=fleet&s1=listeAvion"> 
+		<table class="largeTable">
+			<tr>
+				<td><select name="modele2" id="modele2">
+						<?php foreach($listeModeles as $modele2)
+						{
+						?>
+						  <option value="<?php echo $modele2['id'] ?>"><?php echo $modele2['nom'] ?></option>
+						<?php
+						}
+						?>
+				</select></td>
+				<td><input type="submit" class="inputSubmit" value="Lister avions" /></td>
+			</tr>
+		</table>
+	</form>
+	
+	<?php if(isset($affichageAvions)) require DIR_INC.'fleet.listeAvion.inc.php'; ?>
+	
 
 	<h2>Un peu de statistiques</h2>
 	<ul>
