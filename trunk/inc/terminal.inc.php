@@ -32,40 +32,22 @@
 		<th>Modele supporte</th>
 		<th>Action</th>
 	</tr>
-<?php/*
-	$listeModele=array();
-	$temp=$resultatTerminaux[0]['nom'];
-	$i=0;
-	$j=0;
-	foreach($resultTerminaux as $terminal){
-		if($terminal['nom']==$temp){
-			$listeModele[i][j]=$terminal['modele'];
-			j++;
-		}
-		else{
-			i++;
-			j=0;
-			$temp=$terminal['nom'];
-			$listeModele[i][j]=$terminal['modele'];
-		}
-	}
-		*/
+<?php
 	foreach($resultTerminaux as $terminal)
 	{
 ?>
 	<tr>
 		<td><?php echo $terminal['nom'] ?></td>
-		<!-- <td><select>
-						<option>Terminaux supportés
-						<?php foreach($listeModele as $Modele)
-						{
-						?>
-						  <option value="<?php echo $Modele?>"></option>
-						<?php
-						}
-						?>
-			</select> -->
-		<td><?php echo $terminal['modele'] ?></td>
+		<td><select>
+				<option value="">Selectionner une ville
+				<?php foreach($terminal['modele'] as $modele)
+				{
+				?>
+				 <option value="<?php echo $modele['nom'] ?>"></option>
+				<?php
+				}
+				?>
+			</select>
 		<td>
 			<form method="post" action="<?php echo ROOT; ?>?c=places&s1=delterminal">
 				<input type="hidden" name="delId" value="<?php echo $terminal['id'] ?>" />
