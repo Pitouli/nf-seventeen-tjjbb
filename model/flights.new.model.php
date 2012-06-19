@@ -67,6 +67,7 @@ if(isset($_POST))
 						$selectTerminal = array();
 						$selectAeroport = array();
 						$selectPreviousAirport = array();
+						$selectNextAirport = array();
 						
 						$selectUtilise = array();
 						
@@ -86,15 +87,21 @@ if(isset($_POST))
 						
 						//Affichage de la précédente escale
 						$selectPreviousAirport = $bdd->prepare("
-						SELECT a.nom
-						FROM aeroport a, terminal t, vol v
-						WHERE a.id = t.id_aeroport AND t.id = v.id_terminal_ar AND :checkstart < depart
-						ORDER BY date DESC
+						SELECT vi.nom AS nom_ville, a.nom AS nom_aeroport
+						FROM aeroport a, terminal t, vol v, ville vi
+						WHERE vi.id = a.id_ville AND a.id = t.id_aeroport AND t.id = v.id_terminal_ar AND v.id_avion = :idAvion AND :checkstart > arrive
+						ORDER BY arrive DESC
 						LIMIT 1
 						");
 						
 						//Affichage de la prochaine escale
-						//TODO
+						$selectNextAirport =  $bdd->prepare("
+						SELECT vi.nom AS nom_ville, a.nom AS nom_aeroport
+						FROM aeroport a, terminal t, vol v, ville vi
+						WHERE vi.id = a.id_ville AND a.id = t.id_aeroport AND t.id = v.id_terminal_dep AND v.id_avion = :idAvion AND :checkend < depart
+						ORDER BY depart
+						LIMIT 1
+						");
 						
 						//Determine si l'avion est en vol dans le laps de temps saisi par l'utilisateur :
 						$selectUtilise = $bdd->prepare("
@@ -109,18 +116,25 @@ if(isset($_POST))
 						
 						foreach($resultAvion as $key => $avion)
 						{
+							//selection de l'aeroport et du terminal de départ
 							$selectTerminal->execute(array(":id_ville" => $_POST['depart'], ":id_modele" => $resultAvion[$key]['id_modele']));
 							$resultAvion[$key]['terminal'] = $selectTerminal->fetchAll();
 							
-							//$selectPreviousAirport->execute(array(":checkdate", to_date($checkStartText, 'DD/MM/YYYY HH:MM')));
-							//$resultAvion[$key]['PreviousAirport'] = $selectPreviousAirport->fecth();
-							
+							//selection de l'aeroport et du terminal d'arrivee
 							$selectAeroport->execute(array(":id_ville" => $_POST['arrivee'], ":id_modele" => $resultAvion[$key]['id_modele']));
 							$resultAvion[$key]['aeroport'] = $selectAeroport->fetchAll();
-							//TODO : prochaine escale
 							
+							//Affichage de la précédente escale
+							$selectPreviousAirport->execute(array(":idAvion" => $resultAvion[$key]['id'], ":checkstart" => $checkStartText));
+							$resultAvion[$key]['PreviousAirport'] = $selectPreviousAirport->fetch(); //on utilise fetch (et pas fetchAll) car on a au plus un seul resultat grace a LIMIT 1
+							
+							//Affichage de la prochaine escale
+							$selectNextAirport->execute(array(":idAvion" => $resultAvion[$key]['id'], ":checkend" => $checkEndText));
+							$resultAvion[$key]['NextAirport'] = $selectNextAirport->fetch(); //on utilise fetch (et pas fetchAll) car on a au plus un seul resultat grace a LIMIT 1
+							
+							//Determine si l'avion est en vol dans le laps de temps saisi par l'utilisateur :
 							$selectUtilise->execute(array(":idAvion" => $resultAvion[$key]['id'], ":leDepart" => $checkStartText, ":lArrive" => $checkEndText));
-							$resultAvion[$key]['utilise'] = $selectUtilise->fetchAll();
+							$resultAvion[$key]['utilise'] = $selectUtilise->fetchAll(); 
 							
 							
 						}

@@ -33,7 +33,10 @@
 			<td><?php echo $avion['capacite_fret'] ?></td>
 			<td><?php echo $avion['id'] ?></td>
 			<td>
-				<?php echo "Comming soon..." ?>
+				<?php 
+				if (!empty($avion['PreviousAirport'])) echo $avion['PreviousAirport']['nom_ville'] . "<br />(" . $avion['PreviousAirport']['nom_aeroport'] . ")";
+				else echo "Aucune";
+				?>
 			</td>
 			<td>
 				<select name="id_terminal_depart">
@@ -59,7 +62,10 @@
 				</select>
 			</td>
 			<td>
-				<?php echo "Comming soon..." ?>
+				<?php 
+				if (!empty($avion['NextAirport'])) echo $avion['NextAirport']['nom_ville'] . "<br />(" . $avion['NextAirport']['nom_aeroport'] . ")";
+				else echo "Aucune";
+				?>
 			</td>
 			<td>
 				<input type="hidden" name="Date_depart" value="<?php echo $checkStartText ?>" />
