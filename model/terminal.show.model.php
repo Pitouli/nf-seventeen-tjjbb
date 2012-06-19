@@ -2,10 +2,7 @@
 
 if(isset($_POST))
 {
-	echo "id aeroport :";
-	$id_aeroport = $_POST['idAeroport'];
-	echo $id_aeroport;
-	echo ".";
+	$id_aeroport = $getSSection;
 	$Term=array();
 	$Modele=array();
 	$Aeroport=array();
