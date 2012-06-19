@@ -12,8 +12,12 @@
 			<th>Prochaine<br />escale</th>
 			<th>Validation</th>
 		</tr>
-		<?php foreach($resultAvion as $avion) 
+		<?php 
+		$flag = 0;
+		foreach($resultAvion as $avion) 
 		{
+		if ((!empty($avion['aeroport']))AND(!empty($avion['terminal']))) {
+		$flag++;
 		?>
 	<form method="post" action="<?php echo ROOT; ?>?c=flights&s1=create">
 		<tr>
@@ -53,7 +57,7 @@
 			<td>
 				<input type="hidden" name="Date_depart" value="<?php echo $checkStartText ?>" />
 				<input type="hidden" name="Date_arrivee" value="<?php echo $checkEndText ?>" />
-				<input type="hidden" name="id_avion" value="<?php echo $checkEndText ?>" />
+				<input type="hidden" name="id_avion" value="<?php echo $avion['id'] ?>" />
 				
 				<!-- Ajout des données saisies à l'étape 1 afin de réafficher le formulaire : -->
 				<input type="hidden" name="depart" value="<?php echo $_POST['depart'] ?>" />
@@ -75,5 +79,7 @@
 	</form>
 		<?php
 		}
+		}
 		?>
 </table>
+<?php if(!$flag) echo "<p>La recherche n'a renvoyé aucun résultat : aucun terminaux compatibles dans la ville de départ ou d'arrivé pour la gamme d'avions sélectionnée</p>"; ?>

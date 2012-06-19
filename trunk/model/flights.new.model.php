@@ -35,6 +35,8 @@ if(isset($_POST))
 				//On vérifie les autres saisies :
 				if(isset($_POST['capaciteMin'],$_POST['capaciteMax'],$_POST['fretMin'],$_POST['fretMax']))
 				{
+					if ($_POST['depart'] != $_POST['arrivee'])
+					{
 					//On gère les valeur de capacité et fret :
 					$capaciteMin = (!empty($_POST['capaciteMin'])) ? $_POST['capaciteMin'] : 0;	// Au cas où l'utilisateur n'entre rien, afin de prendre tous les résultats.
 					$capaciteMax = (!empty($_POST['capaciteMax'])) ? $_POST['capaciteMax'] : 32000;
@@ -103,11 +105,12 @@ if(isset($_POST))
 						}
 						
 						
-						
-						
-						
 					}
 					else $infos[] = "Les champs capacité et/ou fret n'ont pas été correctement saisie";
+					
+					}
+					
+					else $infos[] = "La ville de départ doit être différente de la ville d'arrivée.";
 				}
 				else $infos[] = "Les champs capacité et/ou fret n'ont pas été saisie";
 			}
