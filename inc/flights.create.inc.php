@@ -14,9 +14,14 @@
 		</tr>
 		<?php 
 		$flag = 0;
+		$flagDejaUtilise = 0;
 		foreach($resultAvion as $avion) 
 		{
 		if ((!empty($avion['aeroport']))AND(!empty($avion['terminal']))) {
+		if (!empty($avion['utilise'])) $flagDejaUtilise++;
+		else
+		{
+		
 		$flag++;
 		?>
 	<form method="post" action="<?php echo ROOT; ?>?c=flights&s1=create">
@@ -80,6 +85,10 @@
 		<?php
 		}
 		}
+		}
 		?>
 </table>
-<?php if(!$flag) echo "<p>La recherche n'a renvoyé aucun résultat : aucun terminaux compatibles dans la ville de départ ou d'arrivé pour la gamme d'avions sélectionnée</p>"; ?>
+<?php 
+if(!$flag) echo "<p>La recherche n'a renvoyé aucun résultat : aucun terminaux compatibles dans la ville de départ ou d'arrivé pour la gamme d'avions sélectionnée</p>"; 
+if(!$flagDejaUtilise) echo "<p><strong>Remarque</strong> : certains avions compatibles ont été retirés du résultat de la recherche car ils sont déjà en vol dans la plage horaire recherchée</p>"
+?>
