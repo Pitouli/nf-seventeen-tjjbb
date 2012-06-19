@@ -1,7 +1,4 @@
 <?php
-echo "idAero :";
-echo $_POST['idAero'];
-echo ".";
 if(isset($_POST, $_POST['nomterminal']))
 {
 	// On convertit nom en majuscule
