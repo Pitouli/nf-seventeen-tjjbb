@@ -87,7 +87,7 @@ if(isset($_POST))
 						
 						//Affichage de la précédente escale
 						$selectPreviousAirport = $bdd->prepare("
-						SELECT vi.nom AS nom_ville, a.nom AS nom_aeroport
+						SELECT vi.nom AS nom_ville, a.nom AS nom_aeroport, to_char(v.arrive, 'DD/MM/YYYY') AS date
 						FROM aeroport a, terminal t, vol v, ville vi
 						WHERE vi.id = a.id_ville AND a.id = t.id_aeroport AND t.id = v.id_terminal_ar AND v.id_avion = :idAvion AND :checkstart > arrive
 						ORDER BY arrive DESC
@@ -96,7 +96,7 @@ if(isset($_POST))
 						
 						//Affichage de la prochaine escale
 						$selectNextAirport =  $bdd->prepare("
-						SELECT vi.nom AS nom_ville, a.nom AS nom_aeroport
+						SELECT vi.nom AS nom_ville, a.nom AS nom_aeroport, to_char(v.depart, 'DD/MM/YYYY') AS date
 						FROM aeroport a, terminal t, vol v, ville vi
 						WHERE vi.id = a.id_ville AND a.id = t.id_aeroport AND t.id = v.id_terminal_dep AND v.id_avion = :idAvion AND :checkend < depart
 						ORDER BY depart

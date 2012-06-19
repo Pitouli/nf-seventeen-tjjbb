@@ -6,7 +6,6 @@
 
 <div class="explain">
 	<p>A travers cette page, vous pourrez ajouter un nouveau vol, ou bien consulter ou supprimer un vol existant.</p>
-	<p><strong>WARNING : PAGE EN CHANTIER, C'EST NORMAL DE VOIR DES CHOSES ABERRANTES... :D</strong></p>
 </div>
 
 <div class="corps">
@@ -127,80 +126,97 @@
 		
 	<?php if(isset($resultAvion)) if(!empty($resultAvion)) require DIR_INC.'flights.create.inc.php'; else echo "<p>La recherche n'a renvoyé aucun résultat</p>" ?>
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	<h2>Chercher un vol</h2>
 		
 	<form method="post" action="<?php echo ROOT; ?>?c=flights&s1=search">
 		<table class="largeTable">
 			<tr>
-				<td><label for="depart">Départ</label></td>
+				<td><label for="departSearch">Départ</label></td>
 				<td>
-				   <select name="depart" id="depart">
-					   <?php foreach($listeVilles as $ville)
+				   <select name="departSearch" id="departSearch">
+						<?php foreach($listeVilles as $ville)
 						{
 						?>
-						  <option value="<?php echo $ville['id'] ?>"><?php echo $ville['nom'] ?></option>
+						  <option value="<?php echo $ville['id'] ?>" <?php if(isset($_POST['departSearch']) AND ($_POST['departSearch'] == $ville['id'])) echo 'selected' ?>><?php echo $ville['nom'] ?></option>
 						<?php
 						}
 						?>
-				   </select>
 				</td>
 				<td><label for="arrivee">Arrivée</label></td>
 				<td>
-				   <select name="arrivee" id="arrivee">
+				   <select name="arriveeSearch" id="arriveeSearch">
 					   <?php foreach($listeVilles as $ville)
 						{
 						?>
-						  <option value="<?php echo $ville['id'] ?>"><?php echo $ville['nom'] ?></option>
+						  <option value="<?php echo $ville['id'] ?>" <?php if(isset($_POST['arriveeSearch']) AND ($_POST['arriveeSearch'] == $ville['id'])) echo 'selected' ?>><?php echo $ville['nom'] ?></option>
 						<?php
 						}
 						?>
 				   </select>
 				</td>
-			</tr>
-			<tr>
 				<td>
-					<label for="Ddepart">Date de départ</label>
-				</td>
-				<td>
-					<input type="text" name="Ddepart" id="Ddepart"/>
-					<select name="Hdepart">
+					<label for="DdepartSearch">Date de départ</label><br />
+					<input type="text" name="DdepartSearch" id="DdepartSearch" value="<?php //On gère l'affichage de la date :
+					if (isset($showDatesDefined) AND $showDatesDefined)
+					{
+						echo $showStartText; //Cette variable a été définie dans le new.model
+					}
+					else echo "JJ/MM/AAAA";
+					?>"/>
+					<select name="HdepartSearch">
 						<?php
 						for ($i = 0; $i <= 23; $i++) {
 						?>
-							<option value="<?php if($i<10) echo 0; echo $i ?>"><?php if($i<10) echo 0; echo $i ?></option>
+							<option value="<?php if($i<10) echo 0; echo $i ?>" <?php if(isset($_POST['HdepartSearch']) AND ($_POST['HdepartSearch'] == $i)) echo 'selected' ?>><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
 						}
 						?>
 					</select>
 					:
-					<select name="Mdepart">
+					<select name="MdepartSearch">
 						<?php
 						for ($i = 0; $i <= 60; $i++) {
 						?>
-							<option value="<?php if($i<10) echo 0; echo $i ?>"><?php if($i<10) echo 0; echo $i ?></option>
+							<option value="<?php if($i<10) echo 0; echo $i ?>" <?php if(isset($_POST['MdepartSearch']) AND ($_POST['MdepartSearch'] == $i)) echo 'selected' ?>><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
 						}
 						?>
 					</select>
 				</td>
-				<td><label for="Darrivee">Date d'arrivée</label></td>
 				<td>
-					<input type="text" name="Darrivee" id="Darrivee"/>
-					<select name="Harrivee">
+					<label for="DarriveeSearch">Date d'arrivée</label><br />
+					<input type="text" name="Darrivee" id="DarriveeSearch" value="<?php //On gère l'affichage de la date :
+					if (isset($showDatesDefined) AND $showDatesDefined)
+					{
+						echo $showEndText; //Cette variable a été définie dans le new.model
+					}
+					else echo "JJ/MM/AAAA";
+					?>"/>
+					<select name="HarriveeSearch">
 						<?php
 						for ($i = 0; $i <= 23; $i++) {
 						?>
-							<option value="<?php if($i<10) echo 0; echo $i ?>"><?php if($i<10) echo 0; echo $i ?></option>
+							<option value="<?php if($i<10) echo 0; echo $i ?>" <?php if(isset($_POST['HarriveeSearch']) AND ($_POST['HarriveeSearch'] == $i)) echo 'selected' ?>><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
 						}
 						?>
 					</select>
 					:
-					<select name="Marrivee">
+					<select name="MarriveeSearch">
 						<?php
 						for ($i = 0; $i <= 60; $i++) {
 						?>
-							<option value="<?php if($i<10) echo 0; echo $i ?>"><?php if($i<10) echo 0; echo $i ?></option>
+							<option value="<?php if($i<10) echo 0; echo $i ?>" <?php if(isset($_POST['MarriveeSearch']) AND ($_POST['MarriveeSearch'] == $i)) echo 'selected' ?>><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
 						}
 						?>
@@ -213,23 +229,6 @@
 	
 	<?php if(isset($resultShow)) require DIR_INC.'flights.show.inc.php'; ?>
 	
-		<!-- 
-	<h2>Chercher un vol</h2>
-	
-	<form method="post" action="<?php echo ROOT; ?>?c=customers&s1=search">
-		<table class="largeTable">
-			<tr>
-				<td><label for="searchNom">Nom&nbsp;: </label></td>
-				<td><input name="searchNom" title="Partie du nom du client" type="text" id="searchNom" class="inputText extended" value="<?php if(isset($_POST['searchNom'])) echo $_POST['searchNom'] ?>" /></td>
-				<td><label for="searchPrenom">Prénom&nbsp;: </label></td>
-				<td><input name="searchPrenom" title="Partie du prénom du client" type="text" id="searchPrenom" class="inputText extended" value="<?php if(isset($_POST['searchPrenom'])) echo $_POST['searchPrenom'] ?>" /></td>
-				<td><label for="searchEntreprise">Entreprise&nbsp;: </label><input type="checkbox" id="searchEntreprise" name="searchEntreprise" value="checked" <?php if(isset($_POST['searchEntreprise']) && $_POST['searchEntreprise'] == "checked") echo 'checked="checked" ' ?>/></td>
-				<td><label for="searchParticulier">Particulier&nbsp;: </label><input type="checkbox" id="searchParticulier" name="searchParticulier" value="checked" <?php if(isset($_POST['searchParticulier']) && $_POST['searchParticulier'] == "checked") echo 'checked="checked" ' ?>/></td>
-				<td><input type="submit" class="inputSubmit" value="Rechercher client" /></td>
-			</tr>
-		</table>
-	</form>
-	-->
 </div>
 
 <?php require DIR_INC.'footer.inc.php' ?> 
