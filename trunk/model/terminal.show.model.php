@@ -2,7 +2,7 @@
 
 if(isset($_POST))
 {
-	$id_aeroport = $getSSection;
+	$id_aeroport = $_POST['idAero'];
 	$Term=array();
 	$Modele=array();
 	$Aeroport=array();
