@@ -23,6 +23,7 @@ if(isset($_POST))
 				$showStartText = $showStart['d'].'/'.$showStart['m'].'/'.$showStart['y'];
 				$showEndText = $showEnd['d'].'/'.$showEnd['m'].'/'.$showEnd['y'];
 				
+				//Formatage de la date+heure pour rappatriement de l'escale précédente et suivante, et pour l'enregistrement dans le formulaire de l'étape 2 (en "hidden")
 				$checkStartText = $showStartText . " " . $_POST['Hdepart'] . ":" . $_POST['Mdepart'];
 				$checkEndText = $showEndText . " " . $_POST['Harrivee'] . ":" . $_POST['Marrivee'];
 				
@@ -45,6 +46,7 @@ if(isset($_POST))
 						$selectAvion = array();
 						$selectTerminal = array();
 						$selectPreviousAirport = array();
+						$selectAeroport = array();
 						
 						$selectAvion = $bdd->prepare("
 						SELECT m.nom AS nom, m.capacite_fret AS capacite_fret, m.capacite_voyageur AS capacite_voyageur, m.id AS id_modele, a.id AS id
@@ -58,12 +60,21 @@ if(isset($_POST))
 						$selectAvion->execute(array(":fret_min" => $fretMin, "fret_max" => $fretMax, ":cap_max" => $capaciteMax, ":cap_min" => $capaciteMin));
 						$resultAvion = $selectAvion->fetchAll();
 						
+						//selection de l'aeroport et du terminal de départ
 						$selectTerminal = $bdd->prepare("
-						SELECT t.id AS id_terminal, t.nom AS nom_terminal
+						SELECT a.nom AS nom_aeroport, t.id AS id_terminal, t.nom AS nom_terminal
 						FROM aeroport a, terminal t, supporte s
 						WHERE a.id_ville = :id_ville AND s.id_modele = :id_modele AND a.id = t.id_aeroport AND t.id = s.id_terminal
 						");
 						
+						//selection de l'aeroport et du terminal d'arrivee
+						$selectAeroport = $bdd->prepare("
+						SELECT a.nom AS nom_aeroport, t.id AS id_terminal, t.nom AS nom_terminal
+						FROM aeroport a, terminal t, supporte s
+						WHERE a.id_ville = :id_ville AND s.id_modele = :id_modele AND a.id = t.id_aeroport AND t.id = s.id_terminal
+						");
+						
+						//Affichage de la précédente escale
 						$selectPreviousAirport = $bdd->prepare("
 						SELECT a.nom
 						FROM aeroport a, terminal t, vol v
@@ -72,12 +83,22 @@ if(isset($_POST))
 						LIMIT 1
 						");
 						
+						
+						//Affichage de la prochaine escale
+						//TODO
+						
 						foreach($resultAvion as $key => $avion)
 						{
 							$selectTerminal->execute(array(":id_ville" => $_POST['depart'], ":id_modele" => $resultAvion[$key]['id_modele']));
 							$resultAvion[$key]['terminal'] = $selectTerminal->fetchAll();
-							$selectPreviousAirport->execute(array(":checkdate", to_date($checkStartText, 'DD/MM/YYYY HH:MM')));
-							$resultAvion[$key]['PreviousAirport'] = $selectPreviousAirport->fecth();
+							
+							//$selectPreviousAirport->execute(array(":checkdate", to_date($checkStartText, 'DD/MM/YYYY HH:MM')));
+							//$resultAvion[$key]['PreviousAirport'] = $selectPreviousAirport->fecth();
+							
+							$selectAeroport->execute(array(":id_ville" => $_POST['arrivee'], ":id_modele" => $resultAvion[$key]['id_modele']));
+							$resultAvion[$key]['aeroport'] = $selectAeroport->fetchAll();
+							//TODO : prochaine escale
+							
 							
 						}
 						
