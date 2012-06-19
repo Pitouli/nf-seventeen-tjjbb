@@ -1,8 +1,8 @@
 <h2>Terminaux de l'aeroport : <?php echo $nomAeroport?> (<?php echo $nomVille?>) </h2>
-<?php echo "test" ?>
+<?php echo " test " ?>
 <?php echo $_POST['searchAeroport'] ?>
 <?php echo $_POST['ville'] ?>
-<?php echo "test fin" ?>
+<?php echo " test fin " ?>
 
 <table class="largeTable">
 	<tr>
