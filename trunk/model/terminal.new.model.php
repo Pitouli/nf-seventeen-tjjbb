@@ -32,7 +32,6 @@ if(isset($_POST, $_POST['nomterminal']))
 			foreach($_POST['modele'] as $modele){
 				//Commencer une transaction
 				$bdd->beginTransaction();
-				echo $newId;
 				
 				if(isset($_POST['modele'])){
 					$r2 = $newSupp->execute(array(":id_modele" => $modele, ":id_terminal" => $newId));
@@ -66,5 +65,3 @@ if(isset($_POST, $_POST['nomterminal']))
 	}
 }else
 	$infos[] = "Aucune information reçue. Aucune nouvelle ville n'a été ajoutée.";
-	
-require DIR_MODEL.'places.model.php';
