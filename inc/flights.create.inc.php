@@ -1,48 +1,79 @@
 ﻿<h2>Créer un vol - étape 2 - Sélectionner un avion</h2>
 
-<form method="post" action="<?php echo ROOT; ?>?c=flights&s1=create">
 	<table class="largeTable">
 		<tr>
-			<th> </th>
 			<th>Modèle</th>
-			<th>Capacité pers.</th>
-			<th>Capacité fret</th>
-			<th>Num avion</th>
-			<th>Précédent<br />aéroport</th>
-			<th>Terminal<br />compatible</th>
-			<th>Aéroport (terminal) d'arrivée</th>
+			<th>Capacité<br />pers.</th>
+			<th>Capacité<br />fret</th>
+			<th>Num<br />avion</th>
+			<th>Précédente<br />escale</th>
+			<th>Aéroport (terminal)<br />de départ</th>
+			<th>Aéroport (terminal)<br />d'arrivée</th>
 			<th>Prochaine<br />escale</th>
+			<th>Validation</th>
 		</tr>
 		<?php foreach($resultAvion as $avion) 
 		{
 		?>
+	<form method="post" action="<?php echo ROOT; ?>?c=flights&s1=create">
 		<tr>
-			<td><input type="radio" name="avion" value="<?php echo ''; ?>" /></td>
 			<td><?php echo $avion['nom'] ?></td>
 			<td><?php echo $avion['capacite_voyageur'] ?></td>
 			<td><?php echo $avion['capacite_fret'] ?></td>
 			<td><?php echo $avion['id'] ?></td>
 			<td>
-				<?php
-					echo $
-				?>
+				<?php echo "Comming soon..." ?>
 			</td>
 			<td>
-				<select name="arrivee" id="arrivee">
+				<select name="id_terminal_depart">
 				<?php foreach($avion['terminal'] as $terminal)
 				{
 				?>
-					<option value="<?php echo $terminal['id_terminal'] ?>"><?php echo $terminal['nom_terminal'] ?></option>
+					<option value="<?php echo $terminal['id_terminal'] ?>"><?php echo $terminal['nom_aeroport'] ?> (<?php echo $terminal['nom_terminal'] ?>)</option>
 				<?php
 				}
 				?>
 				</select>
 			</td>
-			<td><?php echo "Comming soon..." ?></td>
-			<td><?php echo "Comming soon..." ?></td>
-		</tr><?php
+			<td>
+				<select name="id_terminal_arrivee">
+				<?php foreach($avion['aeroport'] as $aeroport)
+				{
+				?>
+					<option value="<?php echo $aeroport['id_terminal'] ?>"><?php echo $aeroport['nom_aeroport'] ?> (<?php echo $aeroport['nom_terminal'] ?>)</option>
+					
+				<?php
+				}
+				?>
+				</select>
+			</td>
+			<td>
+				<?php echo "Comming soon..." ?>
+			</td>
+			<td>
+				<input type="hidden" name="Date_depart" value="<?php echo $checkStartText ?>" />
+				<input type="hidden" name="Date_arrivee" value="<?php echo $checkEndText ?>" />
+				<input type="hidden" name="id_avion" value="<?php echo $checkEndText ?>" />
+				
+				<!-- Ajout des données saisies à l'étape 1 afin de réafficher le formulaire : -->
+				<input type="hidden" name="depart" value="<?php echo $_POST['depart'] ?>" />
+				<input type="hidden" name="arrivee" value="<?php echo $_POST['arrivee'] ?>" />
+				<input type="hidden" name="Ddepart" value="<?php echo $_POST['Ddepart'] ?>" />
+				<input type="hidden" name="Hdepart" value="<?php echo $_POST['Hdepart'] ?>" />
+				<input type="hidden" name="Mdepart" value="<?php echo $_POST['Mdepart'] ?>" />
+				<input type="hidden" name="Darrivee" value="<?php echo $_POST['Darrivee'] ?>" />
+				<input type="hidden" name="Harrivee" value="<?php echo $_POST['Harrivee'] ?>" />
+				<input type="hidden" name="Marrivee" value="<?php echo $_POST['Marrivee'] ?>" />
+				<input type="hidden" name="capaciteMin" value="<?php echo $_POST['capaciteMin'] ?>" />
+				<input type="hidden" name="capaciteMax" value="<?php echo $_POST['capaciteMax'] ?>" />
+				<input type="hidden" name="fretMin" value="<?php echo $_POST['fretMin'] ?>" />
+				<input type="hidden" name="fretMax" value="<?php echo $_POST['fretMax'] ?>" />
+				
+				<input type="submit" class="inputSubmit" onclick="return confirm('Confirmez vous la création d\'un nouveau vol avec les paramètres selectionnés?');"value="Choisir" />
+			</td>
+		</tr>
+	</form>
+		<?php
 		}
 		?>
-	</table>
-	<input type="submit" class="inputSubmit" onclick="return confirm('Confirmez vous l\'ajout d\'un nouveau vol ?');"value="Ajouter vol" />
-</form>
+</table>
