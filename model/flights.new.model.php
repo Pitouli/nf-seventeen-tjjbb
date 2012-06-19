@@ -120,7 +120,7 @@ if(isset($_POST))
 							//TODO : prochaine escale
 							
 							$selectUtilise->execute(array(":idAvion" => $resultAvion[$key]['id'], ":leDepart" => $checkStartText, ":lArrive" => $checkEndText));
-							$resultUtilise = $selectUtilise->fetchAll();
+							$resultAvion[$key]['utilise'] = $selectUtilise->fetchAll();
 							
 							
 						}
