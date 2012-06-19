@@ -2,13 +2,10 @@
 
 if(isset($_POST))
 {
-	echo " teminal show modele "
-	echo "id aeroport";
-	echo $_POST['aeroport'];
-	echo $getSSection;
-	echo $_POST['searchAeroport'];
-	echo $_POST['ville'];
-	$id_aeroport = $getSSection;
+	echo "id aeroport :";
+	$id_aeroport = $_POST['idAeroport'];
+	echo $id_aeroport;
+	echo ".";
 	$Term=array();
 	$Modele=array();
 	$Aeroport=array();

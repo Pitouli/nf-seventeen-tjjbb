@@ -49,10 +49,10 @@ else if($getSection == 'newterminal')
 }
 else if($getSection == 'delterminal')
 {
-	require DIR_MODEL.'fleet.model.php';
-	require DIR_MODEL.'aeroport.search.model.php';
 	require DIR_MODEL.'terminal.del.model.php';
+	require DIR_MODEL.'fleet.model.php';
 	require DIR_MODEL.'terminal.show.model.php';
+	require DIR_MODEL.'aeroport.search.model.php';
 }
 
 require DIR_VIEW.'places.view.php';
