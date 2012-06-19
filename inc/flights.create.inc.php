@@ -34,7 +34,7 @@
 			<td><?php echo $avion['id'] ?></td>
 			<td>
 				<?php 
-				if (!empty($avion['PreviousAirport'])) echo $avion['PreviousAirport']['nom_ville'] . "<br />(" . $avion['PreviousAirport']['nom_aeroport'] . ")";
+				if (!empty($avion['PreviousAirport'])) echo $avion['PreviousAirport']['nom_ville'] . "<br />(" . $avion['PreviousAirport']['nom_aeroport'] . ")<br />" . $avion['PreviousAirport']['date'];
 				else echo "Aucune";
 				?>
 			</td>
@@ -63,7 +63,7 @@
 			</td>
 			<td>
 				<?php 
-				if (!empty($avion['NextAirport'])) echo $avion['NextAirport']['nom_ville'] . "<br />(" . $avion['NextAirport']['nom_aeroport'] . ")";
+				if (!empty($avion['NextAirport'])) echo $avion['NextAirport']['nom_ville'] . "<br />(" . $avion['NextAirport']['nom_aeroport'] . ")<br />" . $avion['NextAirport']['date'];
 				else echo "Aucune";
 				?>
 			</td>
