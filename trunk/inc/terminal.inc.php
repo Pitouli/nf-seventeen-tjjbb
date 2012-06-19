@@ -6,7 +6,7 @@
 
 <table class="largeTable">
 	<tr>
-	<form method="post" action="<?php echo ROOT; ?>?c=places&s1=newterminal>
+	<form method="post" action="<?php echo ROOT; ?>?c=places&s1=newterminal">
 			<td><label for="nomterminal">Nom du terminal&nbsp;: </label></td>
 			<td><input name="nomterminal" title="Nom du terminal" type="text" id="nomterminal" class="inputText extended" value="" /></td>
 			<input type="hidden" name="idAeroport" value="<?php if(isset($tempA['id'])) echo $tempA['id'] ?>" />
