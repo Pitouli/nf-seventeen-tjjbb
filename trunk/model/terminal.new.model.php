@@ -14,7 +14,7 @@ if(isset($_POST, $_POST['nomterminal']))
 			$bdd->beginTransaction();
 			
 			$newTerminal = $bdd->prepare("INSERT INTO terminal(id, nom, id_aeroport) VALUES (nextval('terminal_id_seq'),:nom, :id_aeroport)");
-			$r1 = $newTerminal->execute(array(":nom" => $nom, ":id_aeroport" => $_POST['aeroport']));			
+			$r1 = $newTerminal->execute(array(":nom" => $nom, ":id_aeroport" => $_POST['idAero']));			
 			
 			if($r1){
 				$bdd->commit();
