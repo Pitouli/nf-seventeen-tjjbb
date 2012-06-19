@@ -8,7 +8,7 @@ try
 
 	$sql="
 	INSERT INTO vol(id, depart, arrive, id_terminal_dep, id_terminal_ar, id_avion) 
-	VALUES (nextval('vol_id_seq'), to_date('".$checkStartText."', 'DD/MM/YYYY HH24:MI'), to_date('".$checkEndText."', 'DD/MM/YYYY HH24:MI'), ".$_POST['id_terminal_depart'].", ".$_POST['id_terminal_arrivee'].", ".$_POST['id_avion'].")
+	VALUES (nextval('vol_id_seq'), to_timestamp('".$checkStartText."', 'DD/MM/YYYY HH24:MI'), to_timestamp('".$checkEndText."', 'DD/MM/YYYY HH24:MI'), ".$_POST['id_terminal_depart'].", ".$_POST['id_terminal_arrivee'].", ".$_POST['id_avion'].")
 	";
 	
 	$newAvion = $bdd->query($sql);
