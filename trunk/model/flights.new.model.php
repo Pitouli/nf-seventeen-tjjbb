@@ -46,10 +46,9 @@ if(isset($_POST))
 					{
 						//On exécute la requête :
 						$selectAvion = array();
-						$selectTerminal = array();
-						$selectPreviousAirport = array();
-						$selectAeroport = array();
 						
+						
+						//détermine la liste des avions compatible avec les critères saisis par l'utilisateur:
 						$selectAvion = $bdd->prepare("
 						SELECT m.nom AS nom, m.capacite_fret AS capacite_fret, m.capacite_voyageur AS capacite_voyageur, m.id AS id_modele, a.id AS id
 						FROM avion a INNER JOIN modele m
@@ -59,8 +58,17 @@ if(isset($_POST))
 						
 						
 						
+						
 						$selectAvion->execute(array(":fret_min" => $fretMin, "fret_max" => $fretMax, ":cap_max" => $capaciteMax, ":cap_min" => $capaciteMin));
 						$resultAvion = $selectAvion->fetchAll();
+						
+						//Pour chacun des resultats de la requete, on prepare les sous requetes :
+						
+						$selectTerminal = array();
+						$selectAeroport = array();
+						$selectPreviousAirport = array();
+						
+						$selectUtilise = array();
 						
 						//selection de l'aeroport et du terminal de départ
 						$selectTerminal = $bdd->prepare("
@@ -85,9 +93,19 @@ if(isset($_POST))
 						LIMIT 1
 						");
 						
-						
 						//Affichage de la prochaine escale
 						//TODO
+						
+						//Determine si l'avion est en vol dans le laps de temps saisi par l'utilisateur :
+						$selectUtilise = $bdd->prepare("
+						SELECT id_avion 
+						FROM avion a INNER JOIN vol v 
+						ON a.id = v.id_avion 
+						WHERE a.id = :idAvion AND( ((v.arrive > :leDepart) AND (v.arrive < :lArrive)) OR ( (v.depart > :leDepart) AND (v.depart < :lArrive) ));
+						");
+						
+						//Exemple fonctionnel :
+						//SELECT id_avion FROM avion a INNER JOIN vol v ON a.id = v.id_avion WHERE a.id = 2 AND ( ((v.arrive > '11/11/1111 01:00') AND (v.arrive < '11/11/1111 12:00')) OR ( (v.depart > '11/11/1111 01:00') AND (v.depart < '11/11/1111 12:00') ));
 						
 						foreach($resultAvion as $key => $avion)
 						{
@@ -100,6 +118,9 @@ if(isset($_POST))
 							$selectAeroport->execute(array(":id_ville" => $_POST['arrivee'], ":id_modele" => $resultAvion[$key]['id_modele']));
 							$resultAvion[$key]['aeroport'] = $selectAeroport->fetchAll();
 							//TODO : prochaine escale
+							
+							$selectUtilise->execute(array(":idAvion" => $resultAvion[$key]['id'], ":leDepart" => $checkStartText, ":lArrive" => $checkEndText));
+							$resultUtilise = $selectUtilise->fetchAll();
 							
 							
 						}
