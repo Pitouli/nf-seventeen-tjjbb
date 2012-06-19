@@ -5,8 +5,6 @@
 		<th>Actions</th>
 	</tr>
 <?php
-	echo $_POST['searchAeroport'];
-	echo $_POST['ville'];
 	foreach($resultSearch as $aeroport)
 	{
 
