@@ -62,8 +62,6 @@ $resultPopularite = $bdd->query("SELECT nom, MAX(resa)
 								GROUP BY nom;");
 $Popularite = $resultPopularite->fetchColumn();
 
-Ville(s) la(les) plus populaire(s) :
-
 
 /* ###########
 #  PARTIE 4  #

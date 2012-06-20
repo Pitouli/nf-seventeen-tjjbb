@@ -6,6 +6,7 @@
 
 <div class="explain">
 	<p>Cher administrateur de notre réseau aérien, nous vous invitons à découvrir ici quelques statistiques pour vous donner un aperçu de l'importance de ne système&nbsp;!</p>
+	<p>Cela permet d'avoir un rapide aperçu des données entrées dans la base, et d'implementer quelques requetes complexes&nbsp;!</p>
 </div>
 
 <div class="corps">
