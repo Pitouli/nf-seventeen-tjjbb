@@ -119,6 +119,7 @@
 					<label for="fretMax">Maximum</label><br />
 					<input type="number" name="fretMax" <?php if(isset($fretMax)) echo 'value="' . $fretMax . '"' ?>/>
 				</td>
+				<td><input type="submit" class="inputSubmit" value="Chercher" /></td>
 			</tr>
 			
 		</table>
@@ -167,15 +168,15 @@
 				<td>
 					<label for="DdepartSearch">Date de départ</label><br />
 					<input type="text" name="DdepartSearch" id="DdepartSearch" value="<?php //On gère l'affichage de la date :
-					if (isset($showDatesDefined) AND $showDatesDefined)
+					if (isset($showDatesDefinedSearch) AND $showDatesDefinedSearch)
 					{
-						echo $showStartText; //Cette variable a été définie dans le new.model
+						echo $showStartTextSearch; //Cette variable a été définie dans le new.model
 					}
 					else echo "JJ/MM/AAAA";
 					?>"/>
 					<select name="HdepartSearch">
 						<?php
-						for ($i = 0; $i < 24; $i++) {
+						for ($i = 0; $i <= 23; $i++) {
 						?>
 							<option value="<?php if($i<10) echo 0; echo $i ?>" <?php if(isset($_POST['HdepartSearch']) AND ($_POST['HdepartSearch'] == $i)) echo 'selected' ?>><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
@@ -185,7 +186,7 @@
 					:
 					<select name="MdepartSearch">
 						<?php
-						for ($i = 0; $i < 60; $i++) {
+						for ($i = 0; $i <= 60; $i++) {
 						?>
 							<option value="<?php if($i<10) echo 0; echo $i ?>" <?php if(isset($_POST['MdepartSearch']) AND ($_POST['MdepartSearch'] == $i)) echo 'selected' ?>><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
@@ -195,16 +196,16 @@
 				</td>
 				<td>
 					<label for="DarriveeSearch">Date d'arrivée</label><br />
-					<input type="text" name="Darrivee" id="DarriveeSearch" value="<?php //On gère l'affichage de la date :
-					if (isset($showDatesDefined) AND $showDatesDefined)
+					<input type="text" name="DarriveeSearch" id="DarriveeSearch" value="<?php //On gère l'affichage de la date :
+					if (isset($showDatesDefinedSearch) AND $showDatesDefinedSearch)
 					{
-						echo $showEndText; //Cette variable a été définie dans le new.model
+						echo $showEndTextSearch; //Cette variable a été définie dans le new.model
 					}
 					else echo "JJ/MM/AAAA";
 					?>"/>
 					<select name="HarriveeSearch">
 						<?php
-						for ($i = 0; $i < 24; $i++) {
+						for ($i = 0; $i <= 23; $i++) {
 						?>
 							<option value="<?php if($i<10) echo 0; echo $i ?>" <?php if(isset($_POST['HarriveeSearch']) AND ($_POST['HarriveeSearch'] == $i)) echo 'selected' ?>><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
@@ -214,7 +215,7 @@
 					:
 					<select name="MarriveeSearch">
 						<?php
-						for ($i = 0; $i < 60; $i++) {
+						for ($i = 0; $i <= 60; $i++) {
 						?>
 							<option value="<?php if($i<10) echo 0; echo $i ?>" <?php if(isset($_POST['MarriveeSearch']) AND ($_POST['MarriveeSearch'] == $i)) echo 'selected' ?>><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
@@ -222,12 +223,13 @@
 						?>
 					</select>
 				</td>
+				<td><input type="submit" class="inputSubmit" value="Chercher" /></td>
 			</tr>
 		</table>
 	</form>
 	
 	
-	<?php if(isset($resultShow)) require DIR_INC.'flights.show.inc.php'; ?>
+	<?php if(isset($resultVol)) require DIR_INC.'flights.show.inc.php'; ?>
 	
 </div>
 
