@@ -12,9 +12,12 @@
 
 	<h2>Des chiffres simples...</h2>
 	<ul>
-		<li>Nombre d'avions dans la flotte : xxxx</li>
-		<li>Nombre d'aéroports desservis : xxx</li>
-		<li>Nombre de vols au départ dans les 24 prochaines heures : xxxx</li>
+		<li>Nombre d'avions dans la flotte : <?php echo $nbAvions; ?></li>
+		<li>Nombre de clients : <?php echo $nbClients; ?></li>
+		<li>Capacité totale de transport de passagers : <?php echo $totalVoyageurs; ?></li>
+		<li>Capacité totale de transport de fret : <?php echo $totalFret; ?></li>
+		<li>Nombre d'aéroports desservis : <?php echo $nbAeroports; ?></li>
+		<li>Nombre de vols au départ dans les 24 prochaines heures : <?php echo $nbVol24heures; ?></li>
 	</ul>
 	<h2>...jusqu'aux plus compliqués !</h2>
 	<ul>

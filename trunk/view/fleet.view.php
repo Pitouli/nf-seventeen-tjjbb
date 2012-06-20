@@ -90,15 +90,6 @@
 	</form>
 	
 	<?php if(isset($affichageAvions)) require DIR_INC.'fleet.listeAvion.inc.php'; ?>
-	
-
-	<h2>Un peu de statistiques</h2>
-	<ul>
-		<li>Nombre d'avions dans la flotte : <?php echo $nbAvions; ?></li>
-		<li>Capacité totale de transport de passagers : <?php echo $totalVoyageurs; ?></li>
-		<li>Capacité totale de transport de fret : <?php echo $totalFret; ?></li>
-	</ul>
-	<p>...</p>
 
 </div>
 
