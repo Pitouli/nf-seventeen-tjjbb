@@ -74,8 +74,14 @@ foreach($resultReservations as $key => $reservation)
 {
 	$selectVol->execute(array(":id_reservation" => $reservation['id']));
 	$resultReservations[$key]['vols'] = $selectVol->fetchAll();
+	$resultReservations[$key]['cityStart'] = $resultReservations[$key]['vols'][0]['citystart'];
+	$resultReservations[$key]['dateStart'] = date("d/m/Y", $resultReservations[$key]['vols'][0]['datestart']);
+	$resultReservations[$key]['cityEnd'] = $resultReservations[$key]['vols'][count($resultReservations[$key]['vols'])-1]['cityend'];
+	$resultReservations[$key]['dateEnd'] = date("d/m/Y", $resultReservations[$key]['vols'][count($resultReservations[$key]['vols'])-1]['dateend']);
+	$resultReservations[$key]['cancelable'] = $resultReservations[$key]['vols'][0]['datestart'] > time();
 }
 
+/*
 $resultShow[0]['id'] = 124;
 $resultShow[0]['cityStart'] = 'Paris';
 $resultShow[0]['cityEnd'] = 'San Francisco';
@@ -97,5 +103,6 @@ $resultShow[0]['vols'][1]['cityEnd'] = 'San Francisco';
 $resultShow[0]['vols'][1]['dateStart'] = '10/02/2013 14:00';
 $resultShow[0]['vols'][1]['dateEnd'] = '10/02/2013 18:00';
 $resultShow[0]['vols'][1]['plane'] = '475669 (B747)';
+*/
 
 // $resultShow = array();

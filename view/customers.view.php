@@ -45,7 +45,7 @@
 	
 	<?php if(isset($resultSearch)) require DIR_INC.'customers.search.inc.php'; ?>
 	
-	<?php if(isset($resultShow)) require DIR_INC.'customers.show.inc.php'; ?>
+	<?php if(isset($resultReservations)) require DIR_INC.'customers.show.inc.php'; ?>
 
 </div>
 

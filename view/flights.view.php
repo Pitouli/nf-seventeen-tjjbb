@@ -175,7 +175,7 @@
 					?>"/>
 					<select name="HdepartSearch">
 						<?php
-						for ($i = 0; $i <= 23; $i++) {
+						for ($i = 0; $i < 24; $i++) {
 						?>
 							<option value="<?php if($i<10) echo 0; echo $i ?>" <?php if(isset($_POST['HdepartSearch']) AND ($_POST['HdepartSearch'] == $i)) echo 'selected' ?>><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
@@ -185,7 +185,7 @@
 					:
 					<select name="MdepartSearch">
 						<?php
-						for ($i = 0; $i <= 60; $i++) {
+						for ($i = 0; $i < 60; $i++) {
 						?>
 							<option value="<?php if($i<10) echo 0; echo $i ?>" <?php if(isset($_POST['MdepartSearch']) AND ($_POST['MdepartSearch'] == $i)) echo 'selected' ?>><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
@@ -204,7 +204,7 @@
 					?>"/>
 					<select name="HarriveeSearch">
 						<?php
-						for ($i = 0; $i <= 23; $i++) {
+						for ($i = 0; $i < 24; $i++) {
 						?>
 							<option value="<?php if($i<10) echo 0; echo $i ?>" <?php if(isset($_POST['HarriveeSearch']) AND ($_POST['HarriveeSearch'] == $i)) echo 'selected' ?>><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
@@ -214,7 +214,7 @@
 					:
 					<select name="MarriveeSearch">
 						<?php
-						for ($i = 0; $i <= 60; $i++) {
+						for ($i = 0; $i < 60; $i++) {
 						?>
 							<option value="<?php if($i<10) echo 0; echo $i ?>" <?php if(isset($_POST['MarriveeSearch']) AND ($_POST['MarriveeSearch'] == $i)) echo 'selected' ?>><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
