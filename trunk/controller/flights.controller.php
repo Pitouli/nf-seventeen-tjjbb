@@ -16,8 +16,8 @@ elseif($getSection == 'search')
 }
 else if($getSection == 'del')
 {
-	require DIR_MODEL.'flights.del.model.php';
 	require DIR_MODEL.'flights.search.model.php';
+	require DIR_MODEL.'flights.del.model.php';
 }
 
 require DIR_MODEL.'flights.model.php';
