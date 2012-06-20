@@ -13,11 +13,10 @@ if(isset($getSSection))
 	$historique=$historiqueVol->fetchAll();
 	
 	
-	
 	if(!isset($historique))
 		$infos[] = "Aucun vol pour l'aéroport selectionné.";
 	else
-		$showHistorique==true;
+		$showHistorique=true;
 }
 else
 	$infos[] = "L'identifiant de l'aéroport n'est pas valable.";
