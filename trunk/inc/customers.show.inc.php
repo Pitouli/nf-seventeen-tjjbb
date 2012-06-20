@@ -3,7 +3,7 @@
 <ul>
 	<li>Identification&nbsp;: <?php echo $clientShow['name'] ?></li>
 	<li>Type&nbsp;: <?php echo $clientShow['cat'] ?></li>
-	<li>Dépenses totales&nbsp;: <?php echo $clientShow['cost'] ?></li>
+	<li>Dépenses totales&nbsp;: <?php echo $clientShow['cost'] ?>€</li>
 	<li>Nombre de vols&nbsp;: <?php echo $clientShow['nbFlights'] ?></li>
 </ul>
 
@@ -33,8 +33,8 @@
 		<th>Date de départ</th>
 		<th>Date d'arrivée</th>
 		<th>Type</th>
-		<th>Prix</th>
 		<th>Fret</th>
+		<th>Prix</th>
 		<th>Annulation</th>
 	</tr>
 <?php
@@ -48,19 +48,20 @@
 		<td><?php echo $reservation['dateStart'] ?></td>
 		<td><?php echo $reservation['dateEnd'] ?></td>
 		<td><?php echo $reservation['cat'] ?></td>
-		<td><?php echo $reservation['masse_fret'] ?></td>
-		<td><?php echo $reservation['price'] ?></td>
+		<td><?php echo $reservation['masse_fret'] ?> Kg</td>
+		<td><?php echo $reservation['prix'] ?>€</td>
 		<td>
 		<?php
 			if($reservation['cancelable'])
 			{
 		?>
-			<form method="post" action="<?php echo ROOT; ?>?c=customers&s1=del&s2=<?php echo $client['id_client'] ?>">
+			<form method="post" action="<?php echo ROOT; ?>?c=customers&s1=delRes&s2=<?php echo $getSSection ?>">
 				<input type="hidden" name="searchNom" value="<?php if(isset($_POST['searchNom'])) echo $_POST['searchNom'] ?>" />
 				<input type="hidden" name="searchPrenom" value="<?php if(isset($_POST['searchPrenom'])) echo $_POST['searchPrenom'] ?>" />						
 				<input type="hidden" name="searchEntreprise" value="<?php if(isset($_POST['searchEntreprise'])) echo $_POST['searchEntreprise'] ?>" />						
-				<input type="hidden" name="searchParticulier" value="<?php if(isset($_POST['searchParticulier'])) echo $_POST['searchParticulier'] ?>" />
-				<input type="submit" class="inputSubmit" value="Supprimer" onclick="return confirm('Confirmez vous la suppression de cette réservation ? L'action est irréversible.')">
+				<input type="hidden" name="searchParticulier" value="<?php if(isset($_POST['searchParticulier'])) echo $_POST['searchParticulier'] ?>" />						
+				<input type="hidden" name="delResId" value="<?php echo $reservation['id'] ?>" />
+				<input type="submit" class="inputSubmit" value="Supprimer" onclick="return confirm('Confirmez vous la suppression de cette réservation ? L\'action est irréversible.')">
 			</form>
 		<?php
 			}
@@ -103,7 +104,7 @@
 </table>
 
 <?php
-	if(empty($resultShow))
+	if(empty($resultReservations))
 	{
 ?>
 	<p>La recherche n'a renvoyé aucun résultat</p>

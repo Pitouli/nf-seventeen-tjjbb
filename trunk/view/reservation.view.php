@@ -1,6 +1,6 @@
 <?php require DIR_INC.'header.inc.php' ?>
 
-<h1>Ajout d'une réservation</h1>
+<h1>Ajout d'une réservation pour <a href="<?php echo ROOT ?>?c=customers&s1=show&s2=<?php echo $getSSection ?>" title="Retourner à la fiche client"><?php echo $clientShow['name'] ?></a></h1>
 
 <?php require DIR_INC.'report.inc.php' ?>
 
