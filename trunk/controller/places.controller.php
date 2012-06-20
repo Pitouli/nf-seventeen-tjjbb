@@ -31,7 +31,7 @@ else if($getSection == 'delaeroport')
 }
 else if($getSection == 'historique')
 {
-	require DIR_MODEL.'aeroport.del.model.php';
+	require DIR_MODEL.'aeroport.historique.model.php';
 	require DIR_MODEL.'aeroport.search.model.php';
 }
 else if($getSection == 'showterminal')
