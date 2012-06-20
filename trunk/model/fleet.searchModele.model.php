@@ -7,7 +7,7 @@ if(isset($_POST))
 	$capaciteMin = (!empty($_POST['searchCapaciteMin'])) ? $_POST['searchCapaciteMin'] : 0;	// Au cas où l'utilisateur n'entre rien, afin de prendre tous les résultats.
 	$capaciteMax = (!empty($_POST['searchCapaciteMax'])) ? $_POST['searchCapaciteMax'] : 10000;
 	$fretMin = (!empty($_POST['searchFretMin'])) ? $_POST['searchFretMin'] : 0;
-	$fretMax = (!empty($_POST['searchFretMax'])) ? $_POST['searchFretMax'] : 10000;
+	$fretMax = (!empty($_POST['searchFretMax'])) ? $_POST['searchFretMax'] : 1000000;
 	
 
 	$selectResultats = $bdd->prepare("SELECT id, nom, capacite_fret, capacite_voyageur
