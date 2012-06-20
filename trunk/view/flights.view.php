@@ -97,7 +97,6 @@
 						?>
 					</select>
 				</td>
-				<td rowspan="2"><input type="submit" class="inputSubmit" value="Valider" /></td>
 			</tr>
 			
 			<tr>

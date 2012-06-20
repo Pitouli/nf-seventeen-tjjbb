@@ -12,27 +12,30 @@
 			<th>Action</th>
 		</tr>
 		<?php
-		if(empty($resultVol)) echo "<p>La recherche n'a renvoyé aucun résultat";
+		if(empty($resultVol)) echo "<p>La recherche n'a renvoyé aucun résultat</p>";
 		else 
 		{
+		while($vol = $resultVol->fetch())
+		{
 		?>
-		<th>
-			<td><?php echo $resultVol['id'] ?></td>
-			<td><?php echo $resultVol['date_depart'] ?></td>
-			<td><?php echo $resultVol['date_arrive'] ?></td>
-			<td><?php echo $resultVol['terminal_depart'] . "<br />(" . $resultVol['aeorport_depart'] . ")" ?></td>
-			<td><?php echo $resultVol['terminal_arrive'] . "<br />(" . $resultVol['aeorport_depart'] . ")" ?></td>
-			<td><?php echo $resultVol['avion'] ?></td>
-			<td><?php echo $resultVol['n_avion'] ?></td>
+		<tr>
+			<td><?php echo $vol['id'] ?></td>
+			<td><?php echo $vol['date_depart'] ?></td>
+			<td><?php echo $vol['date_arrive'] ?></td>
+			<td><?php echo $vol['terminal_depart'] . "<br />(" . $vol['aeorport_depart'] . ")" ?></td>
+			<td><?php echo $vol['terminal_arrive'] . "<br />(" . $vol['aeorport_depart'] . ")" ?></td>
+			<td><?php echo $vol['avion'] ?></td>
+			<td><?php echo $vol['n_avion'] ?></td>
 			<td>
 				<form method="post" action="<?php echo ROOT; ?>?c=flights&s1=del">
 				
-				<input type="submit" class="inputSubmit" onclick="return confirm('Confirmez vous la suppression du vol selectionnés? (ACTION IRREVERSIBLE !)');"value="Choisir" />
+				<input type="submit" class="inputSubmit" onclick="return confirm('Confirmez vous la suppression du vol selectionnés? (ACTION IRREVERSIBLE !)');"value="Supprimer" />
 				</form>
 			</td>
-		</th>
+		</tr
 		
 		<?php
+		}
 		}
 		
 		?>
