@@ -95,8 +95,8 @@
 	<h2>Un peu de statistiques</h2>
 	<ul>
 		<li>Nombre d'avions dans la flotte : <?php echo $nbAvions; ?></li>
-		<li>Nombre d'aéroports desservis : xxx</li>
-		<li>Nombre de vols au départ dans les 24 prochaines heures : xxxx</li>
+		<li>Capacité totale de transport de passagers : <?php echo $totalVoyageurs; ?></li>
+		<li>Capacité totale de transport de fret : <?php echo $totalFret; ?></li>
 	</ul>
 	<p>...</p>
 
