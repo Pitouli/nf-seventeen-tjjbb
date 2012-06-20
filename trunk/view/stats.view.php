@@ -26,11 +26,11 @@
 		<?php
 		foreach($Popularite as $ville){
 		?>
-		<ul><?php echo $ville['nom'];?> : <?php echo $ville['nf'];?> resevation(s)<ul>
-		<li>Temps moyen d'un voyage lors du dernier mois&nbsp;: </li>
+		<ul><?php echo $ville['nom'];?> : <?php echo $ville['nb'];?> resevation(s)</ul>
 		<?php };?>
+		</li>
+
 	</ul>
-	<p>...</p>
 
 </div>
 
