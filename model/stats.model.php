@@ -60,7 +60,7 @@ $resultPopularite = $bdd->query("SELECT nom, MAX(resa) nb
 									GROUP BY vi.nom
 								) as nb_reservation
 								GROUP BY nom;");
-$Popularite = $resultPopularite->fetchColumn();
+$Popularite = $resultPopularite->fetchAll();
 
 
 /* ###########
