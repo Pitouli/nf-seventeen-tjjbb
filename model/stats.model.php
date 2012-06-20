@@ -52,7 +52,7 @@ $nbVol24heures = $countNbVol24heures->fetchColumn();
 #  PARTIE 3  #
 ########### */
 
-$resultPopularite = $bdd->query("SELECT nom, MAX(resa)
+$resultPopularite = $bdd->query("SELECT nom, MAX(resa) nb
 								FROM (
 									SELECT vi.nom nom, count(u.id_reservation) resa
 									FROM utilise u, vol v, terminal t, aeroport a, ville vi
