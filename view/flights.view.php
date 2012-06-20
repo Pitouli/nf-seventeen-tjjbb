@@ -229,6 +229,7 @@
 	
 	
 	<?php if(isset($resultVol)) require DIR_INC.'flights.show.inc.php'; ?>
+	<?php if(isset($resultReserv)) require DIR_INC.'flights.reserv.inc.php'; ?>
 	
 </div>
 
