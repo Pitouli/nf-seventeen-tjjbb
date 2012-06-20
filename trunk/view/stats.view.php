@@ -11,19 +11,24 @@
 
 <div class="corps">
 
-	<h2>Des chiffres simples...</h2>
+	<h2>Quelques chiffres :</h2>
 	<ul>
-		<li>Nombre d'avions dans la flotte : <?php echo $nbAvions; ?></li>
 		<li>Nombre de clients : <?php echo $nbClients; ?></li>
+		<li>Nombre d'avions dans la flotte : <?php echo $nbAvions; ?></li>
 		<li>Capacité totale de transport de passagers : <?php echo $totalVoyageurs; ?></li>
 		<li>Capacité totale de transport de fret : <?php echo $totalFret; ?></li>
 		<li>Nombre d'aéroports desservis : <?php echo $nbAeroports; ?></li>
 		<li>Nombre de vols au départ dans les 24 prochaines heures : <?php echo $nbVol24heures; ?></li>
 	</ul>
-	<h2>...jusqu'aux plus compliqués !</h2>
+	<h2>Quelques statistiques</h2>
 	<ul>
-		<li>Destination finale la plus populaire&nbsp;: </li>
+		<li>Destination(s) la(les) plus populaire(s) : </li>
+		<?php
+		foreach($Popularite as $ville){
+		?>
+		<ul><?php echo $ville['nom'];?> : <?php echo $ville['nf'];?> resevation(s)<ul>
 		<li>Temps moyen d'un voyage lors du dernier mois&nbsp;: </li>
+		<?php };?>
 	</ul>
 	<p>...</p>
 
