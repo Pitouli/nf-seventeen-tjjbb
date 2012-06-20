@@ -27,7 +27,7 @@
 			<td><?php echo $vol['n_avion'] ?></td>
 			<td>
 				<form method="post" action="<?php echo ROOT; ?>?c=flights&s1=show">
-				<input type="hidden" name="delete" value="<?php echo $vol['id'] ?>" />
+				<input type="hidden" name="idVol" value="<?php echo $vol['id'] ?>" />
 				
 				<input type="hidden" name="departSearch" value="<?php echo $_POST['departSearch'] ?>" />
 				<input type="hidden" name="arriveeSearch" value="<?php echo $_POST['arriveeSearch'] ?>" />

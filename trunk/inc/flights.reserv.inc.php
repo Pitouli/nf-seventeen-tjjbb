@@ -30,5 +30,5 @@
 		?>
 	</table>
 	<?php
-		else echo "<p>La recherche n'a renvoyé aucun résultat</p>";
+		if (empty($resultReserv)) echo "<p>La recherche n'a renvoyé aucun résultat</p>";
 	?>

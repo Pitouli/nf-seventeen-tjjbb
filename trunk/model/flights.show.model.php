@@ -4,7 +4,7 @@ if(isset($_POST))
 {
 	// On gère la problématique de la date
 
-	if(isset($_POST['id']) && is_numeric($_POST['id']))
+	if(isset($_POST['idVol']) && is_numeric($_POST['idVol']))
 	{
 		
 		echo "TEST";
@@ -12,9 +12,9 @@ if(isset($_POST))
 		$selectReserv = $bdd->prepare("
 		SELECT c.nom AS nom, c.prenom AS prenom, c.cat AS cat_client, r. prix AS prix, r.masse_fret AS fret, r.cat AS cat_billet
 		FROM v_reservation r, v_client c, utilise u	
-		WHERE u.id_vol = :idVol AND r.id_reservation = u.id_reservation AND v.id_client = c.id_client
+		WHERE u.id_vol = :idVol AND r.id_reservation = u.id_reservation AND r.id_client = c.id_client
 		");
-		$selectReserv->execute(array(":idVol" => $_POST['id']));
+		$selectReserv->execute(array(":idVol" => $_POST['idVol']));
 		$resultReserv = $selectReserv->fetchAll();
 		
 				
