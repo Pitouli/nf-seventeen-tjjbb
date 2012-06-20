@@ -32,17 +32,12 @@ if(isset($_POST))
 				
 				
 				
-				$selectVol = array();
-				
-				$selectVol = $bdd->prepare("
+				$resultVol = $bdd->query("
 				SELECT v.id AS id, v.depart AS date_depart, v.arrive AS date_arrive, td.nom AS terminal_depart, ad.nom AS aeorport_depart, ta.nom AS terminal_arrive, aa.nom AS aeroport_arrive, m.nom AS avion, av.id AS n_avion
 				FROM vol v, terminal td, terminal ta, aeroport ad, aeroport aa, ville vd, ville va, avion av, modele m
 				WHERE v.id_terminal_dep = td.id AND td.id_aeroport = ad.id AND ad.id_ville = vd.id AND v.id_terminal_ar = ta.id AND ta.id_aeroport = aa.id AND aa.id_ville = va.id AND v.id_avion = av.id AND av.id_modele = m.id AND
-				vd.id = :villeDepart AND va.id = :villeArrive AND v.depart > :dateDepart AND v.arrive < :dateArrive
+				vd.id = ". $_POST['departSearch'] ." AND va.id = ". $_POST['arriveeSearch'] ." AND (v.depart > '". $checkStartTextSearch ."') AND (v.arrive < '". $checkEndTextSearch ."')
 				");
-				
-				
-				$resultVol = $selectVol->execute(array(":villeDepart" => $_POST['departSearch'],":villeArrive" => $_POST['arriveeSearch'], ":dateDepart" => $checkStartTextSearch, ":dateArrive" => $checkEndTextSearch));
 				
 				
 			}
