@@ -41,7 +41,7 @@ if(isset($_POST))
 					$capaciteMin = (!empty($_POST['capaciteMin'])) ? $_POST['capaciteMin'] : 0;	// Au cas où l'utilisateur n'entre rien, afin de prendre tous les résultats.
 					$capaciteMax = (!empty($_POST['capaciteMax'])) ? $_POST['capaciteMax'] : 32000;
 					$fretMin = (!empty($_POST['fretMin'])) ? $_POST['fretMin'] : 0;
-					$fretMax = (!empty($_POST['fretMax'])) ? $_POST['fretMax'] : 100000;
+					$fretMax = (!empty($_POST['fretMax'])) ? $_POST['fretMax'] : 1000000;
 					if(($capaciteMin<$capaciteMax)AND($fretMin<$fretMax))
 					{
 						//On exécute la requête :
