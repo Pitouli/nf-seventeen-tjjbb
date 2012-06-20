@@ -14,6 +14,11 @@ elseif($getSection == 'search')
 {
 	require DIR_MODEL.'flights.search.model.php';
 }
+elseif($getSection == 'show')
+{
+	require DIR_MODEL.'flights.show.model.php';
+	require DIR_MODEL.'flights.search.model.php';
+}
 else if($getSection == 'del')
 {
 	require DIR_MODEL.'flights.del.model.php';
