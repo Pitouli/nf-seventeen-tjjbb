@@ -3,7 +3,6 @@
 if(isset($getSSection))
 {
 	$id_aeroport = $getSSection;
-	echo $getSSection;
 	$historiqueVol=array();
 
 	$historiqueVol = $bdd->prepare("SELECT v.depart as dep, v.arrive as ar, a1.nom as aero_dep, a2.nom as aero_ar
