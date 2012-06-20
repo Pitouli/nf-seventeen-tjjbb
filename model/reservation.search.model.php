@@ -111,7 +111,132 @@ if(isset($_POST))
 						
 						$selectUneEscale->execute(array(":fret" => $_POST['fret'], ":depart" => $_POST['depart'], ":arrivee" => $_POST['arrivee'], ":dateStart" => $dateStartTimestamp, ":dateTimestampPlus36hours" => $dateStartTimestampPlus36h));
 						$resultUneEscale = $selectUneEscale->fetchAll();
-						
+	
+						$selectDeuxEscales = $bdd->prepare("
+						SELECT v1.id as id1, v1.depart as depart1, v1.arrive as arrive1, v_d1.nom||' ('||a_d1.nom||')' as cityStart1, v_a1.nom||' ('||a_a1.nom||')' as cityEnd1,
+							v2.id as id2, v2.depart as depart2, v2.arrive as arrive2, v_d2.nom||' ('||a_d2.nom||')' as cityStart2, v_a2.nom||' ('||a_a2.nom||')' as cityEnd2
+							v3.id as id3, v3.depart as depart3, v3.arrive as arrive3, v_d3.nom||' ('||a_d3.nom||')' as cityStart3, v_a3.nom||' ('||a_a3.nom||')' as cityEnd3
+						FROM vol v1, terminal t_d1, aeroport a_d1, ville v_d1, terminal t_a1, aeroport a_a1, ville v_a1,
+							vol v2, terminal t_d2, aeroport a_d2, ville v_d2, terminal t_a2, aeroport a_a2, ville v_a2,
+							vol v3, terminal t_d3, aeroport a_d3, ville v_d3, terminal t_a3, aeroport a_a3, ville v_a3
+						WHERE v1.depart > to_timestamp(:dateStart) AND v1.arrive < v2.depart AND v2.arrive < v3.depart AND v3.depart < to_timestamp(:dateTimestampPlus36hours)
+							AND v1.id_terminal_dep = t_d1.id AND t_d1.id_aeroport = a_d1.id AND a_d1.id_ville = v_d1.id AND v_d1.id = :depart
+							AND v1.id_terminal_ar = t_a1.id AND t_a1.id_aeroport = a_a1.id AND a_a1.id_ville = v_a1.id
+							AND v2.id_terminal_dep = t_d2.id AND t_d2.id_aeroport = a_d2.id AND a_d2.id_ville = v_d2.id AND v_d2.id = v_a1.id
+							AND v2.id_terminal_ar = t_a2.id AND t_a2.id_aeroport = a_a2.id AND a_a2.id_ville = v_a2.id
+							AND v3.id_terminal_dep = t_d3.id AND t_d3.id_aeroport = a_d3.id AND a_d3.id_ville = v_d3.id AND v_d3.id = v_a2.id
+							AND v3.id_terminal_ar = t_a3.id AND t_a3.id_aeroport = a_a3.id AND a_a3.id_ville = v_a3.id AND v_a3.id = :arrivee
+							AND (
+								SELECT COUNT(*) + 1 
+								FROM utilise u1, 
+									(
+									SELECT b.id_reservation
+									FROM billet b, reservation r 
+									WHERE b.id_reservation = r.id
+									UNION
+									SELECT t.id_reservation
+									FROM titre t, reservation r 
+									WHERE t.id_reservation = r.id									
+									) v_r1
+								WHERE v1.id = u1.id_vol AND u1.id_reservation = v_r1.id_reservation
+								) <= (
+								SELECT m1.capacite_voyageur
+								FROM avion a1, modele m1
+								WHERE v1.id_avion = a1.id AND a1.id_modele = m1.id
+								)
+							AND (
+								SELECT COALESCE(SUM(v_r1.masse_fret) + :fret ,0)
+								FROM utilise u1,  
+									(
+									SELECT b.id_reservation, 0 as masse_fret 
+									FROM billet b, reservation r 
+									WHERE b.id_reservation = r.id
+									UNION
+									SELECT t.id_reservation, t.masse_fret
+									FROM titre t, reservation r 
+									WHERE t.id_reservation = r.id									
+									) v_r1
+								WHERE v1.id = u1.id_vol AND u1.id_reservation = v_r1.id_reservation
+								) <= (
+								SELECT m1.capacite_fret
+								FROM avion a1, modele m1
+								WHERE v1.id_avion = a1.id AND a1.id_modele = m1.id
+								)
+							AND (
+								SELECT COUNT(*) + 1 
+								FROM utilise u2, 
+									(
+									SELECT b.id_reservation
+									FROM billet b, reservation r 
+									WHERE b.id_reservation = r.id
+									UNION
+									SELECT t.id_reservation
+									FROM titre t, reservation r 
+									WHERE t.id_reservation = r.id									
+									) v_r2
+								WHERE v2.id = u2.id_vol AND u2.id_reservation = v_r2.id_reservation
+								) <= (
+								SELECT m2.capacite_voyageur
+								FROM avion a2, modele m2
+								WHERE v2.id_avion = a2.id AND a2.id_modele = m2.id
+								)
+							AND (
+								SELECT COALESCE(SUM(v_r2.masse_fret) + :fret ,0)
+								FROM utilise u2,  
+									(
+									SELECT b.id_reservation, 0 as masse_fret 
+									FROM billet b, reservation r 
+									WHERE b.id_reservation = r.id
+									UNION
+									SELECT t.id_reservation, t.masse_fret
+									FROM titre t, reservation r 
+									WHERE t.id_reservation = r.id									
+									) v_r2
+								WHERE v2.id = u2.id_vol AND u2.id_reservation = v_r2.id_reservation
+								) <= (
+								SELECT m2.capacite_fret
+								FROM avion a2, modele m2
+								WHERE v2.id_avion = a2.id AND a2.id_modele = m2.id
+								)	
+							AND (
+								SELECT COUNT(*) + 1 
+								FROM utilise u3, 
+									(
+									SELECT b.id_reservation
+									FROM billet b, reservation r 
+									WHERE b.id_reservation = r.id
+									UNION
+									SELECT t.id_reservation
+									FROM titre t, reservation r 
+									WHERE t.id_reservation = r.id									
+									) v_r3
+								WHERE v3.id = u3.id_vol AND u3.id_reservation = v_r3.id_reservation
+								) <= (
+								SELECT m3.capacite_voyageur
+								FROM avion a3, modele m3
+								WHERE v3.id_avion = a3.id AND a3.id_modele = m3.id
+								)
+							AND (
+								SELECT COALESCE(SUM(v_r3.masse_fret) + :fret ,0)
+								FROM utilise u3,  
+									(
+									SELECT b.id_reservation, 0 as masse_fret 
+									FROM billet b, reservation r 
+									WHERE b.id_reservation = r.id
+									UNION
+									SELECT t.id_reservation, t.masse_fret
+									FROM titre t, reservation r 
+									WHERE t.id_reservation = r.id									
+									) v_r3
+								WHERE v3.id = u3.id_vol AND u3.id_reservation = v_r3.id_reservation
+								) <= (
+								SELECT m3.capacite_fret
+								FROM avion a3, modele m3
+								WHERE v3.id_avion = a3.id AND a3.id_modele = m3.id
+								)					
+						ORDER BY v3.arrive ASC
+						");	
+						/*
 						$selectDeuxEscales = $bdd->prepare("
 						SELECT v1.id as id1, v1.depart as depart1, v1.arrive as arrive1, v_d1.nom||' ('||a_d1.nom||')' as cityStart1, v_a1.nom||' ('||a_a1.nom||')' as cityEnd1,
 							v2.id as id2, v2.depart as depart2, v2.arrive as arrive2, v_d2.nom||' ('||a_d2.nom||')' as cityStart2, v_a2.nom||' ('||a_a2.nom||')' as cityEnd2
@@ -182,7 +307,7 @@ if(isset($_POST))
 								)					
 						ORDER BY v3.arrive ASC
 						");
-						
+						*/
 						$selectDeuxEscales->execute(array(":fret" => $_POST['fret'], ":depart" => $_POST['depart'], ":arrivee" => $_POST['arrivee'], ":dateStart" => $dateStartTimestamp, ":dateTimestampPlus36hours" => $dateStartTimestampPlus36h));
 						$resultDeuxEscales = $selectDeuxEscales->fetchAll();						
 						
