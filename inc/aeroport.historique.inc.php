@@ -13,10 +13,10 @@
 
 ?>
 	<tr>
-		<td><?php echo $historique['aero_dep'] ?></td>
-		<td><?php echo $historique['aero_ar'] ?></td>
-		<td><?php echo $historique['dep'] ?></td>
-		<td><?php echo $historique['ar'] ?></td>
+		<td><?php echo $vol['aero_dep'] ?></td>
+		<td><?php echo $vol['aero_ar'] ?></td>
+		<td><?php echo $vol['dep'] ?></td>
+		<td><?php echo $vol['ar'] ?></td>
 	</tr>
 <?php
 	}
