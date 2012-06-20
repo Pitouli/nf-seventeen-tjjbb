@@ -112,7 +112,7 @@ if(isset($_POST))
 						$selectUneEscale->execute(array(":fret" => $_POST['fret'], ":depart" => $_POST['depart'], ":arrivee" => $_POST['arrivee'], ":dateStart" => $dateStartTimestamp, ":dateTimestampPlus36hours" => $dateStartTimestampPlus36h));
 						$resultUneEscale = $selectUneEscale->fetchAll();
 	
-						$selectDeuxEscales = $bdd->prepare("
+						/* $selectDeuxEscales = $bdd->prepare("
 						SELECT v1.id as id1, v1.depart as depart1, v1.arrive as arrive1, v_d1.nom||' ('||a_d1.nom||')' as cityStart1, v_a1.nom||' ('||a_a1.nom||')' as cityEnd1,
 							v2.id as id2, v2.depart as depart2, v2.arrive as arrive2, v_d2.nom||' ('||a_d2.nom||')' as cityStart2, v_a2.nom||' ('||a_a2.nom||')' as cityEnd2
 							v3.id as id3, v3.depart as depart3, v3.arrive as arrive3, v_d3.nom||' ('||a_d3.nom||')' as cityStart3, v_a3.nom||' ('||a_a3.nom||')' as cityEnd3
@@ -235,8 +235,8 @@ if(isset($_POST))
 								WHERE v3.id_avion = a3.id AND a3.id_modele = m3.id
 								)					
 						ORDER BY v3.arrive ASC
-						");	
-						/*
+						");	*/
+						
 						$selectDeuxEscales = $bdd->prepare("
 						SELECT v1.id as id1, v1.depart as depart1, v1.arrive as arrive1, v_d1.nom||' ('||a_d1.nom||')' as cityStart1, v_a1.nom||' ('||a_a1.nom||')' as cityEnd1,
 							v2.id as id2, v2.depart as depart2, v2.arrive as arrive2, v_d2.nom||' ('||a_d2.nom||')' as cityStart2, v_a2.nom||' ('||a_a2.nom||')' as cityEnd2
@@ -307,7 +307,7 @@ if(isset($_POST))
 								)					
 						ORDER BY v3.arrive ASC
 						");
-						*/
+						
 						$selectDeuxEscales->execute(array(":fret" => $_POST['fret'], ":depart" => $_POST['depart'], ":arrivee" => $_POST['arrivee'], ":dateStart" => $dateStartTimestamp, ":dateTimestampPlus36hours" => $dateStartTimestampPlus36h));
 						$resultDeuxEscales = $selectDeuxEscales->fetchAll();						
 						
