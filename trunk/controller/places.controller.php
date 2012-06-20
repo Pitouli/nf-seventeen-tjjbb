@@ -31,7 +31,6 @@ else if($getSection == 'delaeroport')
 }
 else if($getSection == 'historique')
 {
-	require DIR_MODEL.'places.model.php';
 	require DIR_MODEL.'aeroport.historique.model.php';
 	require DIR_MODEL.'aeroport.search.model.php';
 }
@@ -39,7 +38,6 @@ else if($getSection == 'showterminal')
 {
 	require DIR_MODEL.'fleet.model.php';
 	require DIR_MODEL.'terminal.show.model.php';
-	require DIR_MODEL.'places.model.php';
 	require DIR_MODEL.'aeroport.search.model.php';
 }
 else if($getSection == 'newterminal')
@@ -47,7 +45,6 @@ else if($getSection == 'newterminal')
 	require DIR_MODEL.'aeroport.search.model.php';
 	require DIR_MODEL.'fleet.model.php';
 	require DIR_MODEL.'terminal.new.model.php';
-	require DIR_MODEL.'places.model.php';
 	require DIR_MODEL.'terminal.show.model.php';
 }
 else if($getSection == 'delterminal')
@@ -55,7 +52,6 @@ else if($getSection == 'delterminal')
 	require DIR_MODEL.'terminal.del.model.php';
 	require DIR_MODEL.'fleet.model.php';
 	require DIR_MODEL.'terminal.show.model.php';
-	require DIR_MODEL.'places.model.php';
 	require DIR_MODEL.'aeroport.search.model.php';
 }
 
