@@ -97,6 +97,7 @@
 						?>
 					</select>
 				</td>
+				<td rowspan="2"><input type="submit" class="inputSubmit" value="Valider" /></td>
 			</tr>
 			
 			<tr>
@@ -118,7 +119,6 @@
 					<label for="fretMax">Maximum</label><br />
 					<input type="number" name="fretMax" <?php if(isset($fretMax)) echo 'value="' . $fretMax . '"' ?>/>
 				</td>
-				<td><input type="submit" class="inputSubmit" value="Valider" /></td>
 			</tr>
 			
 		</table>

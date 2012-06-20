@@ -21,7 +21,7 @@
 				<input type="hidden" name="searchParticulier" value="<?php if(isset($_POST['searchParticulier'])) echo $_POST['searchParticulier'] ?>" />
 				<input type="submit" class="inputSubmit" value="Voir les détails" />
 			</form>
-			<a href="<?php echo ROOT; ?>?c=reservation&s1=<?php echo $getSection; ?>" title="Créer une nouvelle réservation"><input type="button" class="inputSubmit" value="Nvlle Réservation" /></a>
+			<a href="<?php echo ROOT; ?>?c=reservation&s1=new&s2=<?php echo $client['id_client'] ?>" title="Créer une nouvelle réservation"><input type="button" class="inputSubmit" value="Nvlle Réservation" /></a>
 			<form method="post" action="<?php echo ROOT; ?>?c=customers&s1=del">
 				<input type="hidden" name="searchNom" value="<?php if(isset($_POST['searchNom'])) echo $_POST['searchNom'] ?>" />
 				<input type="hidden" name="searchPrenom" value="<?php if(isset($_POST['searchPrenom'])) echo $_POST['searchPrenom'] ?>" />						

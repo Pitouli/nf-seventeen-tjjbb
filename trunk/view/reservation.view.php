@@ -12,7 +12,7 @@
 
 	<h2>Informations sur le voyage</h2>
 
-	<form method="post" action="<?php echo ROOT; ?>?c=reservation&s1=search&s2=<?php echo $getSection; ?>">
+	<form method="post" action="<?php echo ROOT; ?>?c=reservation&s1=search&s2=<?php echo $getSSection; ?>">
 		<table class="largeTable">
 			<tr>
 				<th><label for="depart">Départ :</label></th>
@@ -54,7 +54,7 @@
 					?>"/>
 					<select name="Hdepart">
 						<?php
-						for ($i = 0; $i <= 23; $i++) {
+						for ($i = 0; $i < 24; $i++) {
 						?>
 							<option value="<?php if($i<10) echo 0; echo $i ?>" <?php if(isset($_POST['Hdepart']) AND ($_POST['Hdepart'] == $i)) echo 'selected' ?>><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
@@ -64,7 +64,7 @@
 					:
 					<select name="Mdepart">
 						<?php
-						for ($i = 0; $i <= 60; $i++) {
+						for ($i = 0; $i < 60; $i++) {
 						?>
 							<option value="<?php if($i<10) echo 0; echo $i ?>" <?php if(isset($_POST['Mdepart']) AND ($_POST['Mdepart'] == $i)) echo 'selected' ?>><?php if($i<10) echo 0; echo $i ?></option>
 						<?php
@@ -72,7 +72,7 @@
 						?>
 					</select>
 				</td>
-				<td><input type="number" name="fret" id="fret" value="<?php if(isset($fret)) echo $fret; else echo 0; ?>" /></td>
+				<td><input type="number" name="fret" id="fret" value="<?php if(isset($_POST['fret'])) echo $_POST['fret']; else echo 0; ?>" /></td>
 			</tr>
 			
 		</table>

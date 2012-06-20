@@ -40,5 +40,3 @@ catch(PDOException $e)
 	//Afficher l'erreur
 	$errors[] = "Échec : " . $e->getMessage();
 }
-
-?>
