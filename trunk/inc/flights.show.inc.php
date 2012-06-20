@@ -28,7 +28,7 @@
 			<td>
 				<form method="post" action="<?php echo ROOT; ?>?c=flights&s1=del">
 				
-				<input type="submit" class="inputSubmit" onclick="return confirm('Confirmez vous la suppression du vol selectionnés? (ACTION IRREVERSIBLE !)');"value="Supprimer" />
+				<input type="submit" class="inputSubmit" onclick="return confirm('Confirmez vous la suppression du vol selectionnés? (ACTION IRREVERSIBLE : Toute les réservations sur ce vol seront supprimées !)');"value="Supprimer" />
 				</form>
 			</td>
 		</tr>
