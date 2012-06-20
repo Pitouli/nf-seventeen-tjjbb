@@ -30,11 +30,13 @@
 		<th>Ville d'arrivée</th>
 		<th>Date de départ</th>
 		<th>Date d'arrivée</th>
+		<th>Type</th>
 		<th>Prix</th>
+		<th>Fret</th>
 		<th>Annulation</th>
 	</tr>
 <?php
-	foreach($resultShow as $reservation)
+	foreach($resultReservations as $reservation)
 	{
 ?>
 	<tr>
@@ -43,6 +45,8 @@
 		<td><?php echo $reservation['cityEnd'] ?></td>
 		<td><?php echo $reservation['dateStart'] ?></td>
 		<td><?php echo $reservation['dateEnd'] ?></td>
+		<td><?php echo $reservation['cat'] ?></td>
+		<td><?php echo $reservation['masse_fret'] ?></td>
 		<td><?php echo $reservation['price'] ?></td>
 		<td>
 		<?php
@@ -54,7 +58,7 @@
 				<input type="hidden" name="searchPrenom" value="<?php if(isset($_POST['searchPrenom'])) echo $_POST['searchPrenom'] ?>" />						
 				<input type="hidden" name="searchEntreprise" value="<?php if(isset($_POST['searchEntreprise'])) echo $_POST['searchEntreprise'] ?>" />						
 				<input type="hidden" name="searchParticulier" value="<?php if(isset($_POST['searchParticulier'])) echo $_POST['searchParticulier'] ?>" />
-<input type="submit" class="inputSubmit" value="Supprimer" onclick="return confirm('Confirmez vous la suppression de cet utilisateur ? Cette action est irreversible et supprimera aussi tous les historiques le concernant.')">
+				<input type="submit" class="inputSubmit" value="Supprimer" onclick="return confirm('Confirmez vous la suppression de cette réservation ? L'action est irréversible.')">
 			</form>
 		<?php
 			}
@@ -63,7 +67,7 @@
 	</tr>
 	<tr>
 		<td>Vol(s)&nbsp;:</td>
-		<td colspan="6">
+		<td colspan="8">
 			<table class="largeTable">
 				<tr>
 					<th>ID</th>
@@ -79,10 +83,10 @@
 				?>
 				<tr>
 					<td><?php echo $vol['id'] ?></td>
-					<td><?php echo $vol['cityStart'] ?></td>
-					<td><?php echo $vol['cityEnd'] ?></td>
-					<td><?php echo $vol['dateStart'] ?></td>
-					<td><?php echo $vol['dateEnd'] ?></td>
+					<td><?php echo $vol['citystart'] ?></td>
+					<td><?php echo $vol['cityend'] ?></td>
+					<td><?php echo $vol['datestart'] ?></td>
+					<td><?php echo $vol['dateend'] ?></td>
 					<td><?php echo $vol['plane'] ?></td>
 				</tr>				
 				<?php
