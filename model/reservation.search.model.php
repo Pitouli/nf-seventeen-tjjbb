@@ -29,6 +29,8 @@ if(isset($_POST))
 						$dateStart = date_parse_from_format('d/m/Y H:i', $dateStartText);
 						$dateStartTimestamp = mktime($dateStart['hour'], $dateStart['minute'], 0, $dateStart['month'], $dateStart['day'], $dateStart['year']);
 						$dateStartTimestampPlus36h = $dateStartTimestamp + 3600*36;
+						
+						$nbPassager = $_POST['fret'] > 1 ? 0 : 1;
 
 						$selectDirect = $bdd->prepare("
 						SELECT v.id, v.depart, v.arrive, v_d.nom||' ('||a_d.nom||')' as cityStart, v_a.nom||' ('||a_a.nom||')' as cityEnd
@@ -37,9 +39,9 @@ if(isset($_POST))
 							AND v.id_terminal_dep = t_d.id AND t_d.id_aeroport = a_d.id AND a_d.id_ville = :depart AND a_d.id_ville = v_d.id
 							AND v.id_terminal_ar = t_a.id AND t_a.id_aeroport = a_a.id AND a_a.id_ville = :arrivee AND a_a.id_ville = v_a.id
 							AND (
-								SELECT COUNT(*) + 1 
+								SELECT COUNT(*) + :nb_passager 
 								FROM utilise u, v_reservation v_r
-								WHERE v.id = u.id_vol AND u.id_reservation = v_r.id_reservation
+								WHERE v.id = u.id_vol AND u.id_reservation = v_r.id_reservation AND v_r.cat = 'BILLET'
 								) <= (
 								SELECT m.capacite_voyageur
 								FROM avion a, modele m
@@ -57,7 +59,7 @@ if(isset($_POST))
 						ORDER BY v.arrive ASC
 						");
 						
-						$selectDirect->execute(array(":fret" => $_POST['fret'], ":depart" => $_POST['depart'], ":arrivee" => $_POST['arrivee'], ":dateStart" => $dateStartTimestamp, ":dateTimestampPlus36hours" => $dateStartTimestampPlus36h));
+						$selectDirect->execute(array(":fret" => $_POST['fret'], ":nb_passager" => $nbPassager, ":depart" => $_POST['depart'], ":arrivee" => $_POST['arrivee'], ":dateStart" => $dateStartTimestamp, ":dateTimestampPlus36hours" => $dateStartTimestampPlus36h));
 						$resultDirect = $selectDirect->fetchAll();
 						
 						$selectUneEscale = $bdd->prepare("
@@ -71,9 +73,9 @@ if(isset($_POST))
 							AND v2.id_terminal_dep = t_d2.id AND t_d2.id_aeroport = a_d2.id AND a_d2.id_ville = v_d2.id AND v_d2.id = v_a1.id
 							AND v2.id_terminal_ar = t_a2.id AND t_a2.id_aeroport = a_a2.id AND a_a2.id_ville = v_a2.id AND v_a2.id = :arrivee
 							AND (
-								SELECT COUNT(*) + 1 
+								SELECT COUNT(*) + :nb_passager 
 								FROM utilise u1, v_reservation v_r1
-								WHERE v1.id = u1.id_vol AND u1.id_reservation = v_r1.id_reservation
+								WHERE v1.id = u1.id_vol AND u1.id_reservation = v_r1.id_reservation AND v_r1.cat = 'BILLET'
 								) <= (
 								SELECT m1.capacite_voyageur
 								FROM avion a1, modele m1
@@ -89,9 +91,9 @@ if(isset($_POST))
 								WHERE v1.id_avion = a1.id AND a1.id_modele = m1.id
 								)
 							AND (
-								SELECT COUNT(*) + 1 
+								SELECT COUNT(*) + :nb_passager
 								FROM utilise u2, v_reservation v_r2
-								WHERE v2.id = u2.id_vol AND u2.id_reservation = v_r2.id_reservation
+								WHERE v2.id = u2.id_vol AND u2.id_reservation = v_r2.id_reservation AND v_r2.cat = 'BILLET'
 								) <= (
 								SELECT m2.capacite_voyageur
 								FROM avion a2, modele m2
@@ -109,7 +111,7 @@ if(isset($_POST))
 						ORDER BY v2.arrive ASC
 						");
 						
-						$selectUneEscale->execute(array(":fret" => $_POST['fret'], ":depart" => $_POST['depart'], ":arrivee" => $_POST['arrivee'], ":dateStart" => $dateStartTimestamp, ":dateTimestampPlus36hours" => $dateStartTimestampPlus36h));
+						$selectUneEscale->execute(array(":fret" => $_POST['fret'], ":nb_passager" => $nbPassager, ":depart" => $_POST['depart'], ":arrivee" => $_POST['arrivee'], ":dateStart" => $dateStartTimestamp, ":dateTimestampPlus36hours" => $dateStartTimestampPlus36h));
 						$resultUneEscale = $selectUneEscale->fetchAll();
 	
 						/* $selectDeuxEscales = $bdd->prepare("
@@ -252,9 +254,9 @@ if(isset($_POST))
 							AND v3.id_terminal_dep = t_d3.id AND t_d3.id_aeroport = a_d3.id AND a_d3.id_ville = v_d3.id AND v_d3.id = v_a2.id
 							AND v3.id_terminal_ar = t_a3.id AND t_a3.id_aeroport = a_a3.id AND a_a3.id_ville = v_a3.id AND v_a3.id = :arrivee
 							AND (
-								SELECT COUNT(*) + 1 
+								SELECT COUNT(*) + :nb_passager
 								FROM utilise u1, v_reservation v_r1
-								WHERE v1.id = u1.id_vol AND u1.id_reservation = v_r1.id_reservation
+								WHERE v1.id = u1.id_vol AND u1.id_reservation = v_r1.id_reservation AND v_r1.cat = 'BILLET'
 								) <= (
 								SELECT m1.capacite_voyageur
 								FROM avion a1, modele m1
@@ -270,9 +272,9 @@ if(isset($_POST))
 								WHERE v1.id_avion = a1.id AND a1.id_modele = m1.id
 								)
 							AND (
-								SELECT COUNT(*) + 1 
+								SELECT COUNT(*) + :nb_passager
 								FROM utilise u2, v_reservation v_r2
-								WHERE v2.id = u2.id_vol AND u2.id_reservation = v_r2.id_reservation
+								WHERE v2.id = u2.id_vol AND u2.id_reservation = v_r2.id_reservation AND v_r2.cat = 'BILLET'
 								) <= (
 								SELECT m2.capacite_voyageur
 								FROM avion a2, modele m2
@@ -288,9 +290,9 @@ if(isset($_POST))
 								WHERE v2.id_avion = a2.id AND a2.id_modele = m2.id
 								)	
 							AND (
-								SELECT COUNT(*) + 1 
+								SELECT COUNT(*) + :nb_passager
 								FROM utilise u3, v_reservation v_r3
-								WHERE v3.id = u3.id_vol AND u3.id_reservation = v_r3.id_reservation
+								WHERE v3.id = u3.id_vol AND u3.id_reservation = v_r3.id_reservation AND v_r3.cat = 'BILLET'
 								) <= (
 								SELECT m3.capacite_voyageur
 								FROM avion a3, modele m3
@@ -308,7 +310,7 @@ if(isset($_POST))
 						ORDER BY v3.arrive ASC
 						");
 						
-						$selectDeuxEscales->execute(array(":fret" => $_POST['fret'], ":depart" => $_POST['depart'], ":arrivee" => $_POST['arrivee'], ":dateStart" => $dateStartTimestamp, ":dateTimestampPlus36hours" => $dateStartTimestampPlus36h));
+						$selectDeuxEscales->execute(array(":fret" => $_POST['fret'], ":nb_passager" => $nbPassager, ":depart" => $_POST['depart'], ":arrivee" => $_POST['arrivee'], ":dateStart" => $dateStartTimestamp, ":dateTimestampPlus36hours" => $dateStartTimestampPlus36h));
 						$resultDeuxEscales = $selectDeuxEscales->fetchAll();						
 						
 						$resultReservations = true;
