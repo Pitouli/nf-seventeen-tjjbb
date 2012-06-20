@@ -3,12 +3,12 @@
 if(isset($getSSection))
 {
 	$id_aeroport = $getSSection;
-	echo $getSSection
+	echo $getSSection;
 	$historiqueVol=array();
 
 	$historiqueVol = $bdd->prepare("SELECT v.depart as dep, v.arrive as ar, a1.nom as aero_dep, a2.nom as aero_ar
 									FROM vol v, terminal t1, terminal t2, aeroport a1, aeroport a2
-									WHERE v.id_terminal_dep=t1.id AND v.id_terminal_ar=t2.id AND (t1.id_aeroport=:id_aero or t2.id_aeroport=:id_aero) LIMIT 100"
+									WHERE v.id_terminal_dep=t1.id AND v.id_terminal_ar=t2.id AND t1.id_aeroport=a1.id AND t2.id_aeroport=a2.id AND (a1.id=:id_aero OR a2.id=:id_aero) LIMIT 100"
 									);
 	$historiqueVol->execute(array(":id_aero" => $id_aeroport));
 	$historique=$historiqueVol->fetchAll();
