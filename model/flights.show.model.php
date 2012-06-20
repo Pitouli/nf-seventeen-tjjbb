@@ -7,7 +7,7 @@ if(isset($_POST))
 	if(isset($_POST['id']) && is_numeric($_POST['id']))
 	{
 		
-		
+		echo "TEST";
 		
 		$selectReserv = $bdd->prepare("
 		SELECT c.nom AS nom, c.prenom AS prenom, c.cat AS cat_client, r. prix AS prix, r.masse_fret AS fret, r.cat AS cat_billet
