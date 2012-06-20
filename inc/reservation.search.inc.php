@@ -1,7 +1,7 @@
 <h2>Choisir vos vols</h2>
 <p>Nous vous réunissons ici tous les itinéraires qui pourraient vous convenir. Cochez les vols qui vous conviennent le mieux.</p>
 
-<form method="post" action="<?php echo ROOT; ?>?c=reservation&s1=search&s2=<?php echo $getSection; ?>">
+<form method="post" action="<?php echo ROOT; ?>?c=reservation&s1=save&s2=<?php echo $getSSection; ?>">
 
 <h3>Vols directs</h3>
 
@@ -18,6 +18,7 @@
 			<th>Heure de Départ</th>
 			<th>Lieu d'Arrivée</th>
 			<th>Heure d'Arrivée</th>
+			<th rowspan="2"><input type="radio" name="reservationVol" value="<?php echo $direct['id'] ?>" title="Réserver ce voyage" /></th>
 		</tr>
 		<tr>
 			<td><?php echo $direct['id'] ?></td>
@@ -53,6 +54,7 @@
 			<th>Heure de Départ</th>
 			<th>Lieu d'Arrivée</th>
 			<th>Heure d'Arrivée</th>
+			<th rowspan="3"><input type="radio" name="reservationVol" value="<?php echo $uneEscale['id1'] ?>#<?php echo $uneEscale['id2'] ?>" title="Réserver ce voyage" /></th>
 		</tr>
 		<?php
 			for($i = 1; $i < 3; ++$i)
@@ -95,6 +97,7 @@
 			<th>Heure de Départ</th>
 			<th>Lieu d'Arrivée</th>
 			<th>Heure d'Arrivée</th>
+			<th rowspan="4"><input type="radio" name="reservationVol" value="<?php echo $deuxEscales['id1'] ?>#<?php echo $deuxEscales['id2'] ?>#<?php echo $deuxEscales['id3'] ?>" title="Réserver ce voyage" /></th>
 		</tr>
 		<?php
 			for($i = 1; $i < 4; ++$i)
@@ -121,4 +124,19 @@
 <?php
 	}
 ?>
+
+<h2>Réserver le vol</h2>
+
+<table class="largeTable">
+	<tr>
+		<th>Prix de la réservation&nbsp;:</th>
+		<td><input type="text" name="reservationPrice" title="Coût de la réservation" value="" />€</td>
+		<th>Type de réservation&nbsp;:</th>
+		<td>
+			<?php if($_POST['fret'] == 0) echo 'BILLET'; else echo 'TITRE ('.$_POST['fret'].'Kg)'; ?>
+			<input type="hidden" name="reservationFret" title="Coût de la réservation" value="<?php echo $_POST['fret'] ?>" />
+		</td>
+		<td><input type="submit" value="Réserver" /></td>
+	</tr>
+</table>
 </form>

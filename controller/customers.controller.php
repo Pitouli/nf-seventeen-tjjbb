@@ -20,5 +20,11 @@ else if($getSection == 'show')
 	require DIR_MODEL.'customers.show.model.php';
 	require DIR_MODEL.'customers.search.model.php';
 }
+else if($getSection == 'delRes')
+{
+	require DIR_MODEL.'reservation.del.model.php';
+	require DIR_MODEL.'customers.show.model.php';
+	require DIR_MODEL.'customers.search.model.php';
+}
 
 require DIR_VIEW.'customers.view.php';

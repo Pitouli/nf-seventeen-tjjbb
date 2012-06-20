@@ -1,7 +1,7 @@
 <?php
 
 // On gère la problématique de la date
-
+/*
 if(isset($_POST['showStart'], $_POST['showEnd']))
 {
 	if(preg_match("#^([0-9]{2})/([0-9]{2})/([0-9]{4})$#", trim($_POST['showStart']), $pregStart)
@@ -41,7 +41,7 @@ if(!$showDatesDefined)
 
 $showStartText = $showStart['d'].'/'.$showStart['m'].'/'.$showStart['y'];
 $showEndText = $showEnd['d'].'/'.$showEnd['m'].'/'.$showEnd['y'];
-
+*/
 // On récupère les informations sur l'utilisateur
 
 $selectClient = $bdd->prepare("SELECT id_client, nom, prenom, cat FROM v_client WHERE id_client = :id_client LIMIT 1");
@@ -56,11 +56,12 @@ $selectReservations = $bdd->prepare("SELECT id_reservation as id, prix, masse_fr
 $selectReservations->execute(array(":id_client" => $getSSection));
 $resultReservations = $selectReservations->fetchAll();
 
+$selectStatsReservations = $bdd->prepare("SELECT COALESCE(SUM(prix), 0) as cost, COUNT(*) as nbFlights FROM v_reservation WHERE id_client = :id_client");
+$selectStatsReservations->execute(array(":id_client" => $getSSection));
+$resultStatsReservations = $selectStatsReservations->fetch();
 
-$clientShow['cost'] = '12780€';
-$clientShow['nbFlights'] = 27;
-
-$start = time() + 10000;
+$clientShow['cost'] = empty($resultStatsReservations) ? 0 : $resultStatsReservations['cost'];
+$clientShow['nbFlights'] = empty($resultStatsReservations) ? 0 : $resultStatsReservations['nbflights'];
 
 $selectVol = $bdd->prepare("SELECT v.id as id, v.depart as dateStart, v.arrive as dateEnd, v_d.nom||' ('||a_d.nom||')' as cityStart, v_a.nom||' ('||a_a.nom||')' as cityEnd, av.id||' ('||mod.nom||')' as plane
 							FROM vol v, utilise u, terminal t_d, aeroport a_d, ville v_d, terminal t_a, aeroport a_a, ville v_a, avion av, modele mod
@@ -68,6 +69,7 @@ $selectVol = $bdd->prepare("SELECT v.id as id, v.depart as dateStart, v.arrive a
 								AND v.id_terminal_ar = t_a.id AND t_a.id_aeroport = a_a.id AND a_a.id_ville = v_a.id
 								AND v.id_avion = av.id AND av.id_modele = mod.id
 								AND u.id_vol = v.id 
+								AND u.id_reservation = :id_reservation
 							ORDER BY v.depart ASC");
 
 foreach($resultReservations as $key => $reservation)
@@ -75,10 +77,16 @@ foreach($resultReservations as $key => $reservation)
 	$selectVol->execute(array(":id_reservation" => $reservation['id']));
 	$resultReservations[$key]['vols'] = $selectVol->fetchAll();
 	$resultReservations[$key]['cityStart'] = $resultReservations[$key]['vols'][0]['citystart'];
-	$resultReservations[$key]['dateStart'] = date("d/m/Y", $resultReservations[$key]['vols'][0]['datestart']);
+	$resultReservations[$key]['dateStart'] = $resultReservations[$key]['vols'][0]['datestart'];
 	$resultReservations[$key]['cityEnd'] = $resultReservations[$key]['vols'][count($resultReservations[$key]['vols'])-1]['cityend'];
-	$resultReservations[$key]['dateEnd'] = date("d/m/Y", $resultReservations[$key]['vols'][count($resultReservations[$key]['vols'])-1]['dateend']);
-	$resultReservations[$key]['cancelable'] = $resultReservations[$key]['vols'][0]['datestart'] > time();
+	$resultReservations[$key]['dateEnd'] = $resultReservations[$key]['vols'][count($resultReservations[$key]['vols'])-1]['dateend'];	
+
+	$now = new DateTime(date('Y-m-d h:m:s')); 
+	$now = $now->format('Ymd'); 
+	$dateFlight = new DateTime($resultReservations[$key]['dateStart']); 
+	$dateFlight = $dateFlight->format('Ymd'); 
+	
+	$resultReservations[$key]['cancelable'] = $dateFlight > $now;
 }
 
 /*
