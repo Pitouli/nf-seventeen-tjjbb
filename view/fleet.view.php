@@ -79,7 +79,7 @@
 						<?php foreach($listeModeles as $modele2)
 						{
 						?>
-						  <option value="<?php echo $modele2['id'] ?>"><?php echo $modele2['nom'] ?></option>
+						  <option value="<?php echo $modele2['id'] ?>" <?php if( isset($_POST['modele2']) && ($_POST['modele2'] == $modele2['id']) ) echo 'selected="selected"'; ?>><?php echo $modele2['nom'] ?></option>
 						<?php
 						}
 						?>
