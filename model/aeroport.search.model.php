@@ -23,9 +23,6 @@ if(isset($_POST))
 	//Valider les requête et arrêter la transaction
 	if(!isset($resultSearch))
 		$infos[] = "Aucun résultat.";
-	else
-		$showHistorique=true;
-		
 }
 else
 	$infos[] = "Aucune information reçue. La recherche n'a pas été effectuée";
