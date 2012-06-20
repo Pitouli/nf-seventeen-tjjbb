@@ -1,4 +1,4 @@
-﻿<h2>Créer un vol - étape 2 - Sélectionner un avion</h2>
+﻿
 
 	<table class="largeTable">
 		<tr>
@@ -12,18 +12,17 @@
 			<th>Action</th>
 		</tr>
 		<?php
-		if(empty($resultVol)) echo "<p>La recherche n'a renvoyé aucun résultat</p>";
-		else 
-		{
+		$flag = 0;
 		while($vol = $resultVol->fetch())
 		{
+		$flag++;
 		?>
 		<tr>
 			<td><?php echo $vol['id'] ?></td>
+			<td><?php echo $vol['aeorport_depart'] . "<br />(" . $vol['terminal_depart'] . ")" ?></td>
+			<td><?php echo $vol['aeroport_arrive'] . "<br />(" . $vol['terminal_arrive'] . ")" ?></td>
 			<td><?php echo $vol['date_depart'] ?></td>
 			<td><?php echo $vol['date_arrive'] ?></td>
-			<td><?php echo $vol['terminal_depart'] . "<br />(" . $vol['aeorport_depart'] . ")" ?></td>
-			<td><?php echo $vol['terminal_arrive'] . "<br />(" . $vol['aeorport_depart'] . ")" ?></td>
 			<td><?php echo $vol['avion'] ?></td>
 			<td><?php echo $vol['n_avion'] ?></td>
 			<td>
@@ -32,11 +31,13 @@
 				<input type="submit" class="inputSubmit" onclick="return confirm('Confirmez vous la suppression du vol selectionnés? (ACTION IRREVERSIBLE !)');"value="Supprimer" />
 				</form>
 			</td>
-		</tr
+		</tr>
 		
 		<?php
-		}
 		}
 		
 		?>
 	</table>
+	<?php
+		if(!$flag) echo "<p>La recherche n'a renvoyé aucun résultat</p>";
+	?>
