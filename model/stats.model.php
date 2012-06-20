@@ -61,7 +61,9 @@ $resultPopularite = $bdd->query("SELECT nom, MAX(resa) nb
 									WHERE u.id_vol=v.id AND v.id_terminal_ar=t.id AND t.id_aeroport=a.id AND a.id_ville=vi.id
 									GROUP BY vi.nom
 								) as nb_reservation
-								GROUP BY nom;");
+								GROUP BY nom
+								ORDER BY nb DESC
+								LIMIT 10");
 $Popularite = $resultPopularite->fetchAll();
 
 
