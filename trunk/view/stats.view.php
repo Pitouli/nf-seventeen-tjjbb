@@ -29,7 +29,13 @@
 		<ul><?php echo $ville['nom'];?> : <?php echo $ville['nb'];?> resevation(s)</ul>
 		<?php };?>
 		</li>
-
+		
+		<li>Total des heures de vol par clients</li>
+		<?php
+		foreach($totalHeure as $client){
+		?>
+		<ul><?php echo $client['nom'];?>, <?php echo $client['prenom'];?> : <?php echo $client['duree'];?> heure(s) de vol</ul>
+		<?php };?>
 	</ul>
 
 </div>

@@ -44,8 +44,13 @@ $nbVol24heures = $countNbVol24heures->fetchColumn();
 #  PARTIE 2  #
 ########### */
 
-
-
+$resultClient = $bdd->query("SELECT id FROM CLIENT");
+$clients=$resultClient->fetchAll();
+$resultHeure = $bdd->query("SELECT p.nom as nom ,p.prenom as prenom, SUM(v.arrive-v.depart) as duree
+								FROM billet b, particulier p, utilise u, vol v
+								WHERE b.id_particulier=p.id_client AND b.id_reservation=u.id_reservation AND u.id_vol=v.id
+								GROUP BY p.nom, p.prenom");
+$totalHeure = $resultHeure->fetchAll();
 
 
 /* ###########
