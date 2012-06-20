@@ -152,7 +152,7 @@
 						}
 						?>
 				</td>
-				<td><label for="arrivee">Arrivée</label></td>
+				<td><label for="arriveeSearch">Arrivée</label></td>
 				<td>
 				   <select name="arriveeSearch" id="arriveeSearch">
 					   <?php foreach($listeVilles as $ville)
