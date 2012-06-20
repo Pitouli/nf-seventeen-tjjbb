@@ -26,6 +26,9 @@ spl_autoload_register ('loadClass'); // On enregistre la fonction en autoload po
 
 //$chrono = new Chrono; // On crée un objet de chronométrage
 
+// On espère que le serveur arrêtera de faire des warining à la noix à propos des fuseaux horaires
+date_default_timezone_set("Europe/Paris");
+
 session_start(); // On démarre la session
 
 $bdd = new BDD; // On crée directement un objet PDO
