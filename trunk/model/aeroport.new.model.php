@@ -4,7 +4,7 @@ if(isset($_POST, $_POST['newAeroport']))
 {
 	// On convertit nom en majuscule
 	$nom = mb_strtoupper(trim($_POST['newAeroport']), 'UTF-8');
-	$nom = $nom != '' ? $nom : NULL; // On met à NULL si la chaîne est vide
+	$nom = $nom != '' ? $nom : NULL; // On met Ã  NULL si la chaÃ®ne est vide
 
 	//on recupere la ville
 	$id_ville= $_POST['ville'];
@@ -24,10 +24,10 @@ if(isset($_POST, $_POST['newAeroport']))
 			else
 				$commit = false;
 			
-			if($commit) // 1 ligne a été ajoutée
+			if($commit) // 1 ligne a Ã©tÃ© ajoutÃ©e
 			{				
 				$bdd->commit();
-				$success[] = "Nouvel aeroport (".$nom.") ajoutée avec succès.";
+				$success[] = "Nouvel aeroport (".$nom.") ajoutÃ©e avec succÃ¨s.";
 				}
 			else
 			{
@@ -35,15 +35,15 @@ if(isset($_POST, $_POST['newAeroport']))
 				$errors[] = "Echec lors de l'ajout de l'aeroport";
 			}
 		} 
-		catch (PDOException $e)  //Gestion des erreurs causées par les requêtes PDO
+		catch (PDOException $e)  //Gestion des erreurs causÃ©es par les requÃªtes PDO
 		{
 			//Annuler la transaction
 			if($bdd) $bdd->rollBack();
 			
 			//Afficher l'erreur
-			$errors[] = "Échec : " . $e->getMessage();
+			$errors[] = "Ã‰chec : " . $e->getMessage();
 		}
 	}
 }
 else
-	$infos[] = "Aucune information reçue. Aucun aeroport ajouté.";
+	$infos[] = "Aucune information reÃ§ue. Aucun aeroport ajoutÃ©.";
